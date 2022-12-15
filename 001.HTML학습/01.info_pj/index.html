@@ -1,27 +1,115 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta
-      name="desscripton"
-      content="네이버 요약뉴스, 최신뉴스, 정치, 경제, 사회, IT/과학, 연예"
-    />
-    <!-- <meta name="desscripton"> 사이트 설명 -->
+    <meta name="descripton" content="네이버 요약뉴스, 최신뉴스, 정치, 경제, 사회, IT/과학, 연예">
+    <!-- <meta name="descripton"> 사이트 설명 -->
     <meta charset="utf-8" />
     <!-- mate charset 필수 인코딩 설정 -->
     <title>네이버 요약 뉴스</title>
     <!-- title 탭에 표시 타이틀 -->
+    <style>
+        /* 
+            [ 스타일 시트 문법 영역! ]
+            
+            [ 기본문법 ]
+            선택자{
+                속성:값;
+            }
+
+            [ css 박스모델 ]
+            모든 요소는 박스 형태로 그 디자인을 설정한다
+            
+            5가지 속성을 셋팅한다
+            1) width : 가로 크기
+            2) height : 세로 크기
+            3) padding : 안쪽 여백
+            4) border : 경계선
+            5) margin : 바깥여백
+            *박스모델의 적용은 블록요소를 기본으로 한다*
+            인라인요소는 좌우마진만 적용된다(패딩이나 상하마진 적용안됨)
+
+            [ css 선택자(selector) ]
+            1) 타입선택자: 요소명
+            예) h1{} div{}
+            2) 아이디선택자: #
+            예) #my{}
+            3) 클래스선택자: .
+            예) .my{}
+            4) 종속선택자: 요소명#아이디명 / 요소명.클래스명 / 요소명#아이디명.클래스명
+            예) div#my{} <-div요소인데 아이디가 my이다
+            div.my{} <-div요소인데 클래스가 my이다
+            *기본적으로 종속선택자는 요소분석기에 사용되며 특정 요소에 특정이름을 밝혀야 할 경우
+            *클래스 적용시 같은 이름으로 다른 디자인을 줄 때
+            예) div.on{} header.on{} -> 같은 클래스인데 다른 디자인 적용 가능!
+            5) 그룹선택자: ,(콤마)
+            예) h1, div, a{}
+            6) 자손 선택자: 띄어쓰기
+            예)div a ->div 하위의 모든 a요소들
+        */
+
+        /* 기본 마진 패딩 없애기*/
+            html,body{
+                padding: 0px;
+                margin: 0px;
+            }
+        /* 실제로는 body에만 마진 8px이 있지만 사용자가 별도로 적용한 마진등 초기화할때 한꺼번에 최상위 요소인 html, body를 마진 패딩 초기화값 0으로 셋팅한다 */
+
+        /* 1. 상단영역 */
+        .bx{
+            /* 가로크기 w
+            아무것도 안쓰면 auto값인데 블록일 경우 부모요소 끝까지 차지
+            */
+            width: 750px;
+            /* 세로크기 h
+            아무것도 안쓰면 auto값인데 블록일 경우 내용만큼 늘어남
+            */
+            /* height: 150px; */
+            /* 경계선(보더) bd
+            border: 두께 종류 색상
+                -border-width : 두께
+                -border-style : 종류
+                -border-color : 색상
+
+            border-radius: 둥근 모서리 보더
+            값을 50% 주면 원이 된다
+            */
+            border: 5px solid rgb(255, 203, 82);
+            border-radius: 10px;
+            /* 안쪽여백(패딩)
+            padding: 1개(4방향 동시)
+            padding: 1개 2개(위아래양쪽)
+            padding: 1개 2개 3개(위 양쪽 아래)
+            padding: 1개 2개 3개 4개(각 방향: 위 오른쪽 아래 왼쪽)
+            **마진도 동일함
+            */
+            padding: 20px;
+            /* 바깥여백(마진)m */
+            margin: 0 auto;
+            /* margin-top 덮어쓰기 */
+            margin-top: 30px;
+            /* 
+            일반적인 블록요소가 가로크기를 가질때 이를 중앙정렬하려면 양쪽 마진을 0(위아래) auto(좌우)로 설정한다
+            */
+        }
+
+        .cont img{
+            width:100%;
+            /* 한쪽만 크기를 주면 이미지는 자동으로 비율유지를 하면서 변경된다
+                100%는 부모 박스를 채움!
+            */
+        }
+    </style>
+    <!-- 인터널 스타일시트 요소 -->
   </head>
   <body>
     <!-- 1. 상단영역 -->
-    <header>
+    <header class="top bx">
       <!-- 1-1. 제목 -->
       <h1>네이버 요약 뉴스</h1>
       <!-- 1-2. GNB메뉴 -->
       <!-- GNB (Global Navigation Bat) -->
       <nav id="gnb">
-        <a href="">
-            <img src="images/logo.png" alt="네이버로고" style="width: 20px;">
-        </a>
+        <a href=""><img src="./images/logo.png" alt="네이버로고" style="width: 20px;"></a>
         <a href="">정치</a> | 
         <a href="">경제</a> | 
         <a href="">사회</a> |
@@ -30,11 +118,11 @@
       </nav>
     </header>
     <!-- 2. 메인영역 -->
-    <main>
-        <a href=""><img src="./images/main.jpg" alt="뉴스이미지"></a>
+    <main class="cont bx">
+        <a href="#"><img src="./images/main.jpg" alt="뉴스이미지"></a>
     </main>
     <!-- 3. 하단영역 -->
-    <footer>
+    <footer class="info bx">
         <address>
             서울시 역삼동 119 대호B 8F<br>
             대표: KIM MIN KYUNG<br>
