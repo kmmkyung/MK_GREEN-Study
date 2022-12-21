@@ -164,7 +164,6 @@
     border-radius: 50%;
     /* 배경색 */
     background-color: lightsteelblue;
-
 }
 /* 가상클래스로 오버시 박스그림자 넣기 */
 .cont>h5>a:hover{
