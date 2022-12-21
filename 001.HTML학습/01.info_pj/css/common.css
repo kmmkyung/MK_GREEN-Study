@@ -71,6 +71,13 @@ body {
     font-family: 'Noto Sans KR', sans-serif;;
 }
 
+/* 전체 a요소 공통 셋팅 */
+a{
+    /* 글자색 */
+    color: #222;
+    /* 밑줄없앰 tdn */
+    text-decoration: none;
+}
 /* 1. 상단영역 */
 .bx {
     /* 가로크기 w
