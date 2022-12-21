@@ -67,6 +67,8 @@ body {
 body {
     /* 하단패딩 pb */
     padding-bottom: 50px;
+    /* 글자체 ff */
+    font-family: 'Noto Sans KR', sans-serif;;
 }
 
 /* 1. 상단영역 */
