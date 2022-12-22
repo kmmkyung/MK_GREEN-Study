@@ -29,6 +29,7 @@
     height: 32px;
     /* 이미지는 가로, 세로 중 한쪽만 주면 자동 비율유지를 함! */
 }
+
 /* 2-2.기사제목 */
 .atit{
     /* 글자크기 fz30 */
@@ -49,6 +50,7 @@
         예: 한줄에 오는 버튼 글자, 한줄에 말줄임표 */
     /* white-space: nowrap; */
 }
+
 /* 2-3.기사사진(+사진설명) */
 .afig{
     /* 마진m : 2개값->위, 아래 양쪽 여백*/
@@ -56,10 +58,12 @@
     /* 인라인 가로중앙 : text-align tac */
     text-align: center;
 }
+
 /* 기사이미지 */
 .afig img{
     width: 100%;
 }
+
 /* 기사 이미지 설명글 */
 .afig small{
     /* 글자체 : ff */
@@ -71,6 +75,7 @@
     color: #333;
 
 }
+
 /* 2-4.기사내용 */
 .arti p{
     /* 글자크기 : fz */
@@ -85,6 +90,9 @@
     letter-spacing: 1px;
     /* 글자 들여쓰기 ti */
     /* text-indent: +-0px; */
+
+    /* 양쪽정렬 taj */
+    text-align: justify;
 }
 
 /* mark요소 변경하기! */
@@ -109,6 +117,7 @@
     /* 위아래 마진 */
     margin: 15px 0;
 }
+
 /* p요소 아래 em요소 디자인 변경 */
 .arti p em{
     /* 글자그림자: text-shadow
@@ -144,6 +153,7 @@
     /* 내부의 인라인 요소 오른쪽 정렬 */
     text-align: right;
 }
+
 .cont>h5>a{
     /* 디자인적용위해 display 변경! */
     display: inline-block;
@@ -165,6 +175,7 @@
     /* 배경색 */
     background-color: lightsteelblue;
 }
+
 /* 가상클래스로 오버시 박스그림자 넣기 */
 .cont>h5>a:hover{
     /* 박스그림자
@@ -172,4 +183,116 @@
     -spread 박스그림자 크기(필요시 씀)
     */
     box-shadow: 0px 0px 5px darkblue;
+}
+
+/* 메인 공통 article */
+.cont article{
+    /* 구분선 : 보더 위 bdt */
+    border-top: 2px dashed #ccc;
+    /* 마진 위 mt */
+    margin-top: 40px;
+    /* 패딩 p */
+    padding: 15px;
+}
+
+/* 기사 관련 타이틀 h5 */
+/* .cont>h5(기사원문 버튼)과 구분하기 위해 article 경유 */
+.cont article h5{
+    /* 내용만큼 자동크기 위해 inline-block */
+    display: inline-block;
+    /* 위아래 양쪽 */
+    padding: 10px 20px;
+    /* 배경색 */
+    background-color: rgb(234, 234, 234);
+    /* 모서리 둥글게 */
+    border-radius: 20px;
+    /* 헤딩요소 기본 마진 없앰 */
+    margin: 0;
+
+    /* 내부그림자 bsh */
+    /* inset은 내부그림자 설정 */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;
+
+    /* 글자 두께 : 얇게(기본값) */
+    font-weight: normal;
+    /* 글자 크기 fz */
+    font-size: 20px;
+    /* 글자 들여쓰기 */
+    /* text-indent: 20px; */
+    /* 글자색 c */
+    color: #333;
+}
+
+/*  개별파트 타이틀 h3 */
+.cont h3{
+    /* 웹폰트 */
+    font-family: 'Do Hyeon', sans-serif;
+    /* 글자 두께 : 얇게(기본값) */
+    /* font-weight: normal; */
+    /* 글자 크기 fz */
+    font-size: 26px;
+    /* 글자 들여쓰기 */
+    text-indent: 20px;
+    /* 글자색 c */
+    color: #333;
+}
+
+/* 주해 박스 */
+.desc div{
+    /* 패딩 위 양쪽 아래 */
+    padding: 20px 5px 0;
+    /* 줄간격 lh */
+    line-height: 1.8;
+    /* 자간 ls */
+    letter-spacing: 1px;
+    
+    /* 양쪽정렬 taj */
+    text-align: justify;
+}
+
+/* 인용 박스 */
+.qb blockquote{
+    /* 기본 마진 없앰 */
+    margin: 0;
+    /* 패딩 위 양쪽 아래 */
+    padding: 20px 5px 0;
+    /* 줄간격 lh */
+    line-height: 1.5;
+    /* 자간 ls */
+    /* letter-spacing: 0px; */
+    /* 글자크기 */
+    font-size: 14px;
+    /* 양쪽정렬 taj */
+    text-align: justify;
+}
+
+/* 오늘의 작품 & 느낌 */
+.work{
+    /* 글자중앙 */
+    text-align: center;
+    /* 배경색 */
+    /* background-color: lightpink; */
+    /* 그라데이션 -> 이미지로! bgi */
+    /* background-image: linear-gradient(15deg, red 10%, yellow 20%, yellow 80%, blue) */
+    background-image: linear-gradient(35deg, rgb(255, 196, 0), rgb(233, 92, 67));
+    /* linear-gradient(방향, 색1 %, 색2 %, ...); */
+    /* 방향: to top, to bottom, to left, to right
+    (방향에 각도를 쓰면 그라데이션 각도가 표현됨)
+    ->방향대신 각도: 수치 deg(예 45deg)
+    *색상을 콤마로 나열하면 등분할 하여 그라데이션 표현되고
+    색상되에 %수치를 쓰면 특정 비율을 나타낼 수 있다 */
+
+    /* 배경옵션 추가
+    background-clip : 배경이 적용되는 범위설정
+    1. border-box - 보더까지 적용(기본값)
+    2. padding-box - 패딩까지 적용
+    3. content-box -  내용영역만 적용(패딩, 보더 빠짐)
+     */
+     background-clip: content-box;
+}
+
+/* 타이틀 적용 */
+.work figcaption cite{
+    font-family: 'Gowun Dodum', sans-serif;
+    font-style: normal;
 }
