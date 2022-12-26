@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>메뉴 연습</title>
+    <style>
+    html, body{
+        margin: 0;
+        padding: 0;
+    }
+    .a{
+        width: 500px;
+        height: 500px;
+        background-color: greenyellow;
+        /* overflow:hidden을 주면 정상작동 */
+        /* overflow: hidden; */
+    }
+    .b{
+        width: 100px;
+        height: 100px;background-color: aqua;
+        /* 마진 top를 주니까 부모랑 같이 이동함 */
+        margin-top: 100px;
+    }
+
+    /* 자식(b)의 margin-top 값이 부모요소의 마진 탑 값을 상쇄시킴으로
+    100px이 부모 요소의 margin요소로 쓰이게 됨! */
+    /* 반대로 부모 요소의 margin-top 값이 더 클 경우 부모요소의 margin 탑 값을 쓰게 됨! */
+    /* =>이렇게 마진중첩 현상을 해결하는 방법이 overflow:hidden이다 */
+    /* .a에 overflow:hidden을 쓰면 부모 요소의 넘치는 값을 안보이게 하기 때문에
+    즉, .a의 마진탑 값을 잘라냄! */
+
+    </style>
+</head>
+<body>
+	<div class="a">
+		<div class="b">자식 m-t100px</div>
+	</div>
+</body>
+</html>
