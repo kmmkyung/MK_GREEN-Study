@@ -48,7 +48,6 @@ ____________________________________________
 특별한 경우가 아니라면 auto 상태로 놓으면 보더와 패딩이 내부에 자동으로 포함된다!
 */
 
-/* 0. 전체 타이틀 */
 
 /* 0. 전체 타이틀 */
 .tit{
@@ -65,6 +64,20 @@ ____________________________________________
     text-align: center;
     /* 위아래 패딩 */
     padding: 50px 0 ;
+
+    /* 트랜스폼
+    ->y축 상단이동 + x축회전 90도 + 스케일0(안보임) */
+    transform: translateY(-200px) rotateX(90deg) scale(0);
+
+    /* 트랜지션 */
+    transition: transform 3s ease-in-out;
+
+}
+
+/* 오버시 타이틀 트랜스폼 */
+body:hover .tit{
+/* 트랜스폼 원래위치로 그리고 x축 회전 원래크기 */
+transform: translateY(0) rotateX(720deg) scale(1);
 }
 
 /* 1. 페이지 박스 공통 */
@@ -124,7 +137,6 @@ ____________________________________________
 
     /* 처음에 투명 */
     opacity: 0;
-
 }
 
 /* 캐릭터 이미지 */
@@ -145,7 +157,21 @@ ____________________________________________
     /* 이미지 둥글게 */
     border-radius: 50%;
     
+    /* 글로우효과 */
     box-shadow: 0 0 30px 10px lightgreen;
+
+    
+    /* 트랜지션 : 속시이지 trs */
+    transition: transform .8s ease-in-out;
+}
+
+
+/* 오버시 이미지 변경 */
+body:hover .cbx>img{
+    
+/* 트랜스폼 회전하기 */
+transform: rotateY(720deg);
+
 }
 
 /* body에 오버시 전체 opacity 보이게 하기 */
