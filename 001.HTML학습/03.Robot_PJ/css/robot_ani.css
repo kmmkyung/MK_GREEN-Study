@@ -35,15 +35,158 @@ animation: 이시이지반방마
 
  /* 1-1. 로봇 등장 키프레임 */
  @keyframes showRobot {
-    from{
-        transform: scale(.1) translate(100%, -100%);
-    }
-    top{
-        transform: scale(1);
+/* 초기값만 같으면 주석 생략 */
+    /* from{
+        transform: scale(0) translate(20%, -20%);
+    } */
+    to{
+        transform: 
+        translate(0,0)
+        scale(.6);
+        /* rotate(360deg); */
     }
  }
+
+ /* 로봇 몸 키프레임 추가
+ .robx의 내부 div박스를 회전함
+ ->중심점때문에 만들어서 사용함! */
+@keyframes showRobot2 {
+    0%{
+        transform: rotate(0);
+    }
+
+    50%{
+        transform: rotate(360deg);
+    }
+    
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+
+
+/* 
+[ 애니메이션 기본특성 ]
+1. 기본적으로 1회만 실행
+2. 애니메이션 후 처음 설정된 값으로 돌아감
+3. 반복할 경우 시작 -> 끝 순으로 반복함
+
+[ 기본특성변경하기 ]
+1. 반복실행 하고 싶으면 반복여부(animation-iteration-count) 속성값으로 반복횟수로 쓰거나
+계속 반복실행하고 싶으면 infinite
+
+2. 마지막 애니메이션 설정값으로 끝내고 싶으면 마지막상태(animation-fill-mode)
+속성값을 forwards로 쓴다!
+
+3. 시작->끝, 끝->시작 반복 애니메이션을 역순으로 설정하고 싶으면 방향(animation-direction)속성값을
+alternate로 쓴다!
+*/
+
  /* 1-2. 키프레임 호출설명! */
  .robx{
+    /* 초기상태 지정하기 */
+    transform: 
+    translate(20%,10%)
+    scale(0)
+    rotate(0);
+
+    /* 트랜스폼 기본값 변경 */
+    transform-origin: top;
+
     /* 애니메이션: 이시이지반방마 */
-    /* animation: showRobot 3s ease-in-out 1s 3; */
+    animation: showRobot 4s ease-in-out 1s forwards;
+    /* animation: showRobot .5s ease-in-out 1s  infinite alternate forwards; */
  }
+
+/* 로봇 몸 추가 회전 애니호출 */
+.robx>div{
+    /* 애니메이션 */
+ animation: showRobot2 4s ease-in-out 1s;
+}
+
+
+ /* 2-1. 왼팔 허리에 올리기 키프레임 */
+ @keyframes leftArm1 { /* 팔 상단 */
+    to{
+        transform: rotate(52deg);
+    }
+ }
+ @keyframes leftArm2 { /* 팔 하단 */
+    to{
+        transform: rotate(-98deg);
+    }
+ }
+ @keyframes leftArm3 { /* 왼손 */
+    to{
+        transform: rotate(77deg);
+    }
+ }
+
+ /* 2-2. 왼팔애니 호출하기 */
+ .a1{
+    /* 애니메이션: 이시이지반방마 */
+    animation: leftArm1 .5s ease-in-out 5s forwards;
+ }
+
+ .a1 span{
+    animation: leftArm2 .5s ease-in-out 5s forwards;
+ }
+
+ .a1 span::after{
+    animation: leftArm3 .5s ease-in-out 5s forwards;
+ }
+
+ /* 3-1. 오른손 키프레임 */
+ @keyframes rightArm1 { /* 팔 상단 한번 올리기 */
+    to{
+        transform: rotate(-122deg);
+    }
+        
+ }
+
+ @keyframes rightArm1-2 { /* 팔 상단 계속 흔들기 */
+    from{
+        transform: rotate(-122deg);
+    }
+    to{
+        transform: rotate(-142deg);
+    }
+ }
+ @keyframes rightArm2 { /* 팔 하단 계속 흔들기 */
+    from{
+        transform: rotate(10deg);
+    }
+    to{
+        transform: rotate(-10deg);
+    }
+ }
+
+ @keyframes rightArm3 { /* 오른손 계속 흔들기 */
+    from{
+        transform: rotate(-20deg) rotateY(180deg);
+        right:-22px;
+    }
+    to{
+        transform: rotate(20deg) rotateY(180deg);
+        right:-22px;
+    }
+ }
+
+ /* 3-2. 오른팔 애니 호출 */
+ /* 오른팔 상단 */
+ .a2{
+    /* 애니메이션: 이시이지반방마 */
+    animation: rightArm1 .5s ease-out 6s forwards,
+    rightArm1-2 .3s linear 6.5s infinite alternate;
+ }
+
+/* 오른팔 하단 */
+.a2 span{
+animation: rightArm2 .3s linear 6.5s infinite alternate;
+}
+
+/* 오른손 */
+.a2 span::after{
+    animation: rightArm3 .3s linear 6.5s infinite alternate;
+    }
