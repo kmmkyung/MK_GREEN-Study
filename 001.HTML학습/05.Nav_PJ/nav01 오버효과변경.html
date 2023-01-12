@@ -169,6 +169,15 @@
             padding: 8px 0;
             font-size: 16px;
             font-weight: normal;
+            /* 트랜지션 */
+            transition: .3s;
+        }
+
+        /* 서브메뉴 오버시 메뉴 확대 */
+        .smenu a:hover{
+            /* 글씨크기 변경은 주위에 영향을 주는데 scale는 영향을 주지 않는다 */
+            transform: scale(1.2);
+            color: orange;
         }
 
         /* 컨텐츠박스 */
