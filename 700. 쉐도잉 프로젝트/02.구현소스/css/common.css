@@ -45,6 +45,12 @@ nav.gnb ul{
     margin-top: 27px;
 }
 
+/* GNB 최상위 li */
+.gnb > ul > li {    
+    /* a요소의 마진을 li로 이동함! */
+    margin: 0 10px;
+}
+
 /* gnb a요소 */
 .gnb>ul>li>a{
     /* li가상요소 서브배경 보다 위 순서대로 나중에 그려진 static 아닌요소가 위 */
@@ -52,9 +58,7 @@ nav.gnb ul{
     color: #222;
     text-decoration: none;
     font-size: 1.7rem;
-    line-height: 2rem;
-    margin: 0 10px;
-    
+    line-height: 2rem;    
 }
 
 /* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기
@@ -114,8 +118,9 @@ nav.gnb ul{
     width: 0%;
     margin-left: 50%;
     
-    height: 2px;
-    margin-top: 5px;
+    height: 3px;
+    /* margin-top 라인 위치 조절 */
+    margin-top: 15px;
     background-color: #f00;
     /* 트랜지션 : 속시이지 trs */
     transition: all .3s;
@@ -125,6 +130,26 @@ nav.gnb ul{
 .gnb>ul>li:hover>a::after{
     width: 100%;
     margin-left: 0%;
+}
+
+
+/* 서브메뉴 a요소 */
+.smenu a{
+    /* 트랜스폼은 inline일때 적용안됨 */
+    display: block;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: #222;
+    text-decoration: none;
+    /* 트랜지션 */
+    transition: .3s;
+}
+
+/* 서브메뉴 오버시 메뉴 확대 */
+.smenu a:hover{
+    /* 글씨크기 변경은 주위에 영향을 주는데 scale는 영향을 주지 않는다 */
+    transform: scale(1.1);
+    color: rgb(255, 0, 0);
 }
 
 /* GNB 서브메뉴 */
