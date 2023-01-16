@@ -179,8 +179,6 @@
 
         /* 체크박스가 체크되면 그 다음 형제요소를 변경하여 클릭시 변경된것처럼 작동시킨다 */
 
-
-
         #chkbx:checked+span{
             /* 위치이동 */
             left: 50%;
@@ -191,7 +189,9 @@
             background-color: olivedrab;
         }
         
-      
+        #chkbx{
+            display: none;
+        }
         
     </style>
 </head>
@@ -219,7 +219,8 @@
         <label for="chkbx">체크하면 작동!</label> 
         <input type="checkbox" name="chkbx" id="chkbx">
         <span></span>
-        <!-- 체크박스 다음에 변경할 요소가 와야 함 -->
+        <!-- 체크박스 다음에 변경할 요소가 와야 함
+        그래야 형제선택자로 변경을 할 수 있음! -->
     </div>
     <!-- 체크박스를 응용한 클릭이벤트 작동 css로 구현 -->
     <!-- 
