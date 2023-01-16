@@ -103,3 +103,10 @@ https://pilot.auto/
 1) 화면 전환 효과 ->(실험실에서 예약2)
 2) 글자등장애니메이션 -> (실험실에서 예약3)
 3) sticky 화면구성 > 쥬얼리에서 해봄!(실험실 1)
+
+4. 구찌 이벤트 사이트
+https://vaultartspace.gucci.com/gallery/grid
+https://vaultartspace.gucci.com/artists
+1) 스크롤시 화면방향으로 3D 이동기능 -> (실험실 에약4)
+2) 타이틀에 마우스 오버시 이미지 나타나기 ->(실험실 예약 5)
+3) 3D 화면 전환 효과 -> (실험실 예약 6 : 큐브애니 후에 제작)
