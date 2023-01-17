@@ -19,6 +19,10 @@ body{
 /************************************* 1. 상단영역 *************************************/
 /* 속박스 */
 .top{
+    position: relative;
+    /* 부모자격: .gnb */
+    z-index: 1;
+    /* GNB서브메뉴를 올리기 위한 설정! */
     height: 80px;
     /* 배경이미지 */
     background: url(../images/curtain.jpg) repeat-x;
@@ -43,6 +47,123 @@ body{
         text-shadow: 0 0 12px aquamarine;
     }
 } /* 키프레임 */
+
+/* 1-2. GNB메뉴 */
+.gnb{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* ul박스 */
+.gnb ul{
+    display: flex;
+    font-family: 'Jua', sans-serif;
+}
+
+/* 상위 li */
+.gnb ul>li{
+    position: relative;
+    /* 부모자격 .smenu */
+    padding-bottom: 5px;
+    /* 서브메뉴와 공간연결을 위해 하단패딩줌! */
+}
+
+/* 상위 두번째 li */
+.gnb ul>li+li{
+    /* 두번재 li부터 왼쪽으로 마진 10px */
+    margin-left: 20px;
+}
+
+/* 상위메뉴 a */
+.gnb ul>li>a{
+    font-size: 2rem;/* 20px */
+}
+
+/* 서브메뉴 */
+.smenu{
+    position: absolute;
+    /* 부모는 .gnb>ul>li*/
+    /* 부모박스 가로중앙 중앙맞추기 */
+    left: 50%;
+    transform: translate(-50%,5px);
+    /* x축은 자기크기의 50%만큼 왼쪽이동, y축은 5px 이동 */
+    width: 140px;
+    padding: 3px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #fff;
+    
+    /* 처음에 서브메뉴 숨기기 */
+    display: none;
+}
+
+/* 상위메뉴 li오버시 서브메뉴 보이기 */
+.gnb ul>li:hover .smenu{
+    display: block;
+}
+
+/* 메뉴박스 가상요소로 삼각형 만들기 */
+.smenu::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    /* 삼각형을 만들어야해서(보더 튀어나오게) w0 h0 */
+
+    /* 삼각형만들기:보더사용 */
+    border-bottom: 10px solid #313;
+    border-left: 10px solid  transparent;
+    border-right: 10px solid transparent;
+}
+/* 서브메뉴 ol */
+.smenu ol{
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+/* 서브메뉴 a */
+.smenu a{
+    display: block;
+    /* a요소 확장 */
+    font-size: 1.6rem;
+    line-height: 1.7;
+}
+/* 서브마우스 오버시 */
+.smenu a:hover{
+    color: red;
+}
+/* 오버시 가상요소로 이모티콘 */
+.smenu a:hover:after{
+    content: '🎬';
+    /* 오른쪽 끝으로 보내기 */
+    float: right;
+}
+/* 예매 */
+.gnb ul>li:nth-child(2)
+.smenu a:hover::after{
+    content: '🎫';
+}
+/* 극장 */
+.gnb ul>li:nth-child(3)
+.smenu a:hover::after{
+    content: '🎪';
+}
+/* 이벤트&컬쳐 */
+.gnb ul>li:nth-child(4)
+.smenu a:hover::after{
+    content: '💜';
+}
+
+/* 서브메뉴 li 사이 상단 구분선 클래스 */
+.bdt{
+    border-top: 1px solid #ccc;
+}
 /************************************* 2. 메인영역 *************************************/
 /* 속박스 */
 .cont{
@@ -125,7 +246,7 @@ body{
     top: 0;
 }
 
-/************************************* 3. 히딘영역 *************************************/
+/************************************* 3. 하단영역 *************************************/
 .info{
     height: 100px;
 }
