@@ -10,10 +10,10 @@ html, body{
     width: 100vw;
     height: 100vh;
     /* 스크롤바 숨기기 */
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
-/* 비디오 요소 */
+/* 1. 비디오 요소 */
 #myvid{
     width: 100%;
     height: 100%;
@@ -60,3 +60,66 @@ html, body{
         2) 세로값 - top, bottom, 수치(px, %등)
         -> 기본값은 가로값, 세로값 모두 center임!
 */
+
+/* 2. 들어가기 버튼 */
+#enter{
+    position: absolute;
+    /* 부모가 없어 보이는 화면 기준 */
+    top: 50%;
+    left: 50%;
+    /* 트랜스폼 정중앙 이동 */
+    transform: translate(-50%, -50%);
+
+    /* outline: 2px dotted lime; */
+}
+
+/* Click Here 글자박스 */
+#enter span{
+    display: block;
+    font-family: 'Audiowide', cursive;
+    font-size: 3.4rem;
+    color: white;
+    text-align: center;
+    /* 트랜지션: 속시이지 */
+    transition: all .4s ease-out;
+}
+
+/* 엔터박스 오버시 글자박스 변경 */
+#enter:hover span{
+    transform: scale(2) rotateX(360deg);
+    color: chartreuse;
+}
+/* 엔터박스 로고 이미지 */
+#enter img{
+    /* 트랜지션: 속시이지 */
+    /* transition: all .3s ease-out .2s; */
+}
+
+/* 엔터박스 오버시 로고 이미지 */
+#enter:hover img{
+                /* 먼저 커지고 왼쪽회전 */
+    animation: logoAni1 .4s linear forwards,
+                /* 왼쪽, 오른쪽 회전반복 */
+               logoAni2 .4s linear .4s infinite alternate;
+}
+
+@keyframes logoAni1 {
+    50%{
+        transform: rotate(0deg) scale(1.5); 
+
+    }
+    100%{
+        transform: rotate(-15deg) scale(1.5); 
+    }
+    
+}
+
+@keyframes logoAni2 {
+    0%{
+        transform: rotate(-15deg) scale(1.5);
+    }
+    100%{
+        transform: rotate(15deg) scale(1.5); 
+    }
+    
+}
