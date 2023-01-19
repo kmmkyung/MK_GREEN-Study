@@ -209,3 +209,11 @@ body{
     line-height: 1;
 }
 
+/* 등장글자 이미지 */
+#mvtxt{
+    position: absolute;
+    top: 30vh;
+    right: 5vw;
+    width: min(20vw,327px);
+    /* 최대 327px */
+}
