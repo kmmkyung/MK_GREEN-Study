@@ -1,90 +1,87 @@
 @charset "utf-8";
 
-/* Robot PJ 미디어쿼리 CSS - robot.media.css */
+/* Robot PJ 미디어쿼리 CSS - robot_media.css */
 
-/* 사이즈는 1024px 이하 */
-@media screen and (max-width:1024px){
+/* 1024px이하 */
+@media screen and (max-width: 1024px) {
     /* 링크박스 */
-    .link{
-        top:40px;
+    .link {
+        top: 40px;
     }
     /* 링크이동 버튼 */
-    .link a{
+    .link a {
         font-size: 35px;
     }
     /* 
-        [기존 애니메이션 적용 요소 변경시]
-        애니메이션을 없애고(none) 디자인을 변경한다!
-        필요에 따라 애니메이션을 다시 설정한다!
-     */
+        [ 기존 애니메이션 적용 요소 변경시 ]
+        애니메이션을 없애고(none) 디자인을
+        변경한다!
+        필요에따라 애니메이션을 다시 설정한다!
+    */
     /* 로고박스 */
-    .logo{
-    /* 애니메이션 없애기 */
-    animation: none;
-    top: 30px;
-    left: 30px;
-    transform: scale(1);
-    width: 150px;
-    height: 150px;
-    font-size: 20px;
+    .logo {
+        animation: none;
+        top: 30px;
+        left: 30px;
+        transform: scale(1);
+        width: 150px;
+        height: 150px;
+        font-size: 25px;
     }
-    /* 로고 애니메이션 재설정 */
-    .logo{
-    animation: 
-    logoAni2 .5s ease-in-out 3s infinite alternate;
+    /* 로고애니메이션 재설정 */
+    .logo {
+        animation: 
+        logoAni2 0.5s ease-in-out 3s infinite alternate;
     }
 }
-/* __________1024px 이하__________ */
+/* 1024px이하 */
 
-
-/* 사이즈는 900px 이하 */
-@media screen and (max-width:900px){
-    /* 바디 양쪽여백 */
-    .dcbx{
-        padding: 0 30px;
+/* 900px이하 */
+@media screen and (max-width: 900px) {
+    /* 로봇설명박스 */
+    .dcbx {
+        margin: 0 30px;
     }
-/* 2-2-3.내용단락 */
-.dcbx p{
-    /* 다중열개수 */
+    /* 2-2-3.내용단락 */
+    .dcbx p {
+        /* 다중열개수 */
         column-count: 2;
     }
 }
-/* __________900px 이하__________ */
+/* 900px이하 */
 
-
-/* 사이즈는 500px 이하 */
-@media screen and (max-width:500px){
-    html, body{
+/* 500px이하 */
+@media screen and (max-width: 500px) {
+    html,body{
         width: 100vw;
-        /* x축 스크롤 없애기 */
+        /* 보이는화면 가로크기 채움 */
         overflow-x: hidden;
-        /* 보이는 화면 가로크기 채움 */
+        /* x축 스크롤 없애기! */
     }
-/* 2-2-3.내용단락 */
-.dcbx p{
-    /* 다중열개수 */
+    .link{
+        position: static;
+        text-align: center;
+        padding: 20px 0;
+    }
+    .logo {
+        animation: none;
+        top: 90px;
+        left: 30px;
+        transform: scale(1);
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 20px;
+    }
+    /* 로고애니메이션 재설정 */
+    .logo {
+        animation: 
+        logoAni2 0.5s ease-in-out 3s infinite alternate;
+    }
+    /* 2-2-3.내용단락 */
+    .dcbx p {
+        /* 다중열개수 */
         column-count: 1;
     }
-.logo{
-    animation: none;
-    top: 90px;
-    left: 30px;
-    transform: scale(1);
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    font-size: 20px;
 }
-/* 로고 애니메이션 재설정 */
-.logo{
-    animation: 
-    logoAni2 .5s ease-in-out 3s infinite alternate;
-}
-.link{
-position: static;
-text-align: center;
-padding: 20px  0;
-}
-}
-/* __________500px 이하__________ */
-
+/* 500px이하 */
