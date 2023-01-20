@@ -67,6 +67,11 @@
 
 /* 780px 사이즈 이하 미디어쿼리 시작 */
 @media screen and (max-width:780px){
+    /* 가로스크롤 없애기 */
+    html, .body{
+        width: 100vw;
+        overflow-x: hidden;
+    }
     /* 디스플레이 없애기 */
     .tmenu, .gnb{
         display: none;
@@ -80,6 +85,9 @@
     /* 상단영역 */
     .top{
         height: 80px;
+        position: relative;
+        /* 부모자격 - 햄버거 버튼(.ham)
+        ->가로스크롤문제를 발생하므로 부모자격을 준다! */
     }
     /* 캐릭터 한줄에 하나 */
     .cat{
