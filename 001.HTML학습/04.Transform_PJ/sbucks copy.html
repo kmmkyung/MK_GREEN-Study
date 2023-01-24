@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>스타벅스 응용</title>
+    <style>
+        body{
+            background: #000 url(./starbucks_img/reserve_bg.jpg) no-repeat top/100%;
+        }
+
+        #stimg{
+            width: 334px;
+            height: 334px;
+            margin: auto;
+            margin-top: 100px;
+        }
+        
+        #stimg img{
+            position: absolute;
+            transition: all 1s;
+        }
+
+        #stimg img:first-child{
+            transform: rotateY(90deg);
+            transition: all 1s ease-in;
+        }
+        #stimg:hover img:last-child{
+            transform: rotateY(90deg);
+            transition: all 1s ease-in;
+            /* 처음 천천 */
+        }
+
+        #stimg img:last-child{
+            transform: rotateY(0deg);
+            transition: all 1s ease-out 1s;
+        }
+        #stimg:hover img:first-child{
+            transform: rotateY(0deg);
+            transition: all 1s ease-out 1s;
+            /* 나중 천천 */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="stimg">
+        <img src="./starbucks_img/reserve_medal02.png" alt="캐릭터">
+        <img src="./starbucks_img/reserve_medal01.png" alt="캐릭터">
+    </div>
+</body>
+</html>

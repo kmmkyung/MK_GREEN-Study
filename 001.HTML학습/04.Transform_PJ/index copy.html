@@ -24,6 +24,106 @@
             padding: 20px;
             margin: 100px auto;
         }
+
+        /* 캐릭터 공통 */
+        .cont>div{
+            float:left;
+            width: 20%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cont>div>img{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transition: all .6s;
+        }
+
+        .cont::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #trans1:hover img{
+            transform: rotateY(180deg);
+            filter: grayscale(100%);
+        }
+
+        #trans2 img{
+          filter: blur(2px);
+          transform: rotateX(180deg);
+
+        }
+        #trans2:hover img{
+          transform: rotateX(0deg);
+          filter: blur(0);
+        }
+
+        #trans3:hover img{
+          transform: translateX(-50px);
+        }
+        
+        #trans4:hover img{
+          transform: translateY(100px);
+        }
+
+        #trans5:hover img{
+          transform: translate(-50px,50px);
+        }
+
+        #trans6:hover img{
+          transform: rotate(3650deg);
+          transform-origin: bottom left;
+          transition-duration: 10s;
+        }
+
+        #trans7:hover img{
+          transform: skew(45deg);
+        }
+
+        #trans8{
+          transform: scale(.5);
+        }
+        #trans8:hover img{
+          transform: scale(6);
+        }
+
+        #trans9:hover img{
+          transition-duration: 10s;
+          transform: scale(5)  rotateX(350deg) skewX(50deg);
+        }
+
+        #trans10{
+          width: 200px;
+          height: 200px;
+          outline: 1px solid red;
+          text-align: left;
+        }
+        
+        #trans10 img{
+          position: absolute;
+        }
+
+        #trans10 img:first-child{
+          transform: rotateY(90deg); 
+          transition: all .4s ease-in;
+        }
+        #trans10:hover img:first-child{
+          transform: rotateY(0deg);
+          transition: all .4s ease-out .4s;
+        }
+        #trans10 img:last-child{
+          transform: rotateY(0deg);
+          transition: all .4s ease-out .4s;
+        }
+        #trans10:hover img:last-child{
+          transform: rotateY(90deg);
+          transition: all .4s ease-in;
+        }
+
+
         </style>
 </head>
 <body>
