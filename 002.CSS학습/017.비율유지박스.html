@@ -74,7 +74,7 @@
             display: block;
             padding-top: 56.25%;
             /* 
-            비율을 만들어 보자!
+            [ 비율을 만들어 보자! ]
             예)16:9=100:x
             x=9*100/16
             x=56.25
@@ -90,8 +90,18 @@
         .rbx::before{
             content: '';
             display: block;
-            padding-top: 56.25%;
+            padding-top: calc(100% / 16 * 9);
         }
+
+            /* 
+            [ 비율을 만들어 보자! calc()사용법 ]
+
+            calc(100%/가로비율*세로비율)
+
+            예) 16:9비율일 경우
+            padding-top: calc(100%/16*9)
+            
+
         /* 비율유지 속박스 */
         /* 겉박스 밀착 앱솔루트 속박스
         ->전제조건: rbx가 최소한 relative
@@ -117,6 +127,12 @@
             line-height: 2;
             text-shadow: 2px 2px 2px #000;
         }
+
+        .arbx {
+            position: relative;
+             aspect-ratio: 16 / 9;
+        }
+        
         /******************************************* 
             [ 비율유지 박스를 만드는 원리 ]
             1. 가로크기는 %에 준하는 유동적인 셋팅
@@ -125,33 +141,67 @@
             4. 앱솔루트 속박스를 만들어 컨텐츠 공간 확보
             (단, 비율유지 박스에 부모자격 필수!)
         *******************************************/
+
+    /* 5. 비율유지박스 : aspect-ratio 속성 사용 */
+        .arbx{
+            aspect-ratio: 16/9;
+        
+        /* 
+            [ aspect-ratio 속성 사용하기 ]
+            aspect-ration: 가로비/세로비;
+            ->width값은 셋팅하고 height값은 auto임!
+            ->값을 하나만 쓰면 가로비만 세로를 1로 볼때 설정됨
+            
+            예)
+            1:1비율
+            aspect-ratio: 1/1;
+            aspect-ratio: 1;
+
+            16:9비율
+            aspect-ratio: 16/9;
+
+            세로에 대한 가로 80% 비율
+            aspect-ratio: .8;
+
+            세로에 대한 가로 200% 비율
+            aspect-ratio: 2;
+        */
+        }
+
     </style>
 </head>
 <body>
     <h1>017. 비율유지박스(Ratio Box)</h1>
     <h2>1. 크기유지박스</h2>
         <div class="bx bx1"></div>
-
     <h2>2. 화면에 대한 비율박스</h2>
         <div class="bx bx2"></div>
-
     <h2>3. 비율유지박스</h2>
         <div class="bx bx3">
             <!-- <div class="test"></div> -->
         </div>
-
-        <h2>4. 비율유지박스 시스템화</h2>
-        <div class="bx rbx">
-            <!-- 비율유지 속박스 -->
-            <div class="rbxIn">
-                <!-- 컨텐츠 넣기 -->
-                <dl class="cat">
-                    <dt>출연진</dt>
-                    <dd>이제훈(김도기역)</dd>
-                    <dd>이솜(강하나역)</dd>
-                    <dd>김의성(장성철역)</dd>
-                </dl>
-            </div>
+    <h2>4. 비율유지박스 시스템화</h2>
+    <div class="bx rbx">
+        <!-- 비율유지 속박스 -->
+        <div class="rbxIn">
+            <!-- 컨텐츠 넣기 -->
+            <dl class="cat">
+                <dt>출연진</dt>
+                <dd>이제훈(김도기역)</dd>
+                <dd>이솜(강하나역)</dd>
+                <dd>김의성(장성철역)</dd>
+            </dl>
         </div>
+    </div>
+    <h2>5. 비율유지박스 : aspect-ratio 속성 사용</h2>
+    <div class="bx arbx">
+        <!-- 컨텐츠 넣기 -->
+        <dl class="cat">
+            <dt>출연진</dt>
+            <dd>이제훈(김도기역)</dd>
+            <dd>이솜(강하나역)</dd>
+            <dd>김의성(장성철역)</dd>
+        </dl>
+    </div>
 </body>
 </html>
