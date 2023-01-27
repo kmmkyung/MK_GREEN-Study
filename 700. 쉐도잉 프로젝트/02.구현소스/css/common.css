@@ -61,6 +61,10 @@ nav.gnb ul {
     line-height: 2rem;
 }
 
+/* 모바일에서는 오버시 설정이 적용되지 않도록 미디어쿼리 min-width 사용한 구역에 넣어준다!
+->780px 이상일때만 적용됨!*/
+@media screen and (min-width:780px) {
+
 /* GNB 서브메뉴 배경 
 상위메뉴 li에 가상요소로 만들기
 서브메뉴가 있는 li에 sm이름의 클래스를 준다! */
@@ -106,6 +110,8 @@ nav.gnb ul {
 .gnb > ul > li:nth-child(4):hover .smenu {
     height: 70px;
 }
+}
+/* 780px 이상 */
 
 /* 가상요소로 밑줄 애니만들기
 대상선택:
@@ -263,6 +269,10 @@ aside.tmenu {
 
     /* 처음에 숨기기 */
     display: none;
+}
+/* 햄버거 모양 가상요소 넣기 */
+.ham::before{
+    content: '≡';
 }
 
 /****************** 2.메인영역 ******************/
