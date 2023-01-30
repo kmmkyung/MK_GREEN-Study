@@ -173,6 +173,63 @@ body{
 .bdt{
     border-top: 1px solid #ccc;
 }
+
+/* 영사기박스 */
+#cam{
+    position: absolute;
+    bottom: -10px;
+    right: -60px;
+}
+
+/* 영사기 이미지 */
+#cam img{
+    position: relative;
+    z-index: 1;
+    /* 빔박스보다 영사기가 위에 위치 */
+    width: 50px;
+    transform: rotate(25deg);
+    /* 트랜지션 - 돌아올때 0.3초 기다림 */
+    transition: all .5s ease-out .3s;
+}
+
+/* .gnb에 오버시 영사기회전 */
+.gnb:hover #cam img{
+    transform: rotate(0deg);
+    /* 오버시 기다림 없음 */
+    transition-delay: 0s;
+}
+
+/* 빔박스 */
+.beam{
+    position: absolute;
+    top: -15px;
+    right: 13px;
+    width: 0px;
+    height: 70px;
+    /* outline: 1px dotted lime; */
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    transition: all .3s ease-out;
+    /* 트랜지션 */
+    z-index: -1;
+    /* 메뉴보다 아래 */
+}
+
+/* .gnd에 오버시 빔 쏘기 */
+.gnb:hover #cam .beam{
+    width: 200px;
+    /* 카메라 도는 .5초 기다림 */
+    transition-delay: .5s;
+    animation: beamAni .01s linear infinite alternate;
+}
+
+/* 빔 빛흔들리는 애니 키프레임 */
+@keyframes beamAni {
+    to{
+        opacity: 0.5;
+    }
+}
 /************************************* 2. 메인영역 *************************************/
 /* 속박스 */
 .cont{
