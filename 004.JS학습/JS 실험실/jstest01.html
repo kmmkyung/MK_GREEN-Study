@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS실험실 1 : 따라다니는 원</title>
+    <style>
+        body{
+            /* body기본 마직 8px 없앰 */
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .mover{
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.5);
+            /* 트랜지션 */
+            /* 이징을 반드시 ease-out을 준다 / 따라다니는 반응이 시작할때 바로 움직여야함(in 이나 다른걸 주면 한박자 늦게 움직인다) */
+            transition: .3s ease-out;
+        }
+    </style>
+    <!-- JS코딩구역 -->
+    <script>
+        // 로딩구역
+        window.addEventListener("load",function(){
+            console.log("로딩완!");
+
+            // 움직일 대상 : 돌아다니는 원 .mover
+            var mover = document.querySelector(".mover");
+            // 이벤트 대상 : body
+            // 이벤트 종류 : mousemove - 마우스가 대상 위에서 움질일 때 발생
+
+            //_______________________________________________________________
+            document.body.onmousemove = function(){
+                // 마우스 포인터 위치 알아내기
+                // x좌표: event.pageX
+                // y좌표: event.pageY
+                console.log("x:",event.pageX,"\ny:",event.pageY);
+
+                // 무버에게 위치값 이동 셋팅하기(무버중앙 위치 보정)
+                // 원 크기만큼(30px) 커서 가운데에 위치함
+                mover.style.top = (event.pageY-15) +"px";
+                mover.style.left = (event.pageX-15) +"px";
+            
+            };//////////mousemove 이벤트 함수//////////
+            //_______________________________________________________________
+
+        });//////////**********__________로드구역__________**********//////////
+    </script>
+</head>
+<body>
+    <!-- 돌아다니는 원 -->
+    <div class="mover"></div>
+</body>
+</html>
+
+<!-- 움직여야하니까  -->
