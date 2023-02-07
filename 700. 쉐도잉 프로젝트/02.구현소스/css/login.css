@@ -37,5 +37,113 @@
     padding: 60px 15px;
     /* 박스크기유지 : 보더,패딩 포함 */
     box-sizing: border-box;
+    /* 부모자격-.btnbx */
+    position: relative;
+}
 
+/* 입력창 공통 라벨 */
+.minput label{
+    /* 크기 디자인 적용위해 inline-b (b은 줄바꿈이 되니까...) */
+    display: inline-block;
+    width: 150px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    line-height: 3.6rem;
+}
+
+/* 입력양식 공통 */
+.minput input{
+    width: 320px;
+    height: 36px;
+    border: 1px solid #777;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    /* 입력창 글씨 너무 왼쪽에 붙어서 좀 띄어줌 */
+    padding-left: 15px;
+    /* 박스크기 유지 */
+    box-sizing: border-box;
+}
+
+/* 비밀번호 박스 */
+.scont div:nth-child(2){
+    margin-top: 20px;
+}
+
+/* 포커스 아웃라인 없애기 - 모든 브라우저에 기본 포커스 아웃라인 셋팅됨 */
+input:focus{
+    outline: none;
+}
+
+/* 버튼영역 */
+.btnbx{
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    /* 부모는 .scont */
+}
+
+/* 서브밋버튼 */
+#sbtn{
+    width: 113px;
+    height: 92px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #ddd, #555);
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px #555;
+}
+
+/* 기타링크박스 */
+.addbx{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.6rem;
+    /* 체크박스 빠르게 체크시 다른 영역이 잡히는것 막기(두번클릭시...) */
+    user-select: none;
+}
+
+/* 체크박스 라벨 숨기기 */
+.addbx input{
+    display: none
+}
+
+/* 체크박스 라벨을 체크박스로 만들기 */
+.addbx input+label{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* 세로정렬 */
+    vertical-align: -1px;
+    color: orangered;
+
+    /* outline: 1px solid red; */
+}
+
+/* 체크박스 체크시 아이콘 변경 */
+.addbx input:checked+label{
+    font-weight: 900;
+    /* 체크된 상태의 아이콘은 두께만 변경하면 됨! */
+}
+
+/* 기타요소 구분선 넣기 */
+/* span+span 앞에 span 있는 span */
+.addbx span+span::before{
+    content: '|';
+    margin: 0 15px;
+}
+
+/* 기타링크 a 요소 */
+.addbx a{
+    text-decoration: none;
+    color: #000;
+}
+
+.addbx a:hover{
+    color: orangered;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-underline-offset: 8px;
 }
