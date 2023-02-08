@@ -139,9 +139,90 @@
                 <h2 class="stit">Member</h2>
                 <!-- 2-3. 컨텐츠 박스 -->
                 <section class="scont">
-                    
+                    <form action="process.php" method="post">
+                        <ul>
+                            <!-- 1. 아이디 -->
+                            <li>
+                                <label class="itit" for="mid">아이디</label>
+                                <input type="text" name="mid" id="mid" maxlength="20" placeholder="아이디를 입력해주세요!">
+                                <!-- 메세지박스 -->
+                                <span class="msg"></span>
+                            </li>
+                            <!-- 2. 비밀번호 -->
+                            <li>
+                                <label class="itit" for="mpw">비밀번호</label>
+                                <input type="password" name="mpw" id="mpw" maxlength="20" placeholder="비밀번호를 입력해주세요!">
+                                <!-- 메세지박스 -->
+                                <span class="msg"></span>
+                            </li>
+                            <!-- 3. 비밀번호 확인 -->
+                            <li>
+                                <label class="itit" for="mpw2">비밀번호 확인</label>
+                                <input type="password" name="mpw2" id="mpw2" maxlength="20" placeholder="비밀번호를 확인해주세요!">
+                                <!-- 메세지박스 -->
+                                <span class="msg"></span>
+                            </li>
+                            <!-- 4. 이름 -->
+                            <li>
+                                <label class="itit" for="mnm">이름</label>
+                                <input type="text" name="mnm" id="mnm" maxlength="20" placeholder="이름을 입력해주세요!">
+                                <!-- 메세지박스 -->
+                                <span class="msg"></span>
+                            </li>
+                            <!-- 5. 성별 -->
+                            <li>
+                                <span class="itit">성별</span>
+                                <label for="gen1">남성</label>
+                                <input type="radio" name="gen" id="gen1">
+                                <label for="gen2">여성</label>
+                                <input type="radio" name="gen" id="gen2" checked>
+                                <!-- 
+                                    라디오 버튼의 name 속성을 같은 이름으로 쓰면
+                                    그룹핑되어서 하나만 선택된다!
+                                    checked 속성은 처음 기본선택옵션임
+                                 -->
+                            </li>
+                            <!-- 6. 이메일 -->
+                            <li>
+                                <label class="itit" for="email1">이메일</label>
+                                <input type="text" name="email1" id="email1" placeholder="이메일앞주소">
+                                <span class="gol">@</span>
+                                <select name="seleml" id="seleml">
+                                    <option value="init">선택해주세요</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="hotmail.com">hotmail.com</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="free">직접입력</option>
+                                </select>
+                                <!-- 메세지박스 -->
+                                <span class="msg"></span>
+                            </li>
+                            <!-- 이메일 뒷주소 직접입력창 -->
+                            <li>
+                                <label class="ee" for="email2">이메일 뒷주소 직접입력</label>
+                                <input type="text" name="email2" id="email2" placeholder="이메일 뒷주소">
+                            </li>
+                            <!-- 8. 서브밋 버튼 -->
+                            <li>
+                                <input id="btnj" type="submit" value="가입하기">
+                                <!-- 서브밋 버튼은 클릭시 form 요소의 모든 입력 내용을 action 지정 페이지로 전송한다! -->
+                                <!-- 
+                                    [ 참고 submit 기능 ]
+                                    1. 일반 button 요소가 form요소안에 위치하면 클릭시 서브밋된다!
+                                    2. 어떤 요소라도 JS 코드로 form 요소의 submit() 내장함수를 호출하면 서브밋된다!
+                                    
+                                    (예시)
+                                    1.
+                                    <button>버튼전송</button>
+                                    2.
+                                    <a href="#" onclick="document.querySelector('from').submit()">a요소전송</a>
+                                 -->
+                            </li>
+                        </ul>
+                    </form>
                 </section>
-                
             </main>
         </div>
         <!-- 3. 하단영역 -->
