@@ -41,6 +41,10 @@ function loadFn(){
                 // 0. 도시정보박스 숨기기(트렌지션 없애기)
                     cbx.style.opacity = "0";
                     cbx.style.transition = "none"
+                // 도시정보 스크롤생길 경우 내려놓고 다른 도시가면 스크롤위치가 내려가 있기 때문에 스크롤 위치 맨위로 셋팅하기
+                cinfo.scrollTo(0,0);
+                // scrollTo(가로스크롤위치,세로스크롤위치)
+                // -> 스크롤 이동 메서드!
 
                 // 1. 메뉴 텍스트 읽기
                 let mtxt = x.innerText;
