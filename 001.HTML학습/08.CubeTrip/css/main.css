@@ -1,0 +1,276 @@
+@charset "utf-8";
+/* 큐브트립 메인 CSS - main.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture|East+Sea+Dokdo|Jua&display=swap');
+/*
+    font-family: 'Black And White Picture', sans-serif;
+    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Jua', sans-serif;
+*/
+    
+/********** 변수셋팅 **********/
+:root{
+/* 큐브 공통 크기 */
+--csz:25vw;
+}
+/*____________________________*/
+
+/* 초기화 */
+html,body,h1,h2,ul,p{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #777 30%, #ccc 70%);
+    /* 70%~100%는 알아서 그라디언트 */
+}
+
+/*********************** 1. 전체제목 ***********************/
+.tit{
+    text-align: center;
+    font-family: 'Black And White Picture', sans-serif;
+    color: #fff;
+    font-size: 60px;
+    font-weight: normal;
+    padding-top: 50px;
+    background: url(../images/citybg.png) no-repeat center 20px / auto 85%;
+}
+
+/*********************** 2. 메뉴버튼 ***********************/
+.city{
+    position: fixed;
+    top: 3vw;
+    right: 3vw;
+
+}
+
+.city ul{
+    list-style: none;
+    width: min(15vw,200px);
+    /* li가 ul크기를 따라감 */
+    perspective: 50vw;
+}
+
+.city li{
+    height: 10vh;
+    /* 보이는 화면의 10%*6 => 60% */
+    background-image: linear-gradient(to right, transparent,blue);
+    /* 축변경 */
+    transform-origin: right;
+    transition: .3s;
+}
+
+/* li에 오버시 y축으로 회전하기 */
+.city li:nth-child(1):hover{
+    transform: rotateY(45deg);
+    background-image: linear-gradient(to right, transparent,yellow);
+}
+.city li:nth-child(2):hover{
+    transform: rotateY(25deg);
+    background-image: linear-gradient(to right, transparent,pink);
+}
+.city li:nth-child(3):hover{
+    transform: rotateY(-35deg);
+    background-image: linear-gradient(to right, transparent,lightgreen);
+}
+.city li:nth-child(4):hover{
+    transform: rotateY(55deg);
+    background-image: linear-gradient(to right, transparent,lightsalmon);
+}
+.city li:nth-child(5):hover{
+    transform: rotateY(25deg);
+    background-image: linear-gradient(to right, transparent,lightseagreen);
+}
+.city li:nth-child(6):hover{
+    transform: rotateY(-15deg);
+    background-image: linear-gradient(to right, transparent,aqua);
+}
+
+.city li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    font: 5vh/10vh 'East Sea Dokdo';
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+}
+/*********************** 3. 큐브박스 ***********************/
+
+
+/* 큐브 */
+.cube{
+    position: absolute;
+    top: calc(50% - var(--csz)/2);
+    left: calc(50% - var(--csz)/2);
+    /* 정중앙계산: 50%-크기절반
+        calc() 연산시 주의사항 -> +,-는 기호 앞뒤 띄어쓰기 | *, / 는 붙여써도 된다
+    */
+    width: var(--csz);
+    height: var(--csz);
+
+    /* 
+        [ 입체로 설정하기 ]
+        -입체로 설정할 요소의 부모박스에 아래와 같이 설정해 준다
+        (부모는 싸고있는 요소)
+        transform-style: preserve-3d;
+        -기본값은 2D 설정인 flat
+        -preserve-3d 는 3D 설정
+    */
+
+    /* 입체를 잘보이게 하기 위해 약간 회전함 */
+    /* transform:
+    rotateX(10deg) rotateY(30deg);
+    */
+    transform-style: preserve-3d; 
+
+    /* outline: 2px solid red; */
+}
+
+/* 큐브각면 공통 */
+.cube span{
+    position: absolute;
+    /* 앱솔루트는 자동블록됨! */
+    width: 100%;
+    height: 100%;
+    /* 부모는 .cube */
+    opacity: 0.8;
+
+    /* outline: 1px solid #888; */
+}
+
+/* 1. 앞면 : 시티메인 */
+.cube span:nth-child(1){
+    background: url(../images/cityMain.jpg)no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: translateZ(calc(var(--csz)/2));
+    /* 큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+/* 2. 오른쪽면 : 런던 */
+.cube span:nth-child(2){
+    background: url(../images/London_city.jpg)no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: rotateY(90deg)
+    translateZ(calc(var(--csz)/2));
+    /* 먼저 y축회전후
+    큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+/* 3. 뒷면 : 파리 */
+.cube span:nth-child(3){
+    background: url(../images/parisCity.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: rotateY(180deg)
+    translateZ(calc(var(--csz)/2));
+    /* 먼저 y축회전후
+    큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+/* 4. 왼쪽면 : 베를린 */
+.cube span:nth-child(4){
+    background: url(../images/berlin_city.jpg)no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform:
+    rotateY(-90deg)
+    translateZ(calc(var(--csz)/2));
+    /* 먼저 y축 회전 후 큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+/* 5. 윗면 : 서울 */
+.cube span:nth-child(5){
+    background: url(../images/seoulCity.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform:
+    rotateX(90deg)
+    translateZ(calc(var(--csz)/2));
+    /* 먼저 x축 회전 후 큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+/* 6. 아래면 : 뉴욕  */
+.cube span:nth-child(6){
+    background: url(../images/newyorkCity.jpg)no-repeat right/auto 105%;
+
+    /* 화면방향(z축) */
+    transform:
+    rotateX(-90deg)
+    translateZ(calc(var(--csz)/2));
+    /* 먼저 x축 회전 후 큐브 사이즈 절반을 앞쪽으로 이동 */
+}
+
+/* 4. 도시정보박스 */
+.cbx{
+    position: absolute;
+    top: calc(50% - var(--csz)/2);
+    left: calc(50% - var(--csz)/2);
+    /* 정중앙계산: 50%-크기절반
+        calc() 연산시 주의사항 -> +,-는 기호 앞뒤 띄어쓰기 | *, / 는 붙여써도 된다
+    */
+    width: var(--csz);
+    height: var(--csz);
+
+    /* 글자설정 */
+    color: #fff;
+    font-family: 'Jua', sans-serif;
+    text-shadow: 0 0 2px #000;
+
+    /* 처음에 투명하게 */
+    opacity: 0;
+
+    /* outline: 2px dashed red; */
+}
+
+/* 도시정보 속박스 */
+.ctxt{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #fff;
+    /* 크기유지 */
+    box-sizing: border-box;
+}
+
+/* 도시명 */
+h2.cname{
+    line-height: min(7vw,100px);
+    text-align: center;
+    font-size: min(40px, 2.5vw);
+}
+
+/* 도시설명 */
+p.cinfo{
+    /* 타이틀을 제외한 영역채우기 */
+    height: min(100% - min(7vw,100px));
+    box-sizing: border-box;
+
+    padding: min(10px,2vw);
+    font-size: min(16px,1vw);
+    line-height: min(28px,1.5vw);
+    background-color: rgba(0, 0, 0, 0.3);
+
+    /* 내용 넘칠때만 세로스크롤바 자동생성 */
+    overflow: auto;
+}
+
+/* 스크롤바 디자인 클래스 */
+/* -wedkit- 밴더사명(크롬, 사파리) 접두어 */
+/* (참고: -ms(ie) -o-(오페라), -moz-(파이어폭스) */
+/* 클래스명 scbar */
+.scbar::-webkit-scrollbar{
+    /* 전체 스크롤바 크기변경 */
+    width: 5px;
+}
+.scbar::-webkit-scrollbar-thumb{
+    /* 스크롤바 */
+    background-color: #555;
+    border-radius: 3px;
+}
+.scbar::-webkit-scrollbar-track{
+    /* 스크롤바 트랙*/
+    background-color: #555;
+    border-radius: 3px;
+}

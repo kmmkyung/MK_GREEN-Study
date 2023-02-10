@@ -17,6 +17,22 @@ body{
     --csz:300px;
 }
 
+/* 버튼 */
+.btngo{
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btngo:hover{
+    background-color: lime;
+}
+
+/* 큐브 */
 .cube{
     position: absolute;
     top: calc(50% - var(--csz)/2);
@@ -96,7 +112,7 @@ body{
 }
 /* 4. 윗면 */
 .cube span:nth-child(5){
-    background: url(../images/citys.jpg)no-repeat center/120%;
+    background: url(../images/citys.jpg)no-repeat center/100%;
 
     /* 화면방향(z축) */
     transform:
@@ -119,6 +135,14 @@ body{
 .cube-ani{
     /* 애니메이션: 이시이지반방마 */
     animation: cubeAni 4s linear infinite;
+    /* 애니메이션 처음에 멈춰있기 */
+    animation-play-state: paused;
+}
+
+/* 큐브 회전 작동 클래스 + .on */
+.cube-ani.on{
+    /* 애니메이션 작동하기 */
+    animation-play-state: running;
 }
 
 /* 큐브회전 키프레임 */
@@ -135,7 +159,5 @@ body{
             양의 방향 360도 + 30도 = 390도
             음의 방향 -360도 + 30도 = -330도
         */
-
-
     }
 }
