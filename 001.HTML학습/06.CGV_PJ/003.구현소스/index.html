@@ -37,14 +37,15 @@
         </script>
         <!-- 자바스크립트 코드 외부파일 호출 : 익스터널 방식 -->
         <!-- <script src="js 외부파일.js"></script> -->
+        <script src="./js/main.js"></script>
     </head>
     <body>
         <!-- 1. 상단영역 -->
         <div id="top">
             <header class="top ibx">
-                <!-- 1-1.로고 -->
+                <!-- 1-1. 로고 -->
                 <h1 class="tit">CGV 예고편 상영관</h1>
-                <!-- GNB메뉴 -->
+                <!-- 1-2. GNB메뉴 -->
                 <nav class="gnb">
                     <ul>
                         <li>
@@ -123,6 +124,26 @@
                         <div class="beam"></div>
                     </aside>
                 </nav>
+                <!-- 1-3. 찾아오는길 애니박스 -->
+                <aside class="anibx" title="구글지도보기 클릭!">
+                    <!-- 타이틀(커튼가림막) -->
+                    <span>극장가는 길</span>
+                    <!-- 샐 애니박스 -->
+                    <div class="cellAni">
+                     <!-- 3-1.걷는존 -->
+                        <div class="spani1">
+                            <span class="ir">걷는존</span>
+                        </div>
+                        <!-- 3-2.꼬마 -->
+                        <div class="spani2">
+                            <span class="ir">손흔드는 꼬마</span>
+                        </div>
+                        <!-- 3-3.몬스터 -->
+                        <div class="spani3">
+                            <span class="ir">머리흔드는 몬스터</span>
+                        </div>
+                    </div>
+                </aside>
             </header>
         </div>
         <!-- 2. 메인영역 -->
@@ -300,6 +321,13 @@
                     </ol>
                 </div>
             </footer>
+        </div>
+        <!-- 구글맵박스 -->
+        <div class="gmap">
+            <!-- 구글맵 아이프레임 -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12661.078459899358!2d127.00983950781249!3d37.5015587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca158f52f0673%3A0x7e2247a87da80045!2sCGV%20Gangnam!5e0!3m2!1sen!2skr!4v1676261014476!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- 닫기버튼 -->
+            <button class="cbtn">×</button>
         </div>
     </body>
 </html>
