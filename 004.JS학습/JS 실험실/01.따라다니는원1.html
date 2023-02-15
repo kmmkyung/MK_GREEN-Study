@@ -33,7 +33,8 @@
             /* body기본 마직 8px 없앰 */
             margin: 0;
             width: 100vw;
-            height: 100vh;
+            height: 300vh;
+            /* 세로 스크롤 생기게 함! */
         }
         .mover{
             /* 부모를 화면기준으로 */
@@ -118,8 +119,8 @@
             // 무버 크기의 절반 계산하기
             var gap = mover.clientWidth/2;
             console.log("무버 w:",gap);
-            var gap = mover.clientHeight/2;
-            console.log("무버 h:",gap);
+            // var gap = mover.clientHeight/2;
+            // console.log("무버 h:",gap);
 
             // [ 자바스크립트 요소의 크기구하기(패딩포함) ]
             // 가로 크기: 요소.clientWidth
@@ -136,8 +137,14 @@
                 // console.log("x:",event.pageX,"\ny:",event.pageY);
 
                 // 위치값 보정 (gap은 무버크기의 절반)
-                var posx = event.pageX-gap;
-                var posy = event.pageY-gap;
+                // var posx = event.pageX-gap;
+                // var posy = event.pageY-gap;
+                // pageX,Y는 전체 웹문서에의 위치이므로 .mover가 fixed일때 사용된다!
+                
+                var posx = event.clientX-gap;
+                var posy = event.clientY-gap;
+                // clientX, clientY는 브라우저 화면에서의 위치이므로 .mover가 fixed일때 사용된다!
+
 
 
                 // 무버에게 위치값 이동 셋팅하기(무버중앙 위치 보정)
@@ -146,6 +153,15 @@
                 mover.style.left = posx +"px";
             
             };//////////mousemove 이벤트 함수//////////
+
+            // body영역 바깥으로 나가면 사라지고 들어오면 나타남 //
+            document.body.onmouseenter = () =>{
+                mover.style.display = "block";
+            }; //// mouseenter ////
+            document.body.onmouseleave = () =>{
+                // 나가면 사라짐
+                mover.style.display = "none";
+            }; //// mouseleave ////
 
             // a요소 오버시 원 크게하기!
             // 대상: .cont a -> .pt
