@@ -6,7 +6,7 @@ const qsa = x => document.querySelectorAll(x);
 
 // 로드구역 ///////////////////////////////////////
 window/addEventListener("DOMContentLoaded", ()=>{
-    console.log("로딩완료!");
+    // console.log("로딩완료!");
 
     /****************************************************
     [포스터 메뉴 클릭시 클래스 주기]
