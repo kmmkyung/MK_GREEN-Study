@@ -30,14 +30,14 @@ window.addEventListener("DOMContentLoaded", loadFn);
             - 변경 내용: 슬라이드 순번과 같은 순번의
             li에 클래스 "on"주기(나머진 빼기->초기화!)
 
-*****************************************************/
+*************************************    console.log("인터발멈춤");****************/
 
 /****************************************** 
     함수명: loadFn
     기능: 로딩 후 버튼 이벤트 및 기능구현
 ******************************************/
 function loadFn(){
-    console.log("로딩완료")
+    //console.log("로딩완료")
 
     // 슬라이드 li 리스트
     let slist = document.querySelectorAll("#slide>li");
@@ -50,14 +50,14 @@ function loadFn(){
     // 1. 대상선정
     // 1-1. 이벤트 대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
-    // console.log(abtn);
+    // //console.log(abtn);
 
     // 1-2. 변경대상 : #slide
     const slide = document.querySelector("#slide");
     
     // 1-3. 블릿 대상: .indic li
     const indic = document.querySelectorAll(".indic li");
-        console.log(indic);
+        //console.log(indic);
     
     // 광클금지 설정하기 : 0 - 허용 / 1 - 불허용
     let prot = 0;
@@ -65,16 +65,16 @@ function loadFn(){
     // 2. 슬라이드 변경 함수 만들기
     // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
     const goSlide = (seq) => {
-        console.log("슬로우",seq);  
+        //console.log("슬로우",seq);  
         
-        console.log("못들어갔어!!!")
+        //console.log("못들어갔어!!!")
         // 광클금지 설정하기 //
         if(prot) return;
         prot = 1; //잠금!
         setTimeout(()=>{
             prot = 0; // 해제!
         },400); // 0.4초 후 해제
-        console.log("나,들어왔어!!!")
+        //console.log("나,들어왔어!!!")
 
         // 0. 현재의 슬라이드 li수집하기
         let clist = slide.querySelectorAll("li");
@@ -83,7 +83,7 @@ function loadFn(){
         // 1. 방향에 따른 분기
         // 1-1. 오른쪽 버튼 클릭시 
         if(seq){
-            console.log("오른!");
+            //console.log("오른!");
             // (1) 오른쪽 버튼 클릭시 다음 슬라이드가
             // 나타나도록 슬라이드 박스의 left값을
             // -100%로 변경시킨다.
@@ -104,7 +104,7 @@ function loadFn(){
 
         // 1-2. 왼쪽 버튼 클릭시
         else{
-            console.log("왼쪽!");
+            //console.log("왼쪽!");
             // (1) 왼쪽버튼 클릭시 이전 슬라이드가
             // 나타나도록 하기위해 우선 맨뒤 li를
             // 맨앞으로 이동한다.
@@ -138,8 +138,8 @@ function loadFn(){
 
         // 2-2. 방향별 읽어올 슬라이드 순번으로 "data-seq"값 읽어오기
         let cseq = clist[1].getAttribute("data-seq")
-        console.log("현재순번",cseq)
-        // console.log("현재순번",clist[0].getAttribute("data-seq"))
+        ////console.log("현재순번",cseq)
+        // //console.log("현재순번",clist[0].getAttribute("data-seq"))
         // indic[순번].classList.add("on")
 
         // 2-3. 블릿 초기화
@@ -153,8 +153,61 @@ function loadFn(){
     // 3. 대상에 이벤트 설정하기
     abtn.forEach((ele,idx)=>{
         ele.onclick=()=>{
-        goSlide(idx);
+            // 1. 인터발 지우기 함수 호출!
+            clearAuto();
+            // 2. 슬라이드 함수 호출!
+            goSlide(idx);
     };//////click 함수///////
 }); //////////// forEach ///////////////
+
+// 자동넘김 설정하기 //
+// 일정 시간 간격 넘어가기
+// ->setInterval(함수,시간)
+
+// [ 인터발 함수전달값 사용예 ]
+// (타임아웃함수도 동일함)
+// 1. 함수에 전달값이 없으면 함수명만 사용가능
+// setInterval(goSlide,3000);
+// 2. 전달값이 있다면 익명함수 구역에 코등
+// setInterval(function(){goSlide(1)},3000);
+// 3. 화살표 함수 사용가능 
+// setInterval(()=>{goSlide(1)},3000);
+// 4. 화살표 함수에서 중괄호 생략가능
+// setInterval(()=>goSlide(1),3000);
+
+// 인터발 함수 멈추기 위한 변수
+    let autoI;
+// 타임아웃함수 지우기위한 변수
+    let autoT;
+/*****************************************
+    함수명: autoSlide
+    기능: 인터발함수로 슬라이드 함수 호출
+*****************************************/
+function autoSlide(){
+    console.log("인터발시작!");
+    // 인터발함수로 슬라이드 함수 호출하기
+    autoI = setInterval(()=>goSlide(1),3000);
+}////autoSlide////
+
+// 자동넘김 최초호출!
+autoSlide();
+
+/*****************************************
+    함수명: clearAuto
+    기능: 인터발 함수를 지우고 다시 셋팅
+*****************************************/
+function clearAuto(){
+    console.log("인터발멈춤");
+    // 1. 인터발 지우기
+    clearInterval(autoI);
+
+    // 2. 타임아웃도 지우지 않으면 쌓여서 타임아웃 쓰나미 실행이 발생한다
+    clearTimeout(autoT);
+
+    // 3. 잠시후 다시 작동하도록 타임아웃으로 인터발 함수를 호출한다!
+    // 5초후(인터발은 3초 후=>토탈 8초후 작동시작)
+    autoT = setTimeout(autoSlide,5000);
+}////clearAuto////
+
 }//////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
