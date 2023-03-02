@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS실험실: 06.중간스크롤가로이동</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            overflow-x: hidden;
+        }
+        
+        .pg{
+            height: 100vh;
+            outline: 1px solid blue;
+        }
+        /* 타겟박스 */
+        .tpg{
+            height: calc(100vh + 3000px);
+            /* 타겟 박스는 보이는 화면 맨윗줄부터 시작해서 아래로 마지막 박스 끝 라인까지 총 이동 거리는 3000px 이다!!! */
+            /* background-color: orange; */
+            outline: 2px dashed blue;
+
+        }
+        /* 가로이동박스 */
+        .slidePg{
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            
+            background-color: orange;
+        }
+        /* 실제로 가로이동할 ul 박스 */
+        .slidePg ul{
+            position: relative;
+            left: 0;
+            display: flex;
+            width: calc(100vw + 3000px);
+            /* 가로 크기는 타겟박스기 이동하는 크기인 3000px에 맞도록 100vw에 더하여 잡아준다! 이유는 JS의 getBoundingClientRect().top값의 수치와 정확히 일치 시키기 위함! */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            transition: .4s ease-out;
+        }
+        .slidePg ul li{
+            flex: 1;
+            text-align: center;
+        }
+
+        .slidePg ul li img{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            border-radius: 20px;
+        }
+        
+
+    </style>
+    <script>
+        // 샘플 페이지: https://thinkdance.ca/
+        
+        window.addEventListener("DOMContentLoaded",()=>{
+            // console.log("로딩완료!");
+
+            // 1. 대상선정:
+            // (1) 타겟박스: .tpg
+            const tpg = document.querySelector(".tpg");
+            // (2) 가로 이동 박스: .sildePg
+            const spg = document.querySelector(".slidePg");
+
+            // console.log(tpg,spg);
+
+            // html 코드 변수
+            let hcode = "<ul>";
+
+            // 2. 가로이동박스에 디자인 요소 넣기
+            for(let x = 1; x < 8; x++){
+                hcode += `
+                    <li>
+                        <img src="images/dance/${x}.jpg" alt="댄스">
+                    </il>
+                `;
+            }////////for////////
+            hcode += "</ul>";
+
+            // 가로이동박스에 이미지 넣기
+            spg.innerHTML= hcode;
+
+ }); ////////// load /////////////////
+    </script>
+</head>
+<body>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    <!-- 👇타겟 페이지(스크롤시 가로이동) -->
+    <div class="pg tpg">
+        <!-- 👇옆으로 흘러갈 박스 -->
+        <div class="slidePg">
+        </div>
+    </div>
+    <div class="pg"></div>
+    <div class="pg"></div>
+    
+</body>
+</html>
