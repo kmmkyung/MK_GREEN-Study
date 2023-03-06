@@ -31,7 +31,7 @@ function loadFn(){
     // (5) title 요소(타이틀 내용에 카테고리명 앞에 추가)
     const titag = document.querySelector(".title");
 
-    console.log(stit, lnb, contit, cont, titag);
+    console.log(stit,lnb,contit,cont,titag);
 
     // 2. 메뉴데이타 (sinfo변수) 객체이서 카테고리값 선택하기
     const mdata = sinfo[pm];
@@ -62,10 +62,10 @@ function loadFn(){
         let temp = "<ul>";//임시 변수
 
         // 메뉴 배열만큼 돌아서 코드 생성
-        mvalue.forEach(()=>{ //val 배열값!
+        mvalue.forEach((val)=>{ //val 배열값!
             temp += `
                 <li>
-                    <a href="#">${Val}</a>
+                    <a href="#">${val}</a>
                 </li>
             `;
         });
