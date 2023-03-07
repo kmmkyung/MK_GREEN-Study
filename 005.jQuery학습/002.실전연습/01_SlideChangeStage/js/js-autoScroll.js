@@ -20,19 +20,27 @@ function loadFn(){
     // 호출확인
     console.log("로딩완료!");
 
-    // 이벤트 연결 대상선정하기 ////
-    // GNB메뉴
+    //[ 이벤트 연결 대상선정하기 ]////
+    // (1) GNB메뉴
     const gnb = document.querySelectorAll(".gnb a");
     console.log(gnb);
+    // (2) 인디케이터 메뉴 ////////
+    const indic = document.querySelectorAll(".indic a");
+    console.log(indic);
 
-    // 이벤트 연결 함수등록하기 ////
-    // GNB메뉴 이벤트 연결
+    //[ 이벤트 연결 함수등록하기 ]////
+    // (1) GNB메뉴 이벤트 연결
     gnb.forEach((ele,idx,obj)=>{ //ele 요소, idx 순번, obj 전체객체
         ele.addEventListener("click",()=>movePg(idx,obj));
         // 전체 객체(obj)를 함수에 전달하는 이유는?
         // -> 인디케이터도 GNB과 같은 기능을 수행하기 때문에 호출시 자기자신 전체를 보내야
         // 각각에 맞게 기능을 수행할 수 있음
 
+    });////////////forEach////////////
+
+    // (2) 인디케이터 이벤트 연결
+    indic.forEach((ele,idx,obj)=>{ 
+        ele.addEventListener("click",()=>movePg(idx,obj));
     });////////////forEach////////////
 
 /***********************************************************************
@@ -152,6 +160,7 @@ function loadFn(){
 
         // (4) 페이지 이동하기 + 메뉴변경 -> updatePg 함수 호출!
         updatePg(gnb);
+        updatePg(indic);
 
 
     }////////////// wheelFn 함수 ////////////
@@ -169,7 +178,11 @@ function loadFn(){
         pgnum = seq;
         console.log("메뉴클릭 페이지 번호",pgnum);
         // 4. 업데이트 페이지 호출 -> 페이지 이동, 메뉴 변경
-        updatePg(obj);
+        // 개별객체를 업데이트 할때는 obj가 필요했으나
+        // GNB 메뉴와 인디케이터가 모두 업데이트 돼야하므로
+        // 개별 obj가 필요없게 됨!
+        updatePg(gnb);
+        updatePg(indic);
 
     }//////////////movePg 함수//////////////
 
@@ -192,5 +205,130 @@ function loadFn(){
         // 4. 해당메뉴 클래스 넣기
         obj[pgnum].parentElement.classList.add("on");
 
+        // 5. 페이지 이동후 해당 페이지 액션 주기
+        // pageAction함수 호출!(페이지이동 시차를 1초로 설정!)
+        setTimeout(()=>pageAction(pgnum),1000);
+
+
     } //////////////////// updatePg 함수 //////////////////
+
+    /***********************************************
+        함수명: initCSS
+        기능: 등장할 요소들의 초기값 셋팅
+    ***********************************************/ 
+    // 대상 : .minfo
+    const minfo = document.querySelectorAll(".minfo");
+    console.log(minfo);
+    // 이벤트 설정
+    minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+    // 3. 함수만들기
+    function initCSS(ele,seq){ //sep는 순번 ele는 요소
+        // 1. 함수 호출 확인
+        // console.log("초기화",seq);
+
+        // 2. 해당요소 스타일 속성 선택
+        let sty = ele.style;
+
+        // 3. 각 요소별 초기화하기
+        // 트렌지션 공통 초기화
+        sty.transition = 'none';
+
+        if (seq===0){ // 1번 페이지
+            // 오른쪽에 나가있음
+            sty.left="150%";
+        }
+        else if(seq===1){ // 2번 페이지
+            // 투명하게
+            sty.opacity=0;
+        }
+        else if(seq===2){ // 3번 페이지
+            // 위로 올라가 있음
+            sty.top="-20%";
+        }
+        else if(seq===3){ // 4번 페이지
+            // 중앙 스케일 0
+            sty.transform="translate(-50%, -50%) scale(0)";
+        }
+        else if(seq===4){ // 5번 페이지
+            sty.opacity=0;
+            // y축 회전  
+            sty.transform="translate(-50%, -50%) rotateY(180deg)";
+        }
+        else if(seq===5){ // 6번 페이지
+            // 스케일 0, 평면 회전
+            sty.transform="translate(-50%, -50%) scale(0) rotate(720deg)";
+        }
+        else if(seq===6){ // 7번 페이지
+            sty.opacity=0;
+            // x축 확대, 투명하게
+            sty.transform="translate(-50%, -50%) scaleX(10)";
+            sty.opacity=0;
+        }
+    } /////////////////////initCSS 함수///////////////////
+
+    /***********************************************
+        함수명: pageAction
+        기능: 페이지별 액션주기
+    ***********************************************/ 
+   function pageAction(seq){ // seq - 변경 순번
+    // 1. 호출확인
+    console.log("액션",seq);
+
+    // 2. 변경대상 스타일 속성 선택
+    let sty = minfo[seq].style;
+
+    // 3. 전체 초기화!
+    minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+
+    // 4. 해당 페이지 액션 주기
+    if (seq===0){ // 1번 페이지
+        // 중앙으로 돌아옴
+        sty.left="50%"
+        // 트랜지션 주기
+        sty.transition = ".8s ease-in";
+    }
+    else if(seq===1){ // 2번 페이지
+        // 투명도 복원하기
+        sty.opacity=1;
+        // 트랜지션 주기
+        sty.transition = "1.5s ease-in";
+    }
+    else if(seq===2){ // 3번 페이지
+        // 위에서 중앙으로 이동!
+        sty.top="50%";
+        // 트랜지션 주기
+        sty.transition = ".8s ease-in";
+    }
+    else if(seq===3){ //4번 페이지
+        // 중앙 스케일 복원
+        sty.transform="translate(-50%, -50%) scale(1)";
+        // 트랜지션 주기
+        sty.transition = "1s ease-in-out";
+    }
+    else if(seq===4){ // 5번 페이지
+        // y축회전 원상복귀
+        sty.transform="translate(-50%, -50%) rotateY(0deg)";
+        // 나타나게 함
+        sty.opacity=1;
+        // 트랜지션 주기
+        sty.transition = "1s ease-in-out";
+    }
+    else if(seq===5){ // 6번 페이지
+        // 스케일 0, 평면회전
+        sty.transform="translate(-50%, -50%) scale(1) rotate(0deg)";
+        // 트랜지션 주기
+        sty.transition = ".8s ease-in-out";
+    }
+    else if(seq===6){ // 7번 페이지
+        // x축확대
+        sty.transform="translate(-50%, -50%) scaleX(1)";
+        // 나타나게 함
+        sty.opacity=1;
+        // 트랜지션주기
+        sty.transition = "1s ease-in-out";
+    }
+   }///////////pageAction함수////////////
+
+   // 첫페이지 페이지 액션 작용위해 최초호출하기
+   setTimeout(()=>pageAction(0),1000)
 }///////////////////////// loadFn /////////////////////////
