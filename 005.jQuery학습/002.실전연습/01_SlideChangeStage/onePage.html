@@ -7,6 +7,8 @@
     <title>One Page Scroll</title>
     <style>
         html{
+            /* 부드러운 스크롤 적용!(스크롤 애니메이션) -> 스크롤 이동시간, 이징 가속도는 조절할 수 없다!*/
+            /* 제이쿼리 코딩으로 이것을 조절할 예정임! */
             scroll-behavior: smooth;
         }
 
@@ -102,9 +104,10 @@
         .gnb li{
             margin: 0 7px;
         }
-        /* 메뉴에 마우스 오버시 */
-        .gnb a:hover{
-            display: inline-block;/* 트랜스폼적용위해 */
+        /* 메뉴에 마우스 오버시 + li.on인 경우*/
+        .gnb a:hover,
+        .gnb li.on a{
+        display: inline-block;/* 트랜스폼적용위해 */
             color: lime;
             text-decoration: overline;/* 윗줄 */
             transform: scale(1.1);
