@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-@import url(./reset.css);
 /* 웹폰트 CDN */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif; */
@@ -43,12 +42,9 @@
 /* 1-2.GNB영역 */
 .gnb{
     /* position: relative; */
-    /* 부모자격 - .smenu -> 사용안하기로~ */
+    /* 부모자격 - .smenu -> 사용안하기로~~! */
     max-width: 1300px;
     margin: 0 auto;
-
-    /* GNB배경박스(.bgbx) 보다 위 */
-    z-index: 1;
 
     /* 줄바꿈방지 */
     white-space: nowrap;
@@ -58,60 +54,58 @@
     display: flex;
     /* gap: 0 40px; */
 }
+/* 상위메뉴 a요소 */
 .gnb>ul>li>a{
-    /* a요소 확장 */
-    display: block;
+    /* a요소 확장! */
+    display: block;    
     padding: 0 20px;
 
     line-height: 60px;
     color: #ccc;
 }
+/* 상위메뉴 a요소 오버시 */
 .gnb>ul>li:hover>a{
     background-image: linear-gradient(to right, red, yellow);
-    /* 그라데이션 배경색을 글자 영역에만 보이게 하기 */
-    /* -webkit- 접두어를 사용한다! <-아직 공식속성에 포함되지 않음! */
+    /* 그라데이션 배경색을 글자영역에만 보이게 하기
+    -webkit-접두어를 사용한다!
+    이는 아직 공식속성에 포함되지 않음! */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 
 /* 하위메뉴 */
 .smenu{
     position: absolute;
     left: 0;
     width: 100%;
-    /* 부모는 #top -> 최상위 부모자격줌!*/
-
+    /* 부모는? #top
+    -> 최상위 부모박스에 부모자격줌! */
+    
     background-color: #fff;
-    /* 박스 그림자 */
+    /* 박스그림자 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
 
-    /* 숨기기장치: overflow, height */
+    /* 숨기기장치: overflow,height,opacity(효과) */
     overflow: hidden;
     /* 넘치는 자식요소 숨기기 */
     height: 0;
-    /* 높이값 : 0 -> 각각의 서브 높이만큼 오버시 변경! */
-
-    /* 숨기기장치 효과: opacity */
+    /* 높이값 : 0 -> 각각의 서브높이만큼 오버시 변경! */
     opacity: 0;
-    /* 투명도 : 0 -> 오버시 1로 보이게 함! */
+    /* 투명도 : 0 -> 오버시 1로 보이게함 */
 
-    /* 트랜지션 */
-    transition: all .4s ease-in-out;
-    
-    /* ----> 자바스크립트로 이동! */
+    /* 트랜지션: 속시이지 */
+    transition: .4s ease-in-out;
 
 }
-
-/* 하위메뉴 구조 랩핑박스 .smbx */
+/* 하위메뉴 구조랩핑박스 .smbx */
 .smbx{
-    /* h2.div의 플렉스 박스 */
+    /* h2,div의 플렉스박스 */
     display: flex;
-    /* 화면에 꽉차는 .smenu 박스 안에서 1300px 중앙정렬로 셋팅 */
+    /* 화면에 꽉차는 .smenu박스안에서
+    1300px 중앙정렬로 셋팅한다! */
     width: 1300px;
     margin: 0 auto;
 }
-
 /* 임시 첫번째메뉴만 보임 */
 /* .gnb>ul>li:nth-child(5) .smenu{
     display: block;
@@ -133,6 +127,7 @@
 .smenu h2 a{
     font-size: 13px;
 }
+
 
 
 /* 서브메뉴(최하위) */
@@ -201,18 +196,19 @@
 }
 
 /* 서브메뉴 배경박스 */
-/* .bgbx{
+.bgbx{
     position: absolute;
     top: 140px;
     width: 100%;
-    background-color: #fff;
-    박스 그림자
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
 
-    변경요소 : opacity, height
-    opacity: 0;
+    /* 변경요소: height, opacity */
     height: 0;
+    opacity: 0;
 
-    트랜지션 -> .smenu와 동일  
-    transition: all .4s ease-in-out;    
-} */
+    background-color: #fff;
+    /* 박스그림자 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
+    
+    /* 트랜지션: 속시이지 -> .smenu와 동일! */
+    transition: .4s ease-in-out;
+}

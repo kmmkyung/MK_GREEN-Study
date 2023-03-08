@@ -22,20 +22,20 @@
       list-style: none;
     }
 
-    /* 전체 컨텐츠 랩핑박스 */
-    .wrap{
-        display: flex;
-        
-    }
-
     h1 {
       text-align: center;
+    }
+
+    /* 전체 컨텐츠 랩핑박스 */
+    .wrap{
+        /* 플렉스박스 */
+        display: flex;
     }
 
     /* GNB메뉴박스 */
     .gnb {
       position: relative;
-      /* 가로크기 변경 */
+      /* 세로형 가로크기 변경 */
       width: 200px;
       height: 800px;
       z-index: 999;
@@ -48,7 +48,7 @@
     .gnb ul {
       /* 플렉스박스 : 직계li만 옆으로 흐름! */
       display: flex;
-      /* 플렉스 진행방향 : 세로형 */
+      /* 플렉스진행방향 : 세로형 */
       flex-direction: column;
       /* 수평방향 flex 중앙정렬 */
       justify-content: center;
@@ -147,9 +147,10 @@
 
     /* 서브메뉴 */
     .smenu{
-      /* 앱솔루트 포지션 */
+      /* 앱솔루트 포지션
+      -> 자리를 차지하고 아래 메뉴를 밀어내려면
+      static 포지션이어야함! (기본값 static) */
       /* position: absolute; */
-      /* ->자리를 차지하고 아래 메뉴를 밀어내려면 기본값인 static 포지션이여야 함 */
       width: 200px;
 
       /* 메뉴 숨기기 
@@ -215,19 +216,24 @@
       background-color: #fdfccf;
       text-align: center;
       line-height: 50;
-        /* 원래는 calc(100% - 200px) 로 크기를 맞춰줘야 하지만
-        플렉스 박스의 자식요소이므로 100%를 줘도 더이상 커지지않고
+
+      /* 가로크기 부모만큼 채우기 */
+      width: 100%;
+      /* 
+        원래는 calc(100% - 200px)
+        로 크기를 맞춰줘야 하지만
+        플렉스 박스의 자식요소이므로
+        100%를 줘도 더이상 커지지않고
         부모크기만큼 강제로 맞춰진다!
-        이것은 flex-shrink: 1 로 기본셋팅 되어 있기 때문!
-        1의 의미는 부모가 줄어들때 줄어들래? true(응)의 의미 */
+        이것은 flex-shrink: 1 로 기본셋팅
+        되어 있기 때문! 1의 의미는 부모가
+        줄어들때 줄어들래? true(응)의 의미
+      */
+
       /* (비교바람~!)
         width: calc(100% - 200px);
         flex-shrink: 0; 
       */
-      /* w:100% + flex-shrink:0; => 가로스크롤이 생긴다 */
-      /* w:auto + flex-shrink:0; => 컨텐츠 너비 만큼의 너비만 가진다! = 본문내용 텍스트 너비 만큼만 */
-      flex-shrink: 0;
-      width: 100%;
     }
   </style>
 </head>
