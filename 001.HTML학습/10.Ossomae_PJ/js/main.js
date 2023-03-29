@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 400); /// 0.4초후 해제! ///
 
         // 1. 호출확인
-        console.log("나야나!", dir);
+        console.log("나야나dir!", dir);
 
         // 2. 대상선정
         // 이동대상: .gbx>div
