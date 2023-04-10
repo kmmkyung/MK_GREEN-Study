@@ -1,7 +1,8 @@
 // 메인 페이지 JS
 
 // 자동스크롤 불러오기
-import AutoScroll from "./jquery-autoScroll.js";
+// import AutoScroll from "./jquery-autoScroll.js";
+import AutoScroll from "./jquery-autoScroll-class.js";
 
 
 // 자동스크롤 인스턴스 생성
@@ -20,4 +21,7 @@ console.log("기존이징",autoSc.easing);
 // 변경 이징
 autoSc.easing = "easeOutBounce"
 console.log("변경이징",autoSc.easing);
+
+// autoSc.pgcont
+console.log("전체페이지수:",autoSc.pgcnt)
 
