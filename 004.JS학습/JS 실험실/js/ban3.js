@@ -1,4 +1,6 @@
 // JS실험실: 03.배너스타일 JS -  ban.js
+// 부드러운 드래그위해 [변경1][변경2][변경3][변경4][변경5] -> [업데이트 2023.03.31]
+// 변경사항은 "[변경" 으로 검색이동할것!
 
 // HTML태그 로딩후 loadFn함수 호출! ///
 window.addEventListener("DOMContentLoaded", loadFn);
@@ -117,6 +119,10 @@ function loadFn() {
         let clist = slide.querySelectorAll("li");
         // clist -> current list 현재 리스트
 
+        // [변경1]슬라이드 부모박스 width값 -> %이동값을 px변환위해!
+        let sldParent = slide.parentElement.offsetWidth;
+        console.log("배너부모W:",sldParent);
+
         // 1. 방향에 따른 분기
         // 1-1. 오른쪽버튼 클릭시 ////////////////
         if (seq) {
@@ -130,7 +136,9 @@ function loadFn() {
             //       li를 잘라서 맨뒤로 보낸다!
             slide.appendChild(clist[0]);
             // (1-2) 동시에 left값을 -110%으로 변경한다!
-            slide.style.left = "-110%";
+            // slide.style.left = "-110%";
+            // [변경2]-> px변환+드래그값 보정!
+            slide.style.left = -(sldParent*1.1-rx)+"px";
             // (1-3) 트랜지션 없애기!
             slide.style.transition = "none";
 
@@ -144,7 +152,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 1); //// 타임아웃 //////
+            }, 10); //// 타임아웃 [변경5]-> 시간을 10줌!(모바일시보정) //////
             // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
             // 1만써도 괜찮음~
 
@@ -166,7 +174,10 @@ function loadFn() {
             slide.insertBefore(clist[clist.length - 1], clist[0]);
 
             // (2) 동시에 left값을 -330%로 변경한다.
-            slide.style.left = "-330%";
+            // slide.style.left = "-330%";
+            // [변경3]-> px변환+드래그값 보정!
+            slide.style.left = -(sldParent*3.3-rx)+"px";
+
             // 이때 트랜지션을 없앤다(한번실행후 부터 생기므로!)
             slide.style.transition = "none";
 
@@ -178,7 +189,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 0); ////// 타임아웃 /////////
+            }, 10); ////// 타임아웃  [변경5]-> 시간을 10줌!(모바일시보정) /////////
         } //////////// else : 왼쪽클릭시 //////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
@@ -266,8 +277,6 @@ function loadFn() {
         // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
         autoT = setTimeout(autoSlide, 5000);
     } ///////// clearAuto 함수 /////////////
-
-
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
 
@@ -310,6 +319,7 @@ function loadFn() {
     등록하여 lx값이 슬라이드크기에 상대적인 위치로
     변경된 값을 업데이트 하도록 하여
     오작동을 막아준다!
+
 **********************************************/
 
 /********************************************* 
@@ -317,6 +327,9 @@ function loadFn() {
     함수명: goDrag
     기능: 다중 드래그 기능 적용
 *********************************************/
+// [변경5] 위치차이값을 이동함수에서 드래그 이동값 보정위해 전역으로!
+let rx = 0; // 최초 버튼 클릭시를 위해 초기값 0셋팅 필수!
+
 function goDrag(obj) {
     // obj - 드래그 대상(슬라이드 요소)
 
@@ -328,11 +341,11 @@ function goDrag(obj) {
     // (3) 마지막 위치포인트 last x, last y
     let lx = obj.offsetLeft, // -> 슬라이드 처음 left값 셋팅!
         ly = 0; // 마지막위치는 처음에 0할당!
-        console.log("lx:",lx);
+    console.log("lx:", lx);
     // (4) 움직일때 위치포인트 move x, move y
     let mvx, mvy;
     // (5) 위치이동 차이 결과변수 result x, result y
-    let rx, ry;
+    let ry; // -> rx를 함수바깥 전역으로!
 
     // 함수만들기 //////////////
     // (1) 드래그상태 true
@@ -346,19 +359,19 @@ function goDrag(obj) {
         // console.log("드래그상태:",drag);
         // 드래그 상태일때만 실행
         if (drag) {
-            console.log("드래그중~:");
-            
+            console.log("드래그중~");
             // 트랜지션 없애기
             obj.style.transition = "none";
 
             // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
             mvx = event.pageX || event.changedTouches[0].pageX;
-            // 모바일일때는 뒤에것이 유효하므로 할당되어 사용된다!
-            // mvy = event.pageY;
+            // 모바일일때는 뒤엣것이 유효하므로 할당되어 사용된다!
             console.log(event.changedTouches);
             // 모바일에서는 위치값을 changedTouches 컬렉션에 수집한다!
-            // changedTouches[0] -> 첫번째 컬렉션에 pageX값에 존재한다!~
+            // changedTouches[0] -> 첫번째 컬렉션에 pageX값이 존재한다!~
             // changedTouches[0].pageX
+
+            // mvy = event.pageY;
 
             // 2. 움직일때 위치값 - 처음 위치값 : rx, ry
             // x축값은 left값, y축값은 top값 이동이다!
@@ -382,10 +395,11 @@ function goDrag(obj) {
 
     // (4) 첫번째 위치포인트 셋팅함수
     const firstPoint = () => {
+        
         fx = event.pageX || event.changedTouches[0].pageX;
         // 변수 = 할당값1 || 할당값2;
-        // -> undefine / null 값이 아닌 아닌값으로 할당된다!
-        // -> 우선순위로 DT쪽을 먼저 써준다!
+        // -> undefined / null 값이 아닌값으로 할당된다!
+        // -> 우선순위로 DT쪽을 먼저써준다!
         // fy = event.pageY;
     };
 
@@ -397,67 +411,61 @@ function goDrag(obj) {
     // 최종 이동결과 값인 rx,ry를 항상 대입연산하여 값을 업데이트한다!
 
     // 이벤트 등록하기 ////////////
-    // DT용 이벤트와 Mobile 이벤트를 모두 등록해 줘야 모바일에도 작동함!
+    // DT용 이벤트와 Mobile이벤트를 모두 등록해 줘야 모바일에도 작동함!
     // mousedown -> touchstart
     // mouseup -> touchend
     // mousemove -> touchmove
-
     // (1) 마우스 내려갈때 : 드래그true + 첫번째 위치값 업데이트
     obj.addEventListener("mousedown", () => {
         dTrue();
         firstPoint();
     });
-    // 모바일: touchstart
+    // 모바일 : touchstart
     obj.addEventListener("touchstart", () => {
         dTrue();
         firstPoint();
-        console.log("터치시작");
+        console.log("터치시작!");
     });
     // (2) 마우스 올라올때 : 드래그false + 마지막 위치값 업데이트
     obj.addEventListener("mouseup", () => {
         dFalse();
-        // lastPoint(); 
+        // lastPoint();
         //-> 슬라이드 드래그는 마지막위치 업데이트 불필요!
         // 왜? 슬라이드 마지막위치는 항상 일정하니까!
 
         // 이동판별함수 호출!
         goWhere(obj);
     });
+    
+    // 모바일 : touchend
     obj.addEventListener("touchend", () => {
         dFalse();
+        // lastPoint();
+        //-> 슬라이드 드래그는 마지막위치 업데이트 불필요!
+        // 왜? 슬라이드 마지막위치는 항상 일정하니까!
+
+        // 이동판별함수 호출!
         goWhere(obj);
-        console.log("터치끝");
+        console.log("터치끝!");
     });
-    // 모바일: touchend
     // (3) 마우스 움직일때
     obj.addEventListener("mousemove", dMove);
     // 모바일: touchmove
     obj.addEventListener("touchmove", dMove);
-
     // (4) 마우스 벗어날때
     obj.addEventListener("mouseleave", dFalse);
-
-
-
-    
 
     //// 화면크기를 변경할 경우 발생하는 이벤트 -> resize
     // 이 이벤트를 이용하여 필요한 경우 코드를 실행한다!
     // 대상: window
-    window.addEventListener("resize",()=>{
+    window.addEventListener("resize", () => {
         // 화면 크기변경시 lx값 업데이트 하기!
-        lx = -obj.parentElement.clientWidth*2.2;
+        // lx = -obj.parentElement.clientWidth * 2.2;
         // 마지막 위치값이 슬라이드 부모박스이 -220%
         // 이므로 이것을 업데이트 해준다!
         // 이때 앞에 마이너스(-)중요!!!
-        console.log("업데이트lx:",lx);
-
+        console.log("업데이트lx:", lx);
     }); /////////// resize /////////////////
-
-
-
-
-
 } //////////// goDrag함수 ///////////////////////
 
 /************************************************* 
@@ -465,30 +473,31 @@ function goDrag(obj) {
     기능 : 드래그시 왼쪽/오른쪽 이동 판별
     호출 : 드래그시 mouseup 이벤트 함수에서 호출
 *************************************************/
-function goWhere(obj){ // obj - 드래그대상(슬라이드요소)
+function goWhere(obj) {
+    // obj - 드래그대상(슬라이드요소)
     // 1. 현재 드래그 대상 left위치값
     let tgLeft = obj.offsetLeft;
 
     // 2. 부모박스를 기준한 -220% left 위치값 구하기
-    let tgPoint = obj.parentElement.clientWidth*2.2;
+    let tgPoint = obj.parentElement.clientWidth * 2.2;
 
-    console.log("현재left:",tgLeft);
-    console.log("기준left:",-tgPoint);
+    console.log("현재left:", tgLeft);
+    console.log("기준left:", -tgPoint);
 
     // 3. 방향 판별하기 : 기준값에 특정값을 더하고 뺌
     // 3-1. 왼쪽방향이동(오른쪽버튼 클릭과 동일)
-    if(tgLeft < -tgPoint-50){
+    if (tgLeft < -tgPoint - 50) {
         console.log("왼쪽으로!");
         // 이동함수 호출!(전달값1)
         goSlide(1);
     }
     // 3-2. 오른쪽방향이동(왼쪽버튼 클릭과 동일)
-    else if(tgLeft > -tgPoint+50){
+    else if (tgLeft > -tgPoint + 50) {
         console.log("오른쪽으로!");
         // 이동함수 호출!(전달값0)
         goSlide(0);
     }
-// 3-3. 제자리로 돌아옴
+    // 3-3. 제자리로 돌아옴
     else {
         console.log("제자리!");
         // 기준값 left로 다시 보냄!
@@ -496,3 +505,6 @@ function goWhere(obj){ // obj - 드래그대상(슬라이드요소)
         obj.style.transition = "left .2s ease-in-out";
     }
 } ///////////////// goWhere 함수 //////////////////
+
+// 리사이즈시 리로드!
+window.addEventListener("resize",()=>location.reload());
