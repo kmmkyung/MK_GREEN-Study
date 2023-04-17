@@ -1,46 +1,4 @@
-{
-	"powermode.enabled": false,
-
-	"powermode.presets": "particles",
-
-	"powermode.combo.counterEnabled": "default",
-
-	"powermode.combo.counterSize": 3,
-
-	"powermode.combo.location": "default",
-
-	"powermode.combo.threshold": 0,
-
-	"powermode.combo.timeout": 10,
-
-	"powermode.combo.timerEnabled": "default",
-
-	"powermode.shake.enabled": true,
-
-	"powermode.shake.intensity": 3,
-
-	"powermode.explosions.backgroundMode": "mask",
-
-	"powermode.explosions.customCss": {},
-
-	"powermode.explosions.customExplosions": [],
-
-	"powermode.explosions.duration": 1000,
-
-	"powermode.explosions.enabled": true,
-
-	"powermode.explosions.explosionOrder": "random",
-
-	"powermode.explosions.frequency": 2,
-
-	"powermode.explosions.gifMode": "continue",
-
-	"powermode.explosions.maxExplosions": 1,
-
-	"powermode.explosions.offset": 0.35,
-
-	"powermode.explosions.size": 6,
-
+[{
 	"scm.alwaysShowActions": false,
 
 	"scm.alwaysShowRepositories": false,
@@ -575,7 +533,6 @@
 		"vscode.videoPreview": false,
 		"jsProfileVisualizer.cpuprofile.table": false,
 		"jsProfileVisualizer.heapprofile.table": false,
-		"pdf.view": false,
 		"workbench.input.interactive": false,
 		"mainThreadWebview-markdown.preview": false
 	},
@@ -2779,40 +2736,6 @@
 
 	"prettier.withNodeModules": false,
 
-	"powermode.backgroundMode": null,
-
-	"powermode.comboThreshold": null,
-
-	"powermode.comboTimeout": null,
-
-	"powermode.customCss": null,
-
-	"powermode.customExplosions": null,
-
-	"powermode.enableComboCounter": null,
-
-	"powermode.enableComboTimer": null,
-
-	"powermode.enableShake": null,
-
-	"powermode.enableStatusBarComboCounter": null,
-
-	"powermode.enableStatusBarComboTimer": null,
-
-	"powermode.explosionDuration": null,
-
-	"powermode.explosionFrequency": null,
-
-	"powermode.explosionOffset": null,
-
-	"powermode.explosionOrder": null,
-
-	"powermode.explosionSize": null,
-
-	"powermode.gifMode": null,
-
-	"powermode.shakeIntensity": null,
-
 	"gutterpreview.currentColorForSVG": "white",
 
 	"gutterpreview.enableReferenceLookup": false,
@@ -2955,8 +2878,17 @@
 		"php"
 	],
 
-	"html-to-css-autocompletion.includePattern": "",
+	"멍뭉이이름": "코리올라누스",
+	"멍뭉이사는곳":"제주도",
+	"멍뭉이출신지":"이탈리아",
+	"멍뭉이간식":"사시미",
 
 	"html-to-css-autocompletion.triggerCharacters": false
 
-}
+},
+{
+	"야웅이름": "먼치킨",
+	"야웅사는곳":"평택항",
+	"야웅출신지":"뉴올리언즈",
+	"야웅간식":"참치"
+}]
