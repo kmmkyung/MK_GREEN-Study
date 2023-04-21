@@ -4,16 +4,50 @@
         (원경은 천천히, 중경은 조금 빠르게, 근경 아주 빠르게 설정함)
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Parallax PJ</title>
+        <title>Parallax PJ -test</title>
         <link rel="stylesheet" href="./css/main.css" />
         <script src="./js/smoothScroll20.js"></script>
-        <script src="./js/main.js" type="module"></script>
+
+        <!-- 제이쿼리 라이브러리 CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <!-- 제이쿼리 UI CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <script>
+            // 부드러운 스크롤
+            // startSS();
+
+            $(()=>{ /////////// JQB //////////
+
+                const qsa = (x) => document.querySelectorAll(x);
+                const retVal = (x) => x.getBoundingClientRect().top;
+                const tg2 = qsa(".icon");
+
+                // 대상 위치값 : offset().top
+                const jqtg = $(".icon").eq(2).offset().top;
+                console.log("jq대상위치",jqtg);
+
+                // 제이쿼리 스크롤 이벤트 구역 ////
+                $(window).scroll(()=>{
+                    console.log("JS:",retVal(tg2[2]))
+                    
+                    // 제이쿼리 스크롤 위치값
+                    let scTop = $(window).scrollTop();
+                    // console.log("scroll",scTop);
+                    
+                    // 제이쿼리에서 getBoundingClientRect().top
+                    // 구하기 -> 요소위치값 - 현재스크롤 위치값
+                    let jQRect = jqtg - scTop;
+                    console.log("JQ:",jQRect)
+
+                })/////////////scroll///////////////
+            }); /////////// JQB //////////
+        </script>
     </head>
     <body>
         <div class="page">
