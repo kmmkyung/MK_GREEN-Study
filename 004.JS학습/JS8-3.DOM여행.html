@@ -69,15 +69,18 @@
                             tgs.forEach(
                                 (ele) => {
                                     if (ele.classList.contains("on")) {
+                                        // 요소.isSameNode(비교요소)
+                                        // 특정요소가 비교요소와 같으면 true / 같지 않으면 false
                                         isNow = ele.isSameNode(tgs.item(tgs.length - 1))
                                         console.log(isNow);
                                         if (isNow) return;
-                                        cele = ele;
+                                        // 마지막 노드와 같으면 마지막 노드만 return                                        cele = ele;
                                         ele.classList.remove("on");
                                     }
                                 }); //// forEach //////
                             if (!isNow)
                                 cele.nextElementSibling.classList.add("on");
+                                //nextElementSibling 선택 요소의 다음 요소
                             break;
                         case "앞으로":
                             tgs.forEach(
@@ -86,9 +89,11 @@
                                         isNow = ele.isSameNode(tgs.item(0));
                                         console.log(isNow);
                                         if (isNow) return;
+                                        // 첫번째 요소가 같으면 return
                                         cele = ele;
                                         ele.classList.remove("on");
                                         ele.previousElementSibling.classList.add("on");
+                                        // previousElementSibling 이전 요소 선택
                                     }
                                 }); //// forEach //////
                             break;                            
@@ -107,6 +112,7 @@
                                     if (ele.classList.contains("on")) {
                                         ele.classList.remove("on");
                                         ele.parentElement.classList.add("on");
+                                        // parentElement 부모요소선택
                                     }
                                 }); //// forEach //////
                             break;
