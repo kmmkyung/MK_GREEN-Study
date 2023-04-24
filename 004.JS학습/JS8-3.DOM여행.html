@@ -70,17 +70,25 @@
                                 (ele) => {
                                     if (ele.classList.contains("on")) {
                                         // 요소.isSameNode(비교요소)
-                                        // 특정요소가 비교요소와 같으면 true / 같지 않으면 false
-                                        isNow = ele.isSameNode(tgs.item(tgs.length - 1))
+                                        // 특정요소가 비교요소와 같으면 true
+                                        // 같지 않으면 false
+                                        isNow = ele.isSameNode(tgs.item(12))
                                         console.log(isNow);
                                         if (isNow) return;
-                                        // 마지막 노드와 같으면 마지막 노드만 return                                        cele = ele;
+                                        // -> 마지막노드와 같으면 return 
+                                        // cele = ele;
                                         ele.classList.remove("on");
+                                        // 바로 다음것을 on변경하면 forEach문에서
+                                        // 다음요소를 돌때 다시 on이 걸리게되고
+                                        // if문에 들어오게 된다! 그래서 계속걸림!
+                                        // 해결책: on을 조금있다가 넣어준다(setTimeout)
+                                        setTimeout(()=>
+                                        ele.nextElementSibling.classList.add("on")
+                                        ,10);
                                     }
                                 }); //// forEach //////
-                            if (!isNow)
-                                cele.nextElementSibling.classList.add("on");
-                                //nextElementSibling 선택 요소의 다음 요소
+                                // if (!isNow)
+                                // nextElementSibling 선택요소의 다음요소
                             break;
                         case "앞으로":
                             tgs.forEach(
@@ -89,11 +97,11 @@
                                         isNow = ele.isSameNode(tgs.item(0));
                                         console.log(isNow);
                                         if (isNow) return;
-                                        // 첫번째 요소가 같으면 return
-                                        cele = ele;
+                                        // -> 첫번째 요소가 같으면 return!
+                                        // cele = ele;
                                         ele.classList.remove("on");
                                         ele.previousElementSibling.classList.add("on");
-                                        // previousElementSibling 이전 요소 선택
+                                        // previousElementSibling 이전요소선택
                                     }
                                 }); //// forEach //////
                             break;                            
@@ -124,7 +132,7 @@
 </head>
 
 <body>
-    <h1 class="tit">DOM 여행</h1>
+    <h1 class="tit">JS8-3. DOM여행</h1>
     <div class="stage">
         <ul>
             <li></li>
