@@ -46,7 +46,11 @@ function mySlider(ele){ // ele - 대상요소
     // 애니메이션 이징 변수
     const aniE = "easeOutCubic";
 
-    $(".abtn").click(function (e) {
+    // 버튼 변수
+    const abtn = $(ele).find(".abtn")
+    console.log("버튼")
+    
+    abtn.click(function (e) {
 
         // console.log("진입:",prot);
         e.preventDefault();
