@@ -40,12 +40,19 @@ Vue.component("list-comp", {
         return {
             // 1. 상품이미지 경로
             gsrc: `img_gallery/${this.haha}.jpg`,
+
             // 2. 상품명
             gname: `Sofia23` + this.haha + this.endlet + (this.myseq % 2 ? "😘" : "👍"),
-            // 3. 단위가격(원가격)
+
+            // 3. 단위가격(원가격 화면표시용)
             gprice: 
             this.insComma((123000 * this.haha) / 2) + `원`,
-            // 4. 할인가격 : 30% 할인된 가격(원가격*0.7) 
+
+            // 4. 단위가격(원가격 숫자만 : v-bind:data-price="속성값" 으로 셋팅!)
+            orgprice: 
+            (123000 * this.haha) / 2,
+
+            // 5. 할인가격 : 30% 할인된 가격(원가격*0.7) 
             // - 반올림 Math.round()
             sale: 
             this.insComma(Math.round((123000 * this.haha) / 2 * 0.7)) + `원`,
@@ -106,6 +113,8 @@ new Vue({
 
         // 공유번호변수
         let nowNum = 1;
+        // 공유가격변수
+        let orgprice = 0;
 
         // 1. 갤러리 리스트 클릭시 큰이미지박스 보이기
         $(".grid>div").click(function (e) {
@@ -123,9 +132,9 @@ new Vue({
             nowNum = $(this).attr("data-num");
             console.log("현재이미지번호:", nowNum);
 
-            // 5. 값 셋팅하기
+            // 6. 값 셋팅하기
             setVal();
-            
+
         }); /////////// click ////////
         
         // 상품명/ 가격 등 데이터 셋업 함수
@@ -135,19 +144,39 @@ new Vue({
             // console.log(tg.find("h2").text());
             // console.log(tg.find("h3").text());
     
+            // 1. [가격 계산을 위한 원가격셋팅]
+            orgprice = tg.find("h3>span:first").attr("data-price");
+
+            // 세일 적용일 경우 세일 가격으로 업뎃!
+            if(tg.find("h3>span:first").is(".del")){
+                orgprice = Math.round(orgprice*0.7);
+            }//////////////// if //////////////
+
+            console.log("원가격(숫자형)",orgprice);
+
+
             // 상품명/가격 큰박스에 넣기
             $("#gtit,#gcode").text(tg.find("h2").text());
             // 상품가격 큰박스에 넣기
             // 세일일 경우와 아닌경우 나누기!
             if(tg.find("h3 span").first().is(".del")){ // 세일일때
-                $("#gprice,#total").html("<small>30% 세일가</small>"+tg.find("h3 span").last().text());
+                $("#gprice,#total").html("<small>30% 세일가</small>"+
+                // tg.find("h3 span").last().text()
+                insComma(orgprice)+"원"
+                );
             }
             else{ // 세일아닐때
-                $("#gprice,#total").text(tg.find("h3 span").first().text());
+                $("#gprice,#total").text(insComma(orgprice)+"원"
+                    // tg.find("h3 span").first().text()
+                    );
             }
 
-            
         } ////////// setVal함수 //////////////////
+
+        //정규식함수(숫자 세자리마다 콤마해주는 기능)
+        function insComma(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         // 2. 닫기버튼 클릭시 큰이미지박스 숨기기
         $(".cbtn").click(function (e) {
@@ -199,14 +228,23 @@ new Vue({
             console.log("현재값:",isV);
 
             // 3. 분기하기
-            // (1) 증가
+            // (1) 증가일때
             if(isB === "증가"){
                 sum.val(++isV);
                 // sum.val(isV++);
                 // isV++ 이면 현재값이 반영안됨->
                 // 왜?? 1증가 전에 반영하기 때문!!
             } ////// if //////
-            
+
+            // (2) 감소일때 : 한계값 1
+            else{ 
+                isV = --isV;
+                if(isV===0) isV=1;
+                sum.val(isV);
+            }
+
+            // 4. 가격표시하기
+
         });///////// click ////////////
     } //////// mounted 함수구역 /////
 }); ///////////// 뷰JS 인스턴스 //////////////////
