@@ -183,5 +183,30 @@ new Vue({
             setVal();
 
         }); ////////// click ////////////
-    }, //////// mounted 함수구역 /////
+
+        // 수량 증가/감소 버튼 클릭시 데이터 반영하기
+        // 이벤트대상: .chg_num img
+        // 변경 대상: input#sum
+        const sum = $("input#sum");
+        $(".chg_num img").click(function(){
+            // 1. 클릭된 버튼 구분하기
+            let isB = $(this).attr("alt");
+
+            // 2. 현재값 읽어오기 : 문자형을 입력하면 숫자형으로 변환
+            let isV = Number(sum.val());
+
+            console.log("구분버튼:",isB)
+            console.log("현재값:",isV);
+
+            // 3. 분기하기
+            // (1) 증가
+            if(isB === "증가"){
+                sum.val(++isV);
+                // sum.val(isV++);
+                // isV++ 이면 현재값이 반영안됨->
+                // 왜?? 1증가 전에 반영하기 때문!!
+            } ////// if //////
+            
+        });///////// click ////////////
+    } //////// mounted 함수구역 /////
 }); ///////////// 뷰JS 인스턴스 //////////////////
