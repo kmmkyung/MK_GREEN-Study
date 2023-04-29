@@ -40,12 +40,19 @@ Vue.component("list-comp", {
         return {
             // 1. 상품이미지 경로
             gsrc: `img_gallery/${this.haha}.jpg`,
+
             // 2. 상품명
             gname: `Sofia23` + this.haha + this.endlet + (this.myseq % 2 ? "😘" : "👍"),
-            // 3. 단위가격(원가격)
+
+            // 3. 단위가격(원가격 화면표시용)
             gprice: 
             this.insComma((123000 * this.haha) / 2) + `원`,
-            // 4. 할인가격 : 30% 할인된 가격(원가격*0.7) 
+
+            // 4. 단위가격(원가격 숫자만 : v-bind:data-price="속성값" 으로 셋팅!)
+            orgprice: 
+            (123000 * this.haha) / 2,
+
+            // 5. 할인가격 : 30% 할인된 가격(원가격*0.7) 
             // - 반올림 Math.round()
             sale: 
             this.insComma(Math.round((123000 * this.haha) / 2 * 0.7)) + `원`,
@@ -97,7 +104,7 @@ Vue.component("win-comp", {
     template: hcode.big,
 }); ///////// win-comp 컴포넌트 ///////////////////
 
-////////// win-comp 뷰JS 인스턴스 생성하기 //////
+////////// *************win-comp 뷰JS 인스턴스 생성하기 ************* ///////////
 new Vue({
     el: "#pbg",
     // DOM이 모두 로딩된 후 실행구역!
@@ -106,10 +113,23 @@ new Vue({
 
         // 공유번호변수
         let nowNum = 1;
+        // 공유가격변수
+        let orgprice = 0;
+        // 공유전체수량변수
+        let tot = 1;
+        // 공유전체수/입력창 초기화
+        const initTot=()=>{
+            tot = 1;
+            $("#sum").val(1);
+        }; ///////// initTot ////////////
 
         // 1. 갤러리 리스트 클릭시 큰이미지박스 보이기
         $(".grid>div").click(function (e) {
             console.log(this);
+
+            // 0. 전체수량 초기화
+            initTot();
+
             // 1. 클릭된 이미지 경로 읽어오기
             let isrc = $(this).find("img").attr("src");
 
@@ -123,11 +143,12 @@ new Vue({
             nowNum = $(this).attr("data-num");
             console.log("현재이미지번호:", nowNum);
 
-            // 5. 값 셋팅하기
+            // 6. 값 셋팅하기
             setVal();
-            
+
         }); /////////// click ////////
         
+        // ***************************setVal()***************************
         // 상품명/ 가격 등 데이터 셋업 함수
         function setVal(){
             // nowNum값에 의한 대상선정!
@@ -135,19 +156,44 @@ new Vue({
             // console.log(tg.find("h2").text());
             // console.log(tg.find("h3").text());
     
-            // 상품명/가격 큰박스에 넣기
-            $("#gtit,#gcode").text(tg.find("h2").text());
-            // 상품가격 큰박스에 넣기
-            // 세일일 경우와 아닌경우 나누기!
-            if(tg.find("h3 span").first().is(".del")){ // 세일일때
-                $("#gprice,#total").html("<small>30% 세일가</small>"+tg.find("h3 span").last().text());
-            }
-            else{ // 세일아닐때
-                $("#gprice,#total").text(tg.find("h3 span").first().text());
-            }
+            // 1. [가격 계산을 위한 원가격셋팅]
+            orgprice = tg.find("h3>span:first").attr("data-price");
 
+            // 2. 세일 적용 여부
+            let isSale = tg.find("h3>span:first").is(".del")
             
+            // 3. 세일 적용일 경우 세일 가격으로 업뎃!
+            if(isSale){
+                orgprice = Math.round(orgprice*0.7);
+            }//////////////// if //////////////
+
+            console.log("원가격(숫자형)",orgprice);
+
+
+            // 4. 상품명/가격 큰박스에 넣기
+            $("#gtit,#gcode").text(tg.find("h2").text());
+
+            // 5. 상품가격 큰박스에 넣기
+            // (1) 원가격에 표시
+            $("#gprice").html(
+                insComma(orgprice) + "원"
+            );
+
+            // (2) 토탈가격에 표시 : 원가 * 개수
+            $("#total").html(
+                insComma(orgprice * tot) + "원"
+            );
+
+            // 6. 세일인 경우 추가문구넣기
+            if(isSale){ // 세일일때
+                $("#gprice").prepend("<small>30% 세일가</small> ");
+            }
         } ////////// setVal함수 //////////////////
+
+        //정규식함수(숫자 세자리마다 콤마해주는 기능)
+        function insComma(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         // 2. 닫기버튼 클릭시 큰이미지박스 숨기기
         $(".cbtn").click(function (e) {
@@ -158,8 +204,12 @@ new Vue({
 
         // 3. 이전/다음버튼 클릭시 이미지변경하기
         $(".abtn").click(function (e) {
+            // 0. 전체수량 초기화
+            initTot();
+
             // 1. 기본이동막기
             e.preventDefault();
+            
             // 2. 오른쪽버튼 여부
             let isB = $(this).is(".rb");
 
@@ -183,5 +233,85 @@ new Vue({
             setVal();
 
         }); ////////// click ////////////
-    }, //////// mounted 함수구역 /////
+
+        // 수량 증가/감소 버튼 클릭시 데이터 반영하기
+        // 이벤트대상: .chg_num img
+        // 변경 대상: input#sum
+        const sum = $("input#sum");
+        $(".chg_num img").click(function(){
+            // 1. 클릭된 버튼 구분하기
+            let isB = $(this).attr("alt");
+
+            // 2. 현재값 읽어오기 : 문자형을 입력하면 숫자형으로 변환
+            let isV = Number(sum.val());
+
+            console.log("구분버튼:",isB)
+            console.log("현재값:",isV);
+
+            // 3. 분기하기
+            // (1) 증가일때
+            if(isB === "증가"){
+                sum.val(++isV);
+                // sum.val(isV++);
+                // isV++ 이면 현재값이 반영안됨->
+                // 왜?? 1증가 전에 반영하기 때문!!
+            } ////// if //////
+
+            // (2) 감소일때 : 한계값 1
+            else{ 
+                isV = --isV;
+                if(isV===0) isV=1;
+                sum.val(isV);
+            }
+
+            // 4. 가격표시하기
+            // 수량을 전역변수에 할당하여 setVal()에 반영함!
+            tot = isV;
+
+            setVal();
+        });///////// click ////////////
+
+        /***************************************
+            숫자직접 입력 기능 구현
+            1. 숫자만 입력(0이상)
+            2. 입력즉시 합계출력
+            3. 빈값 금지
+        ***************************************/
+        // 대상 : #sum
+        // 이벤트 : keyup(입력즉시반응)
+        $("#sum").keyup(function(){
+
+            // 0. 요소 자신
+            let ele = $(this);
+            // 1. 입력된 값 : input요소는 val()메서드로!
+            let txt = ele.val();
+
+            // 2. 숫자가 아닌 경우 : isNaN() - 숫자가 아니면 ture
+            // 조건: 숫자가 아니거나 , 1미만이거나, 빈값이거나, 소수점이거나
+            // -> 소수점 방지: indexOf(".")!==-1
+            // 문자열.indexOf(".") -> 점문자가 없으면 -1임
+            if(isNaN(txt) ||
+            txt < 1 ||
+            txt ==="" ||
+            txt.indexOf(".")!==-1){
+                initTot(); // 총합계 초기화
+            } //// if ////
+
+            // 3. 숫자인 경우 tot업뎃 + setVal() 호출!
+            else{
+                tot=txt;
+                if(txt>=100){
+                    alert("100개 이상인 경우\n쇼핑몰에 직접 연락바랍니다.\ntel:02-3333-3333")
+                }
+                // 숫자앞에 0을 넣으면 없애기!
+                // 문자형숫자를 숫자형으로 변환하면 된다!
+                ele.val(Number(txt));
+            } //// else ////
+
+            // 4. 계산 수행
+            setVal();
+            console.log("직접입력",txt);
+        })
+
+    } //////// mounted 함수구역 ///////
 }); ///////////// 뷰JS 인스턴스 //////////////////
