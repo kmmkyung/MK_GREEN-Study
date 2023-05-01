@@ -17,9 +17,9 @@
 // 자동스크롤 기능 함수 가져오기
 import autoScroll from "./jquery-autoScroll.js";
 // 메뉴기능함수 가져오기
-import menuFn from "./mainis/menu.js";
+import menuFn from "./mainjs/menu.js";
 // 배너기능함수 가져오기
-import banFn from "./mainis/ban.js";
+import banFn from "./mainjs/ban.js";
 // 공통 데이터 가져오기
 import comData from "./tempData/data-common.js";
 
