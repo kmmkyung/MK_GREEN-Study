@@ -9,6 +9,8 @@ import comData from "./tempData/data-common.js";
 // 신상정보
 import sinsang from "./dgsData/sinsang.js";
 
+// 스와이퍼 변수
+let swiper;
 
 // ################# 상단/하단영역메뉴 뷰 템플릿 셋팅 ################
 // Vue.component(내가지은요소명,{옵션})
@@ -93,7 +95,12 @@ const flist = $(".flist");
 // 위치값 변수
 let lpos = 0;
 // 재귀호출 상태값 변수(1-호출가능 / 0-호출불가능)
-let call_sts = 1; 
+let call_sts = 0; 
+// 스크롤시 상태값변수
+let sc_sts = 0;
+// 재귀호출 타임아웃용변수
+let callT;
+
 
 function moveList(){
 
@@ -115,9 +122,12 @@ function moveList(){
         left: lpos+"px"
     })
 
+    // 타임아웃 비우기
+    clearTimeout(callT)
+    
     // 재귀호출하기(비동기호출  - setTimeout)
     // 조건: call_sts 상태값이 1일때만 호출함!
-    if(call_sts)setTimeout(moveList,40);
+    if(call_sts) callT = setTimeout(moveList,40);
 }/////////////// moveList //////////////
 
 // 신상품 이동함수 최초호출
@@ -155,16 +165,17 @@ flist.find("li").hover(function(){ //over
     $(this).append(`<div class="ibox"></div>`);
     // .ibox에 상품 정보 넣기
     // ^ 특수문자임으로 정규식에 넣을때 \역슬래쉬와 함께 씀 -> /\^/
-    $(".ibox").html(gd_info.replace(/\^/g,"<br>"))
+    $(".ibox",this).html(gd_info.replace(/\^/g,"<br>"))
     .animate({
         top:"110%",
         opacity: 1
     },300,"easeOutCirc");
-},
-function(){ //out
-    // .ibox 나갈때 지우기
-    $(".ibox").remove();
-}); ////////////////// hover ///////////////////
+    },
+    function(){ //out
+        // .ibox 나갈때 지우기
+        $(".ibox",this).remove();
+    }
+); ////////////////// hover ///////////////////
 
 /************************************
 스크롤 위치가 신상품 박스가 보일때만 움직이기
@@ -173,13 +184,53 @@ function(){ //out
 // 용용박스 offset().top 위치값 - scroll바 위치값
 
 // 1. 대상요소위치값
+let tgpos = flist.offset().top;
 
 // 2. 스크롤 위치변수
 let scTop = 0;
+
+// 3. 화면 높이값
+let winH = $(window).height();
+console.log("화면높이값",winH)
+
+// 4. 스크롤 이벤트 함수 ////////////
 $(window).scroll(function(){
-    // 스크롤 위치값    
+    // 4-1. 스크롤 위치값    
     scTop = $(this).scrollTop();
-    console.log(scTop);
+    // 4-2. gBCR 값 구하기
+    let gBCR = tgpos-scTop
+    console.log("gBCR",gBCR);
+    
+    // 4-3. 신상품 리스트 이동 / 멈춤 분기하기
+    // (1)이동기준 gBCR값이 화면높이보다 작고 0보다 클때 이동
+    if(gBCR < winH && gBCR > -300 && sc_sts===0){
+        sc_sts = 1; // 콜백허용!(한번만 실행)
+        moveList(); // 함수재호출!
+        console.log("범위1")
+    }
+    // (2)기타경우 멈춤(조건: 윈도우높이보다 크거나 0보다 작고 call_sts===1일때 )
+    else if((gBCR > winH || gBCR < -300)&& sc_sts===1){
+        sc_sts = 0; // 콜백중단!
+        call_sts = 0; // 콜백중단!
+        console.log("범위2")
+    }
+
+        ////////////////////////////
+        // 서브 배너 스와이퍼 API를 //
+        // 이용한 작동멈춤셋팅하기! //
+        ////////////////////////////
+        // 기준: 화면높이값 보다 
+        //      스크롤위치가 크면 멈춤
+        // 스와이퍼API : swiper.autoplay.stop()
+        //      스크롤위치가 작으면 자동넘김
+        // 스와이퍼API : swiper.autoplay.start()
+        if(scTop > winH){
+            swiper.autoplay.stop()
+          } /////////// if ////////
+          else{
+            swiper.autoplay.start()
+          } //////// else ///////////
+          
 }); /////////////// scroll /////////////////
 
 } ///////////// sinsangFn 함수 //////////////////
