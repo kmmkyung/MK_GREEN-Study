@@ -99,7 +99,7 @@ function moveList(){
 
     // 1. 이동 위치값(left값) 감소하기
     lpos--;
-    console.log("위치값:",lpos);
+    // console.log("위치값:",lpos);
 
     // 2. 한계값 초기화하기 + 첫번째 요소 맨뒤로 이동하기
     if(lpos <-300) {
@@ -128,8 +128,58 @@ moveList();
 // hover(함수1,함수2)
 flist.hover(function(){ // over
     call_sts = 0; // 콜백중단
-},function(){ // out
+},
+function(){ // out
     call_sts =1; // 콜백허용
     moveList(); // 함수재호출
 }); ////////// hover /////////////
+
+/************************************
+신상품 리스트 li에 마우스 오버시 정보보이기
+1. 대상: .flist li
+2. 정보구분법 : li의 클래스명으로 신상품 정보와
+                매칭하여 상품정보박스를 동적으로
+                생성하여 애니메이션을 주어 보이게 함
+
+************************************/
+flist.find("li").hover(function(){ //over
+    // 1. 클래스 정보 알아내기
+    let clsnm = $(this).attr("class");
+    
+    // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
+    let gd_info = sinsang[clsnm];
+    console.log(clsnm,gd_info);
+
+    // 3. 상품정보박스 만들고 보이게 하기
+    // 마우스 오버된 li 자신 (this)에 넣어준다!
+    $(this).append(`<div class="ibox"></div>`);
+    // .ibox에 상품 정보 넣기
+    // ^ 특수문자임으로 정규식에 넣을때 \역슬래쉬와 함께 씀 -> /\^/
+    $(".ibox").html(gd_info.replace(/\^/g,"<br>"))
+    .animate({
+        top:"110%",
+        opacity: 1
+    },300,"easeOutCirc");
+},
+function(){ //out
+    // .ibox 나갈때 지우기
+    $(".ibox").remove();
+}); ////////////////// hover ///////////////////
+
+/************************************
+스크롤 위치가 신상품 박스가 보일때만 움직이기
+************************************/
+// JS getBoundingClientRect() 의 값과 같은 것은?
+// 용용박스 offset().top 위치값 - scroll바 위치값
+
+// 1. 대상요소위치값
+
+// 2. 스크롤 위치변수
+let scTop = 0;
+$(window).scroll(function(){
+    // 스크롤 위치값    
+    scTop = $(this).scrollTop();
+    console.log(scTop);
+}); /////////////// scroll /////////////////
+
 } ///////////// sinsangFn 함수 //////////////////
