@@ -6,6 +6,8 @@ import menuFn from "./mainjs/menu.js";
 import banFn from "./mainjs/ban.js";
 // 공통 데이터 가져오기
 import comData from "./tempData/data-common.js";
+// 신상정보
+import sinsang from "./dgsData/sinsang.js";
 
 
 // ################# 상단/하단영역메뉴 뷰 템플릿 셋팅 ################
@@ -39,8 +41,10 @@ new Vue({
         makeSwiper();
 
         // 부드러운 스크롤 호출
-        startSS()
-
+        startSS();
+        
+        // 신상품 기능함수 호출
+        sinsangFn();
     }
 })
 
@@ -73,3 +77,59 @@ function makeSwiper(){
         }
     });
 }///////////////// makeSwiper 함수 ///////////////
+
+///////// 신상품 기능구현 함수 /////////////
+function sinsangFn(){
+
+
+/*************************************
+    함수명: moveList
+    기능: 신상품 리스트박스를 연속하여
+        왼쪽 방향으로 흘러가게 함!
+*************************************/
+
+// 대상: .flist
+const flist = $(".flist");
+// 위치값 변수
+let lpos = 0;
+// 재귀호출 상태값 변수(1-호출가능 / 0-호출불가능)
+let call_sts = 1; 
+
+function moveList(){
+
+    // 1. 이동 위치값(left값) 감소하기
+    lpos--;
+    console.log("위치값:",lpos);
+
+    // 2. 한계값 초기화하기 + 첫번째 요소 맨뒤로 이동하기
+    if(lpos <-300) {
+        // 위치값 초기화
+        lpos=0;
+
+        // 첫번째 li 맨뒤로 이동
+        flist.append(flist.find("li").first());
+    }
+
+    // 3. 이동하기
+    flist.css({
+        left: lpos+"px"
+    })
+
+    // 재귀호출하기(비동기호출  - setTimeout)
+    // 조건: call_sts 상태값이 1일때만 호출함!
+    if(call_sts)setTimeout(moveList,40);
+}/////////////// moveList //////////////
+
+// 신상품 이동함수 최초호출
+moveList();
+
+// 신상품 리스트에 마우스 오버시 멈춤
+// 신상품 리스트에 마우스 아웃시 멈춤
+// hover(함수1,함수2)
+flist.hover(function(){ // over
+    call_sts = 0; // 콜백중단
+},function(){ // out
+    call_sts =1; // 콜백허용
+    moveList(); // 함수재호출
+}); ////////// hover /////////////
+} ///////////// sinsangFn 함수 //////////////////
