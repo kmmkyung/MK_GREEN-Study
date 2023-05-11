@@ -254,7 +254,8 @@
 
             // 숫자 증감 변수
             let num = 0;
-
+            
+            
 
             // 2. 갤러리 리스트 넣을 전역 컴포넌트 만들기
             Vue.component("list-comp",{
@@ -282,7 +283,13 @@
                             num+=1;
                             console.log("num",num);
                             return num;
+                        },
+                        이름(){
+                            console.log("이름!!")
                         }
+                    },
+                    mounted(){
+                        
                     }
             }); ////// 전역 컴포넌트 2 //////
 
