@@ -46,7 +46,7 @@ const store = new Vuex.Store({
     actions:{
         // 제이슨 데이터 로드하기 메서드
         // initData({commit}){
-        initData(this){
+        initData(){
             // 액션스 메서드 전달값으로 {commit}을 쓰면 뮤테이션 구역으로 바로 commit 사용가능
             // 제이슨 데이터 변수에 할당!
             const result = jsnData;
