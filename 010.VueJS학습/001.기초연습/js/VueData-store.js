@@ -45,7 +45,8 @@ const store = new Vuex.Store({
     // 호출시 dispatch()사용
     actions:{
         // 제이슨 데이터 로드하기 메서드
-        initData({commit}){
+        // initData({commit}){
+        initData(this){
             // 액션스 메서드 전달값으로 {commit}을 쓰면 뮤테이션 구역으로 바로 commit 사용가능
             // 제이슨 데이터 변수에 할당!
             const result = jsnData;
@@ -53,7 +54,8 @@ const store = new Vuex.Store({
 
             // state의 items 변수 변경 메서드 호출
             // 뮤테이션스의 메서드 호출은? - commit('메서드',전달값)
-            commit('setDate',result);
+            // commit('setDate',result);
+            this.commit('setDate',result);
         }, //////// initData //////////////
     }
 }); /////////// 뷰엑스 인스턴스 ////////
