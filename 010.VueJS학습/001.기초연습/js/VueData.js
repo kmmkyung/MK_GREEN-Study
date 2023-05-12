@@ -18,7 +18,7 @@ import store from "./vuedata-store.js";
 Vue.component("my-comp",{
     template:`
         <div class="grid">
-            <div v-for="(v,i) in $store.state.items.data">
+            <div v-for="(v,i) in $store.state.items">
                 <img 
                 v-bind:src="
                     './img_gallery/' +
