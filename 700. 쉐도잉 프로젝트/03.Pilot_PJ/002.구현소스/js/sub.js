@@ -122,16 +122,22 @@ new Vue({
         // $(선택요소).trigger(이벤트명) -> 선텍요소의 이벤트를 강제 발생함
         // 참고 JS 클릭이벤트 강제발생
         // document.querySelector().click();
-        $(".mlist a").click(()=>{
+        $(".mlist a").click((e)=>{
+            // 0. 기본 이동 막ㅣ
+            e.preventDefault();
             // 1. 전체 메뉴창 닫기
             $(".ham").trigger("click");
-            // 2. 부드러운 스크롤 위치값 업데이트
+            // 2. 부드러운 스크롤 위치값 업데이트 + 맨 위로 이동
             sc_pos = 0;
+            $("thml,body").animate({scrollTop:"0"},1);
             // 3. 스와이퍼 첫번째 슬라이드로 이동!
             swiper.slideTo(0);
             // 첫슬라이드는 0번: 스와이퍼 API 이용
             // 4. 등장액션 스크롤리빌 다시 호출!
             $.fn.scrollReveal();
+            // 5. url 강제 변경하기
+            // 변경 이유: SPA변경시 전달변수 내용 일치 -> 새로고침시 현재 변경 로딩!
+            //
 
         });
 
