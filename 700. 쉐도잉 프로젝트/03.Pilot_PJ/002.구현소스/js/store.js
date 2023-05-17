@@ -36,10 +36,17 @@ const store = new Vuex.Store({
         cat: "",
         // 공통처리 분류명
         name: "",
+        // 상품속성코드(클래스명)
+        cls:"m1",
+        // 상품이름
+        gname:"",
+        // 상품코드
+        gcode:"",
+        // 상품가격
+        gprice:"",
     },
     // state 데이터 변경 메서드구역!
     mutations: {
-        
         // 데이터 변경 셋업 메서드
         chgData(dt,pm){ // dt-state데이터, pm-전달값
             console.log("데이터변경:",pm);

@@ -4,82 +4,93 @@
 import menuFn from "./mainjs/menu.js";
 // 공통 데이터 가져오기
 import comData from "./tempData/data-common.js";
+// 서브 데이터 가져오기
+import subData from "./tempData/data-sub.js";
 // 신상정보
 import sinsang from "./gdsData/sinsang.js";
-// 신상정보
-import subData from "./tempData/data-sub.js";
-// 뷰엑스 스토어 JS 가져오기
-// 중요! 반드시 메인JS파일 한곳에서 불러와 써야 상태관리됨!
-// -> 이 JS파일에 Vue 인스턴스 생성코드가 같이 있어야 한다!
-import store from "./store.js";
 
+// 뷰엑스 스토어 JS 가져오기
+// 중요! 반드시 메인JS파일 한군데서 불러와 써야 상태관리됨!
+// -> 이 JS파일에 Vue 인스턴스 생성코드가 같이 있어야한다!
+import store from "./store.js";
 
 // 스와이퍼 변수
 let swiper;
 
-// 바로실행 구역함수
-// 바로실행구역을 쓰는 이유 : 변수나 명령어를 다른 영역과 구분하여
+// 바로실행구역 함수구역 ///
+// 바로실행구역을 쓰는이유: 
+// 변수나 명령어를 다른 영역과 구분하여
 // 코딩할때 주로 사용됨!
 // GET방식 데이터를 store에서 초기값으로 셋팅하는 것을
-// 인스턴스 생성전에 해야 아래쪽에 빈값으로 셋팅된 값이
-// 들어가서 에러나는 것을 막을 수 있다
+// 인스턴스 생성전에 해야 아래쪽에 빈값으로 셋팅된값이
+// 들어가서 에러나는 것을 막을 수 있다!
+(() => {
+    // 파라미터 변수
+    let pm;
 
-(()=>{
-// 파라미터 변수
-let pm;
-// GET 방식으로 넘어온 데이터 처리하여
-// 분류별 서브 페이지 구성하기
-// location.href -> 상단 url 읽어옴!
-// indexOf("?")!==-1 -> 물음표가 있으면!
-if(location.href.indexOf("?")!==-1)
-    pm = location.href.split("?")[1].split("=")[1];
-    // 물음표(?)로 잘라서 뒤에것,이퀄(=)로 잘라서 뒤에것
-    // 파라미터 값만 추출함
-// pm에 할당이 되었다면 undefined가 아니므로 true
-if(pm)
-    store.commit("chgData",decodeURI(pm));
-// 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성"셋팅
-else
-    store.commit("chgData","남성");
-    // decodeURI() - 변경할 문자열만 있어야 변환됨 
+    // GET 방식으로 넘어온 데이터 처리하여
+    // 분류별 서브 페이지 구성하기!
+    // location.href -> 상단 url읽어옴!
+    // indexOf("?")!==-1 -> 물음표가 있으면!
+    if (location.href.indexOf("?") !== -1) 
+        pm = location.href.split("?")[1].split("=")[1];
+    // 물음표(?)로 잘라서 뒤엣것,이퀄(=)로 잘라서 뒤엣것
+    // 파라미터 값만 추출함!
+    // pm에 할당이 되었다면 undefined가 아니므로 true
+    if (pm) store.commit("chgData", decodeURI(pm));
+    // 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성"
+    else store.commit("chgData", "남성");
+
+    // decodeURI() - 변경할 문자열만 있어야 변환됨
     // decodeURIComponent() - url전체에 섞여 있어도 모두 변환
-})(); ////////////// 바로실행 함수구역 //////////
+
+})(); ////////////// 바로실행함수구역 ///////////////////
+
+// DOM연결전 데이터 가공작업
+console.log("created구역");
 
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
-// Vue.component(내가지은요소명,{옵션})
 // 1. 배너파트 컴포넌트
 Vue.component("ban-comp", {
     template: subData.banner,
-}); ////////// 서브영역 Vue component //////////
-// 2. 컨텐츠 1영역 컴포넌트
+}); ////////// 상단영역 Vue component //////////
+
+// 2. 컨텐츠1 영역 컴포넌트
 Vue.component("cont1-comp", {
     template: subData.cont1,
-}); ////////// 서브영역 Vue component //////////
-// 3. 컨텐츠 2영역 컴포넌트
+}); ////////// 상단영역 Vue component //////////
+
+// 3. 컨텐츠2 영역 컴포넌트
 Vue.component("cont2-comp", {
     template: subData.cont2,
-}); ////////// 서브영역 Vue component //////////
-// 3. 컨텐츠 3영역 컴포넌트
+}); ////////// 상단영역 Vue component //////////
+
+// 4. 컨텐츠3 영역 컴포넌트
 Vue.component("cont3-comp", {
     template: subData.cont3,
-}); ////////// 서브영역 Vue component //////////
-// 3. 컨텐츠 4영역 컴포넌트
+}); ////////// 상단영역 Vue component //////////
+
+// 5. 컨텐츠4 영역 컴포넌트
 Vue.component("cont4-comp", {
     template: subData.cont4,
-}); ////////// 서브영역 Vue component //////////
+}); ////////// 상단영역 Vue component //////////
+
+// 6. 상세보기 영역 컴포넌트
+Vue.component("detail-comp", {
+    template: subData.detail,
+}); ////////// 상단영역 Vue component //////////
 
 //###### 서브영역 뷰 인스턴스 셋팅하기 #######
 new Vue({
     el: "#cont",
-    store, // 뷰엑스 스토어 불러오고(import) 여기에 등록 필수!!!!
-}); ////////// 서브영역 Vue component //////////
-
-
+    store, // 뷰엑스 스토어 등록필수!!!
+}); ////////// 상단영역 Vue component //////////
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
 Vue.component("top-comp", {
     template: comData.tareaSub,
+    methods: {},
 }); ////////// 상단영역 Vue component //////////
 
 //###### 하단영역 메뉴 뷰 템플릿 셋팅하기 #######
@@ -110,82 +121,143 @@ new Vue({
         // 신상품 기능함수 호출
         sinsangFn();
 
-        // 패럴렉스 적용함수 호출
-        setParallax(".c2",0.5);
-        // setParallax(적용할요소, 속도);
+        // 패럴렉스 적용함수 호출!
+        setParallax(".c2", 0.6);
+        // setParallax(적용할요소,속도);
         // 속도는 0.1~0.9
 
         // 스크롤리빌 플러그인 적용호출!
         $.fn.scrollReveal();
 
-        // 전체메뉴 클릭시 전체 메뉴창 닫기
-        // $(선택요소).trigger(이벤트명) -> 선텍요소의 이벤트를 강제 발생함
-        // 참고 JS 클릭이벤트 강제발생
-        // document.querySelector().click();
-        $(".mlist a").click((e)=>{
-            // 0. 기본 이동 막ㅣ
+        // 전체메뉴클릭시 ///////////
+        $(".mlist a").click((e) => {
+            // 0. 기본이동막기
             e.preventDefault();
-            // 1. 전체 메뉴창 닫기
+
+            // 1. 전체메뉴창 닫기
             $(".ham").trigger("click");
-            // 2. 부드러운 스크롤 위치값 업데이트 + 맨 위로 이동
+
+            // 2. 부드러운 스크롤 위치값 업데이트 + 맨위이동
             sc_pos = 0;
-            $("thml,body").animate({scrollTop:"0"},1);
+            $("html,body").animate({scrollTop:"0"},1);
+
             // 3. 스와이퍼 첫번째 슬라이드로 이동!
             swiper.slideTo(0);
-            // 첫슬라이드는 0번: 스와이퍼 API 이용
+            // 첫슬라이드는 0번: 스와이퍼 API이용!
+
             // 4. 등장액션 스크롤리빌 다시 호출!
             $.fn.scrollReveal();
-            // 5. url 강제 변경하기
-            // 변경 이유: SPA변경시 전달변수 내용 일치 -> 새로고침시 현재 변경 로딩!
-            //
+            
+            // 5. URL 강제변경하기
+            // 변경이유 : SPA변경시 전달변수내용일치 
+            // -> 새로고침시 현재변경로딩!
+            history.pushState(null,null,"sub.html?cat="+store.state.name);
+            /***************************************************** 
+            [ history.pushState() 메서드 ]
+
+            1. 브라우저 세션 기록 스택항목 추가메서드
+            2. 비동기식으로 작동함(주소이동없이 주소만 업데이트됨!)
+            3. 전달값 :
+                history.pushState(상태,사용안됨,URL)
+
+                (1) 상태 : 새로운 페이지 이동시 popstate가 됨
+                (2) 사용안됨 : 전부터 사용되던 전달값.지금사용안됨
+                    보통 (1),(2)는 null로 셋팅함
+                (3) URL : 이 주소는 현재 페이지가 포함된
+                    주소 카테고리(폴더)를 기준으로 작성됨
+
+            4. 사용기본폼 : 
+                history.pushState(null,null,"my.html?hi=bye") 
+            *****************************************************/
+
+            // 6. 상세보기 박스가 열려있을 수 있으므로 닫기!
+            $("#bgbx").hide();
 
         });
+        // $(선택요소).trigger(이벤트명)
+        // -> 선택요소의 이벤트 강제발생함!
+        // 참고) JS 클릭이벤트 강제발생
+        // document.querySelector(요소).click();
 
-        // GNB메뉴 클릭시 해당위치로 스크롤이동 애니메이션
-        // 각 .gnb a에는 href="#c2" 이런식으로 아이디요소가 있음!
-        // a요소의 #아이디명으로 기본 위치이동은 되지만 스크롤 애니메이션은
-        // 되지 않는다!
+        // GNB 메뉴 클릭시 해당위치로 스크롤이동 애니메이션
+        // 각 .gnb a 에는 href="#c2" 이런식으로 아이디요소가 있음!
+        // a요소의 #아이디명 으로 기본 위치이동은 되지만
+        // 스크롤 애니메이션은 되지 않는다!
         // 이것을 제이쿼리로 구현하자!!!
-        $(".gnb a").click(function(e){
+        $(".gnb a").click(function (e) {
             // 1. 기본이동막기
             e.preventDefault();
 
             // 2. 클릭된 a요소의 href값 읽어오기
             let aid = $(this).attr("href");
-            
-            // 3. 아이디 요소 박스 위치구하기
-            let newpos = $(aid).offset().top
-            console.log("이동아이디:",aid,"/위치",newpos);
+
+            // 3. 아이디요소 박스 위치구하기
+            let newpos = $(aid).offset().top;
+
+            console.log("이동아이디:", aid, "/위치:", newpos);
 
             // 4. 애니메이션 이동
-            $("html,body").animate({
-                scrollTop:newpos+"px"
-            },600,"easeOutQuint")
-            // 
+            $("html,body").animate(
+                {
+                    scrollTop: newpos + "px",
+                },
+                600,
+                "easeOutQuint"
+            );
 
-            // 5. 부드러운 스크롤 변수에 현재 위치 업데이트
+            // 5. 부드러운 스크롤 변수에 현재위치값 업데이트!
             sc_pos = newpos;
-        }); ////////////click/////////////
+        }); //////////// click /////////
 
-        // 로고 클릭시 첫페이지로 이동
-        $("#logo").click(()=>location.href="index.html");
+        // 로고 클릭시 첫페이지로 이동!!!
+        $("#logo").click(() => (location.href = "index.html"));
 
+        // 상품 클릭시 상세보기 정보 셋팅하여 보이기
+        $(".flist a").click(function(e){
+            // 0. 기본이동막기
+            e.preventDefault();
 
-    },
+            // 1. 클릭된 요소의 부모(li)의 클래스 읽어오기
+            let cls = $(this).parent().attr("class");
+            console.log("클래스명:",cls);
+
+            // 2. 클릭된 요소의 다음형제요소의 정보값읽어오기
+            // split("<br>") br태그로 잘라서 배열에 담음!
+            let ginfo = $(this).next(".ibox").html().split("<br>");
+            console.log("상품정보:",ginfo);
+
+            // 3. 뷰엑스 스토어 업데이트(리액티브 데이터 반영!)
+            store.state.cls = cls;
+            store.state.gname = ginfo[0];
+            store.state.gcode = ginfo[1];
+            store.state.gprice = ginfo[2];
+
+            // 4. 슬라이드 애니메이션 하여 나타나기!
+            $("#bgbx").slideDown(400);
+
+        }); /////////////// click ///////////
+
+        // 상세보기 박스 닫기버튼 클릭시 닫기!
+        $(".cbtn").click(e=>{
+            e.preventDefault();
+            $("#bgbx").slideUp(400);
+        }); //////// click ////////////
+
+        // 상세보기 썸네일 링크 셋팅
+        $(".small a").click(e=>{
+            e.preventDefault();
+            // 추가기능코드 구현...
+        }); //////// click ////////////
+
+    }, ///////////// mounted ///////////////
     // created 실행구역 : DOM연결전
-    created: function () {
-        // DOM연결전 데이터 가공작업
-        console.log("created구역");
-
-        
-    },
+    created: function () {},
 }); //////// 상단영역 뷰 인스턴스 ////////
 
 //###### 하단영역 뷰 인스턴스 생성하기 ##########
 new Vue({
     el: "#info",
 }); //////// 하단영역 뷰 인스턴스 ////////
-
 
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
@@ -289,12 +361,12 @@ function sinsangFn() {
             let clsnm = $(this).attr("class");
 
             // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
-            // 중간 객체속성명 상위부모박스 #c1의 data-cat 속성값 읽어와서
-            // sinsang[요기][] -> 요기에 넣기
+            // 중간 객체속성명 상위부모박스 #c1의 data-cat속성값
+            // 읽어와서 sinsang[요기][] -> 요기에 넣기!
             let cat = $(this).parents("#c1").attr("data-cat");
             let gd_info = sinsang[cat][clsnm];
 
-            // console.log(clsnm,gd_info);
+            console.log("data-cat:", cat);
 
             // 3. 상품정보박스 만들고 보이게하기
             // 마우스 오버된 li자신 (this)에 넣어준다!
@@ -302,8 +374,7 @@ function sinsangFn() {
             // .ibox에 상품정보 넣기
             // ^는 특수문자이므로 정규식에 넣을때 역슬래쉬와 함께씀
             // -> /\^/
-            $(".ibox",this).html(gd_info.replace(/\^/g, "<br>"))
-            .animate(
+            $(".ibox", this).html(gd_info.replace(/\^/g, "<br>")).animate(
                 {
                     top: "110%",
                     opacity: 1,
@@ -315,7 +386,7 @@ function sinsangFn() {
         function () {
             // out
             // ibox 나갈때 지우기
-            $(".ibox",this).remove();
+            $(".ibox", this).remove();
         }
     ); //////////// hover ///////////////////////
 
@@ -333,7 +404,7 @@ function sinsangFn() {
 
     // 3. 화면높이값
     let winH = $(window).height();
-    console.log("화면높이값:",winH);
+    console.log("화면높이값:", winH);
 
     // 4. 스크롤 이벤트함수 ///////////
     $(window).scroll(function () {
@@ -347,16 +418,16 @@ function sinsangFn() {
 
         // 3. 신상품 리스트 이동/멈춤 분기하기
         // (1) 이동기준 gBCR값이 화면높이보다 작고 0보다 클때 이동
-        if (gBCR < winH && gBCR > -300 && sc_sts===0) {
-            sc_sts=1;// 한번만실행
-            call_sts = 1; // 콜백허용! 
+        if (gBCR < winH && gBCR > -300 && sc_sts === 0) {
+            sc_sts = 1; // 한번만실행
+            call_sts = 1; // 콜백허용!
             moveList(); // 함수재호출!
             console.log("범위1");
         } ////// if ///////////
         // (2) 기타경우 멈춤
         // (조건: 윈도우높이보다 크거나 0보다 작고 call_sts===1일때)
-        else if ((gBCR > winH || gBCR < -300) && sc_sts===1){
-            sc_sts=0;// 한번만실행
+        else if ((gBCR > winH || gBCR < -300) && sc_sts === 1) {
+            sc_sts = 0; // 한번만실행
             call_sts = 0; // 콜백중단!
             console.log("범위2");
         } ///// else ///////////////
@@ -365,24 +436,23 @@ function sinsangFn() {
         // 서브 배너 스와이퍼 API를 //
         // 이용한 작동멈춤셋팅하기! //
         ////////////////////////////
-        // 기준: 화면높이값 보다 
+        // 기준: 화면높이값 보다
         //      스크롤위치가 크면 멈춤
         // 스와이퍼API : swiper.autoplay.stop()
         //      스크롤위치가 작으면 자동넘김
         // 스와이퍼API : swiper.autoplay.start()
-        if(scTop > winH){
-          swiper.autoplay.stop()
+        if (scTop > winH) {
+            swiper.autoplay.stop();
         } /////////// if ////////
-        else{
-          swiper.autoplay.start()
+        else {
+            swiper.autoplay.start();
         } //////// else ///////////
     }); ////////// scroll /////////////
 } ///////////// sinsangFn 함수 ////////////////
 
 // 패럴렉스 플러그인 적용함수
-function setParallax(ele,speed){
+function setParallax(ele, speed) {
     // 대상: .c2
-    $(ele).parallax("50%",speed);
-    // parallax(배경위치,속도);
-} //////////////// setParallax 함수 /////////////
-
+    $(ele).parallax("50%", speed);
+    // parallax(배경위치,속도)
+} ///////////// setParallax 함수 ///////////
