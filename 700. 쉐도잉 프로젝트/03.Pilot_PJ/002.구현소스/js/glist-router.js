@@ -27,39 +27,39 @@ let Glist = {
             <!-- 상품리스트박스 -->
             <div class="grid">
                 <div 
-                    v-for="
-                        (v,i) in $store.state.gdata
-                    "
+                    v-for="(v,i) in $store.state.gdata"
                     v-if="
                         v.cat==$store.state.selnm[0] ||
                         v.cat==$store.state.selnm[1] ||
                         v.cat==$store.state.selnm[2]
-                ">
+                        "
+                    @click="$store.commit('setBtn')"
+                >
 
                 
-                <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
-                <router-link 
-                    v-bind:to="{
-                        name:'det',
-                        params:{id : v.idx, list : $route.path}
-                    }">
-                [{{v.idx}}]
-                    <img 
-                        v-bind:src="
-                        './images/goods/'+
-                        v.cat +
-                        '/'+v.ginfo[0]+'.png'  
-                        " alt="dress" />
-                    <aside>
-                        <h2>{{v.ginfo[1]}}</h2>
-                        <h3>{{v.ginfo[3]}}</h3>
-                    </aside>
+            <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
+            <router-link 
+                v-bind:to="{
+                    name:'det',
+                    params:{id : v.idx, list : $route.path}
+                }">
+            [{{v.idx}}]
+                <img 
+                    v-bind:src="
+                    './images/goods/'+
+                    v.cat +
+                    '/'+v.ginfo[0]+'.png'  
+                    " alt="dress" />
+                <aside>
+                    <h2>{{v.ginfo[1]}}</h2>
+                    <h3>{{v.ginfo[3]}}</h3>
+                </aside>
 
 
-                </router-link>
+            </router-link>
 
-                    
-                </div>
+                
+            </div>
             </div>
         </section>
     `,
@@ -311,7 +311,7 @@ const Detail = {
                             </li>
                             <li class="tot">
                                 <span>총합계</span>
-                                <span id="total">니가계산해!</span>
+                                <span id="total">{{$store.state.gdata[$route.params.id-1].ginfo[3]}}</span>
                             </li>
                         </ol>
 
