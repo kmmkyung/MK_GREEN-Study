@@ -57,11 +57,11 @@ document.querySelector("#root1"));
 ReactDOM.render(<Developer isDev={false} isrc={wisrc[1]} ialt="정찬의 근본없는 네이버" />,
 document.querySelector("#root2"));
 
-/*
+/*********************************************************
     2. if 문이 아닌 조건 표현하기
     -> 조건식 && JSX 표현식
     조건이 true일때만 && 뒤의 JSX 표현식이 출력됨!
-*/
+*********************************************************/
 
 // 2-1. 제목을 찍기위한 타이틀 컴포넌트
 function Title(props){ // 컴포넌트 호출시 속성으로 tit 셋팅!
@@ -102,7 +102,7 @@ function WishList(props){ // wlist속성에 담아 보내준다
             }
             {/* 다른 경우출력은 별도의 JSX 출력 중괄호구역에 코딩 */}
             {
-                myfood.lenght == 0 &&
+                myfood.length == 0 &&
                 <h2>아직 개발자음식 리스트가 업데이트 되지 않았습니다</h2> 
             }
         </React.Fragment>
@@ -132,3 +132,145 @@ const movs = [
     2022년도 영화2
     2023년도 영화3
 */
+
+// 반복리스트를 위한 컴포넌트
+function MoveList(props){ // year - 영화 개봉 년도 / mname - 영화명
+    return <li>{props.year}년도 {props.mname}</li>
+}
+
+// 선호 영화 리스트 출력 컴포넌트
+function WishList2(props){
+    // 영화 위시리스트 담기
+    const mymv = props.wlist;
+    // 코드리턴
+    return(
+        <React.Fragment>
+            <Title tit ="영화"/>
+            {
+                mymv.length  > 0 && 
+                <div>
+                    <h2>개발자가 좋아하는 영화은 모두 {mymv.length}가지 입니다.</h2>
+                    <ul>
+                        { //배열값으로 객체가 들어가 있으므로 각 배열값은 객체의 속성으로 지정함!
+                        // x.year / x.mtit
+                            mymv.map(x=> <MoveList year={x.year} mname={x.mtit}/>)
+                        }
+                    </ul>
+                </div>
+            }
+            {
+                mymv.length == 0 &&
+                <h2>아직 개발자영화 리스트가 업데이트 되지 않았습니다</h2> 
+            }
+        </React.Fragment>
+    )
+}
+// 컴포넌트 출력하기
+ReactDOM.render(<WishList2 wlist={movs} />,document.querySelector("#root4"))
+
+
+/*********************************************************
+    3. 조건 연산자(삼항연산자)를 사용하여 조건부 랜더링하기
+*********************************************************/
+
+// 명화 데이터
+const worksrc = {
+    "피카소":"https://m.theartin.net/web/product/big/201907/30c5a0fdd153bfdfdc8f19b2f4166fa8.jpg",
+    "모네":"https://dimg.donga.com/wps/NEWS/IMAGE/2015/12/11/75316598.3.jpg"
+};
+
+// 개발자가 좋아하는 그림(명화) 찍기
+// 3-1. 타이틀과 그림찍기 컴포넌트
+// 구성: 작가이름 + 작품이미지
+// 데이터: 작가이름(painter), 이미지경로(작가이름의 객체 worksrc 이용)
+// 작품명(name)
+function MakeWork(props){
+    return(
+        <div>
+            <h2>{props.painter}</h2>
+            <img src={worksrc[props.painter]}
+                alt={props.wname}
+                style={{width:"400px"}}
+                title={props.wname}
+            />
+        </div>
+    );
+
+} //////////// MakeWork //////////////
+
+// 3-2. 전체 출력 컴포넌트 ////
+// 구성: 전체 타이틀(Title컴포넌트) + 변경버튼 + 작가와 그림출력(MakeWork컴포넌트)
+// 특이사항: 변경버튼 클릭시 MakeWork 컴포넌트의 데이터를 변경하여
+//          다시 출력하도록 한다
+function ExpComp(props){ // isChg 는 true/false값 받는 속성
+    // let result = props.isChg;
+    // isChg속성은 true/false 데이터를 전달하여 MakeWork 컴포넌트의 변경여부를 결정함!
+    // result에 담긴 true / false 값을 반대로 전환함!
+
+    // 후크를 사용한 상태변수로 만들기
+    const [result,setResult] = React.useState(props.isChg);
+
+    const again = () => {
+        // result = !result;
+        
+        // 후크 상태변수의 업데이트는 set변수를 사용한다!
+        setResult(!result);
+        console.log(result);
+    }; //// again 함수 /////
+
+    return(
+        <React.Fragment>
+            {/* 1.큰제목 */}
+            <Title tit="명화" />
+            {/* 2.변경버튼 : 클릭시 again함수를 호출함 */}
+            <button onClick={again}>작가변경!!!</button>
+            {/* 3.작품출력 : 3항연산자로 작품변경하기 */}
+            {
+                result ?
+                <MakeWork painter="피카소" wname="우는여인" /> :
+                <MakeWork painter="모네" wname="양산을 쓴 여인" />
+            }
+        </React.Fragment>
+    );
+} /////////////// ExpComp //////////////////
+// 컴포넌트 출력하기
+ReactDOM.render(<ExpComp isChg={false} />, document.querySelector("#root5"));
+/*********************************************************
+    [ 리액트 후크]
+    -일반적으로 이액트에 사용되는 변수는 처음에 컴포넌트에
+    전달되어 초기 셋팅에 활용된다
+    그런데 이 변수가 변경될 경우 컴포넌트 변경이 자동적으로
+    이루어 지지 않는다!
+    이런 종류의 변수 업데이트가 가상돔과 실제돔에 바로 반영되도록
+    실시간 감시역활을 하는 리액트의 기술내용을 고고 있는것이 후크다!
+
+    1. 목적 : 어떤 특정 데이터가 변경될때
+            이 데이터를 할당하여 사용하고 있는 컴포넌트의
+            변경이 반영되도록 하고자 할때 후크를 사용한다!
+        
+    2. 구현방법 : 
+        1) 노드 JS SPA 개발환경에서는 상단에 Import useState를 한다!
+        -> CDN 에서는 React.useState로 사용됨
+        2) 코딩법 : useState() 메서드사용
+        배열변수 = useState(초기값)
+        (CDN) -> 배열변수 = React.useDtate(초기값)
+
+        ((일반형))
+        const [변수명, set변수명] = useState(초기값)
+            -> set변수명 작성시 변수명 첫글자는 대문자로 슴
+        예) 변수명 myname -> setMyname
+            -> set 변수명(값): 메서드형태로 후크변수의 값을 셋팅함!
+
+        3) 작동원리
+        - useState에 쓴 초기값이 배열변수 첫번째변수에 할당된다!
+        - 코드에서 set변수명에 값을 할당하면 useState메서드가 이것을 체크하여
+        이  변수를 사용한 다른 부분의 업데이트를 실행한다!
+        예컨데 컴포넌트 내부에 사용한 경우 컴포넌트가 업데이트 됨!
+
+        4) 사용결과
+        - 별도의 메서드 호출없이 후크 상태변수를 사용한 곳이 자동으로
+            변경될 때마다 다시 갱신되는 것을 확인 할 수 있다!
+            -> 뷰JS 리액티브 데이터와 매우 유사함
+*********************************************************/
+
+
