@@ -2,7 +2,7 @@
 
 @charset "utf-8";
 
-html,body {
+html,body,ul,ol,dl,dt,dd,p,figure,figcaption {
   margin: 0;
   padding:0;
 }
@@ -11,7 +11,6 @@ body{
   background-color: #e5e5e5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul,ol{
+  list-style: none;
 }
