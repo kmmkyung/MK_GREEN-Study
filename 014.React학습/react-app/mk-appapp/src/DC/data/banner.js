@@ -39,7 +39,43 @@ const ban_data = {
             "cont":`When the original Atom went missing, he left his student with. size-changing belt -- and Ryan Choi fulfilled his destiny as the All-New Atom!`,
             "btn":"MEET RYAN",
         },
-    ]
+    ],
+    "COMICS":[
+        {
+            "src":"./images/dcm3.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces"
+        }
+    ],
+    "Movies":[
+        {
+            "src":"./images/dcm35.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces"
+        }
+    ],
+    "GAMES":[
+        {
+            "src":"./images/dcm38.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces"
+        }
+    ],
+    "NEWS":[
+        {
+            "src":"./images/dcm22.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces"
+        }
+    ],
 };
 
 // 데이터 내보내기
