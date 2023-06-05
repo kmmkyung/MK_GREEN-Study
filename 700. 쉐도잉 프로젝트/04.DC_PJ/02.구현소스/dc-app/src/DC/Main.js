@@ -2,12 +2,17 @@
 import React from "react";
 import Ban from "./Ban";
 import MenuBtn from "./MenuBtn";
+import menu_data from "./data/menubtn"
 
 const Main = () => {
     return(
         <>
             <Ban cat="main" />
-            <MenuBtn />
+            {
+                menu_data.map((x,i)=>{
+                    return <MenuBtn rec={x} />
+                })
+            }
         </>
     );
 }; /////////// Main //////////////
