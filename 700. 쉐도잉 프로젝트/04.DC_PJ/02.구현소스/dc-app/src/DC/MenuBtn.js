@@ -24,7 +24,7 @@ function MenuBtn(props){
                 </div>
                 <div className="btnbx">
                     {/* 라우터를 이용한 이동은 반드시 Link를 사용하자! */}
-
+                    
                     <button>{props.rec.btn}</button>
                 </div>
             </div>
