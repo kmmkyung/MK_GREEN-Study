@@ -1,4 +1,4 @@
-a// VidIntro 컴포넌트용 데이터
+// VidIntro 컴포넌트용 데이터
 
 const vidintro_data = {
     main: {

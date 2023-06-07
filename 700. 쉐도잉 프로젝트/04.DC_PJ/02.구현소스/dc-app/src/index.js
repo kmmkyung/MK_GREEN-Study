@@ -3,14 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./index.css"
-import Characters from './DC/Characters';
-import Main from './DC/Main';
-import Layout from './DC/Layout';
-import Comics from './DC/Comics';
-import Movies from './DC/Movies';
-import Games from './DC/Games';
-import News from './DC/News';
-import Video from './DC/Video';
+import Characters from './dc/Characters';
+import Main from './dc/Main';
+import Layout from './dc/Layout';
+import Comics from './dc/Comics';
+import Movies from './dc/Movies';
+import Games from './dc/Games';
+import News from './dc/News';
+import Video from './dc/Video';
 
 /****************************************************************/ 
 /*****************************************************************
