@@ -119,10 +119,9 @@ function Ban(props){ // props.cat은 배너 데이터 구분 속성명
                     <button className="abtn rb">＞</button> 
                     {/* 블릿 인디케이터(데이터 개수만큼!) */}
                     <ol className="indic">
-                        {
-                            sel_data.map((x,i)=>(
+                        {sel_data.map((x,i)=>(
                                 // i 첫번째꺼면 클래스 on을 넣고 아니면 넣지마!
-                                <li className={i==0?'on':''} key={i}></li>
+                                <li className={i == 0 ? "on" : ""} key={i}></li>
                             ))
                         }
                     </ol>

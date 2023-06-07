@@ -18,7 +18,6 @@ function VidIntro(props){
     // 데이터 선택하기
     const sdt = vidintro_data[props.pg];
 
-
     return(
         <>
         {/* 모듈코드 */}
@@ -32,7 +31,17 @@ function VidIntro(props){
                 <h3>{sdt.stit}</h3>
                 <h2>{sdt.btit}</h2>
                 <p>{sdt.sum}</p>
-                <p>{sdt.desc}</p>
+                <p className='desc'>
+                    {/* 특수문자(*) 여부에 따라 처리 */}
+                    {
+                      sdt.desc.indexOf('*')
+                    }
+                    {sdt.desc.split('*')[0]}
+                    <a href={sdt.link[1]} target='_blank'>
+                        {sdt.link[0]}
+                    </a>
+                    {sdt.desc.split('*')[1]}
+                </p>
                 {/* 링크있을경우 표시 */}
             </div>
         </section>

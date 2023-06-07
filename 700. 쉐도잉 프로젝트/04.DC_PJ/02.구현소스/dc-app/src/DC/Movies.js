@@ -5,7 +5,7 @@ import Ban from "./modules/Ban";
 const Movies = () => {
     return(
         <>
-            <Ban cat="Movies" />
+            <Ban cat="MOVIES" />
         </>
     );
 }; /////////// Main //////////////

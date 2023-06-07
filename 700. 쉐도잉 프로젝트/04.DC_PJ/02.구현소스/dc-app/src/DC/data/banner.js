@@ -1,4 +1,4 @@
-// 배너 컴포넌트 사용 데이터 -  data/banner.js
+// 배너 컴포넌트 사용 데이터 - data/banner.js
 
 const ban_data = {
     "main":[
@@ -7,8 +7,8 @@ const ban_data = {
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn":"New Places, Familiar Faces"
-        }
+            "btn":"New Places, Familiar Faces",
+        },
     ],
     "CHARACTERS":[
         {
@@ -46,35 +46,35 @@ const ban_data = {
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn":"New Places, Familiar Faces"
-        }
+            "btn":"New Places, Familiar Faces",
+        },
     ],
-    "Movies":[
-        {
-            "src":"./images/dcm35.jpg",
-            "tit1":"GOTHAM GAZETTE",
-            "tit2":"WORLDS TRAVELER",
-            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn":"New Places, Familiar Faces"
-        }
-    ],
-    "GAMES":[
+    "MOVIES":[
         {
             "src":"./images/dcm38.jpg",
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn":"New Places, Familiar Faces"
-        }
+            "btn":"New Places, Familiar Faces",
+        },
     ],
-    "NEWS":[
+    "GAMES":[
         {
             "src":"./images/dcm22.jpg",
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn":"New Places, Familiar Faces"
-        }
+            "btn":"New Places, Familiar Faces",
+        },
+    ],
+    "NEWS":[
+        {
+            "src":"./images/dcm35.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
+        },
     ],
 };
 
