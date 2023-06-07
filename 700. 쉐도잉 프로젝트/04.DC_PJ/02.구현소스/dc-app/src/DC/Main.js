@@ -1,18 +1,17 @@
-// DC 메인 페이지 컴포넌트
-import React from "react";
-import Ban from "./Ban";
-import MenuBtn from "./MenuBtn";
-import menu_data from "./data/menubtn"
+// DC 페인 페이지 컴포넌트
+import Ban from "./modules/Ban";
+import MenuBtn from "./modules/MenuBtn";
+import VidIntro from "./modules/VidIntro";
 
 const Main = () => {
-    return(
+    return (
         <>
+            {/* 1.배너모듈 */}
             <Ban cat="main" />
-            {
-                menu_data.map((x,i)=>{
-                    return <MenuBtn rec={x} />
-                })
-            }
+            {/* 2. 메뉴버튼모듈 */}
+            <MenuBtn />
+            {/* 3. 비디오소개모듈 */}
+            <VidIntro pg="main" />
         </>
     );
 }; /////////// Main //////////////
