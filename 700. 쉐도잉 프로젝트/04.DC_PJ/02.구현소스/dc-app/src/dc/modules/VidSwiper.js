@@ -20,7 +20,7 @@ function VidSwiper(props){
             <h2 className='tit'>{props.tit}</h2>
 
             {/* 2. 스와이퍼 컴포넌트 */}
-            <SwiperVid name="나는" />
+            <SwiperVid />
 
             {/* 3. 비디오 재생창 */}
             <section className='playvid'>

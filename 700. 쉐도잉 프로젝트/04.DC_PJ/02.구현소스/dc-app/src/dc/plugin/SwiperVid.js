@@ -28,7 +28,17 @@ export default function SwiperVid(props) {
           >
             {
                 sdt.map((v,i)=>            
-                <SwiperSlide key={i}>{props.name} {v.iscr} {v.tit}</SwiperSlide>
+                <SwiperSlide key={i}>
+                    <section>
+                        <div>
+                            <img src={v.isrc} alt={v.tit}/>
+                        </div>
+                        <div>
+                            {v.cat}
+                            {v.tit}
+                        </div>
+                    </section>
+                </SwiperSlide>
                 )
             }
           </Swiper>
