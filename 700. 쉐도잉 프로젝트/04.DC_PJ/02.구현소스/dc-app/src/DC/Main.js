@@ -2,6 +2,8 @@
 import Ban from "./modules/Ban";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
+import SwiperVid from "./plugin/SwiperVid";
+import VidSwiper from "./modules/VidSwiper"
 
 const Main = () => {
     return (
@@ -11,9 +13,14 @@ const Main = () => {
             {/* 2. 메뉴버튼모듈 */}
             <MenuBtn />
             {/* 3. 비디오소개모듈 */}
-            <VidIntro pg="main" mm=""/>
+            <VidIntro pg="main" mm="" />
+            {/* 4. 비디오스와이프모듈 */}
+            <VidSwiper pg="main"
+            tit="LATEST TRAILERS, CLIPS & MORE"
+            />
         </>
     );
 }; /////////// Main //////////////
 
 export default Main;
+
