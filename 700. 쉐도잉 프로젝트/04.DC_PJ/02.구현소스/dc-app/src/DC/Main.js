@@ -16,6 +16,7 @@ const Main = () => {
             <VidIntro pg="main" mm="" />
             {/* 4. 비디오스와이프모듈 */}
             <VidSwiper
+            pg="main"
             tit="LATEST TRAILERS, CLIPS & MORE"
             />
         </>
