@@ -25,18 +25,18 @@ export default function SwiperVid(props) {
         let ifr = $(".playvid iframe")
 
         // 1. 아이프레임 src 넣기
-        document.querySelector(".playvid iframe").setAttribute("src",src="?autoplay=1");
+        document.querySelector(".playvid iframe").setAttribute("src",src+"?autoplay=1");
             // $(".playvid iframe").attr("src",src="?autoplay=1")
         
         // 2. 비디오 타이틀 넣기
-        $("ifrtit").text(tit);
+        $(".ifrtit").text(tit);
 
+        let vbx = $(".vidbx");
         // 3. 비디오 전체박스 보이기
-        $("vidbx").fadeIn(300);
+        vbx.fadeIn(300);
 
         // 4. 닫기버튼
-        let vbx = $(".vidbx");
-        $("cbtn").click(()=>{vbx.fadeOut(300), ifr.attr("src",src="?autoplay=0")});
+        $(".cbtn").click(()=>{vbx.fadeOut(300); ifr.attr("src","")});
 
 
     }
