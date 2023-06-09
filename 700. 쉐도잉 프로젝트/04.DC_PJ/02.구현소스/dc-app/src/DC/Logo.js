@@ -8,6 +8,8 @@ const Logo = () => {
     const mystyle={
         width:"45px",
         height:"45px",
+        marginRight:"20px",
+        marginLeft:"20px",
         borderRadius:"50%"
         // outline:"3px solid lime"
     };

@@ -8,8 +8,8 @@ import VidSwiper from "./modules/VidSwiper"
 const Main = () => {
     return (
         <>
-            {/* 1.배너모듈 */}
-            <Ban cat="main" />
+            {/* 1.배너모듈 :랜덤수로 데이터 선택 */}
+            <Ban cat={"main"+Math.ceil(Math.random()*2)} />
             {/* 2. 메뉴버튼모듈 */}
             <MenuBtn />
             {/* 3. 비디오소개모듈 */}
@@ -19,6 +19,14 @@ const Main = () => {
             pg="main"
             tit="LATEST TRAILERS, CLIPS & MORE"
             />
+            {/* 5. 메뉴 스와이퍼 모듈 */}
+
+            {/* 6. 배너모듈(캐릭터) */}
+            <Ban cat="CHARACTERS" />
+            {/* 7. 메뉴 스와이퍼 모듈 */}
+            {/* 8. 메인 하단 모듈 */}
+
+
         </>
     );
 }; /////////// Main //////////////

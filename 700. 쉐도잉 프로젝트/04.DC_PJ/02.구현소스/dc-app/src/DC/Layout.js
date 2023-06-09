@@ -3,6 +3,10 @@ import Logo from "./Logo"
 import "./css/layout.css"
 import { Link, Outlet } from "react-router-dom"
 
+// 폰트어썸
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 /********************************
   [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
   1. <Link to = "/경로명"></Link>
@@ -16,10 +20,6 @@ const Layout = () => {
 
   // GNB메뉴 데이터 구성하기
   const gnb_data = [
-    {
-      txt:"Home",
-      link:"/",
-    },
     {
       txt:"CHARACTERS",
       link:"/ct",
@@ -74,6 +74,28 @@ const Layout = () => {
     }
   ]
 
+  const bmenu=[
+    {
+      txt:"PRIVACY POLICY",
+      link:"https://www.warnermediaprivacy.com/policycenter/b2c/WM/"
+    },
+    {
+      txt:"TERMS",
+      link:"https://www.dcuniverseinfinite.com/terms?_gl=1*wwpcp6*_gcl_au*MTc2NzQzNTk2MS4xNjg1NTkxNTEz"
+    },
+    {
+      txt:"AD CHOICES",
+      link:"https://www.warnermediaprivacy.com/policycenter/b2c/wm/"
+    },
+    {
+      txt:"ACCESSIBILITY",
+      link:"https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.3.0.html#accessibility"
+    },
+    {
+      txt:"COOKIE SETTINGS",
+      link:"/"
+    },
+  ]
   return(
   <>
     {/* // 상단영역 */}
@@ -82,7 +104,7 @@ const Layout = () => {
       <nav className="gnb">
         <ul>
           <li>
-            <Logo/>
+            <Link to="/"><Logo/></Link>
           </li>
             {
               gnb_data.map((v,i)=>
@@ -112,6 +134,11 @@ const Layout = () => {
                 </li>
               )
             }
+            <li style={{marginLeft:"auto"}}>
+              <FontAwesomeIcon icon={faSearch} />
+            </li>
+            <li><Link to="/singup">SIGN UP</Link></li>
+            <li><Link to="/login">LOG IN</Link></li>
         </ul>
       </nav>
     </header>
@@ -124,9 +151,11 @@ const Layout = () => {
 
     {/* 3. 하단영역 */}
     <footer className="info">
-            All Site Content © &amp; TM DC, unless otherwise noted here.
-            <br /> 
-            All rights reserved. 
+      <ul>
+        <Logo />
+          {bmenu.map((v,i)=><li key={i}><Link to={v.link} target="_blank">{v.txt}</Link></li>)}
+        <li>© & ™ DC. ALL RIGHTS RESERVED</li>
+      </ul>
     </footer>
   </>
   )
