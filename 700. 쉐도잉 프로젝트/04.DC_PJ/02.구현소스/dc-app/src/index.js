@@ -12,6 +12,7 @@ import Games from "./dc/Games";
 import News from "./dc/News";
 import Video from "./dc/Video";
 import Mamber from "./dc/Member";
+import ScrollTop from "./dc/commen/ScrollTop";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -41,7 +42,9 @@ import Mamber from "./dc/Member";
 // 출력해야하기 때문에 스스로 내보내기를 셋팅하는것임!
 export default function App(){
     return(
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
+            {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동함! */}
+            <ScrollTop/>
             <Routes>
                {/* 중요!!!:레이아웃 컴포넌트를 루트로 잡아준다!!! */} 
                <Route path="/" element={<Layout />}>
