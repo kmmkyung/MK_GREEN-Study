@@ -7,6 +7,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./swipervid.css";
 
+/* 폰트어썸 임포트 */
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // import required modules
 import { Navigation } from "swiper";
 import swipervid_data from "../data/swipervid";
@@ -57,6 +61,14 @@ export default function SwiperVid(props) {
                         {/* 동영상 이미지 */}
                         <div className="vidming">
                             <img src={v.isrc} alt={v.tit}/>
+                        <FontAwesomeIcon icon={faPlayCircle} 
+                                style={{
+                                    position:"absolute",
+                                    bottom:"55%",
+                                    left:"10%",
+                                    color:"#fff",
+                                    fontSize:"50px"
+                                    }} />
                         </div>
                         {/* 동영상 타이틀 */}
                         <div className="vidtit">

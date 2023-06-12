@@ -20,7 +20,6 @@ const Main = () => {
             tit="LATEST TRAILERS, CLIPS & MORE"
             />
             {/* 5. 메뉴 스와이퍼 모듈 */}
-
             {/* 6. 배너모듈(캐릭터) */}
             <Ban cat="CHARACTERS" />
             {/* 7. 메뉴 스와이퍼 모듈 */}
