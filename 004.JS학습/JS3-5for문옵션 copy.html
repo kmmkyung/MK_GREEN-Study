@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For문 옵션</title>
+    <style>
+        .forCls {
+            height: 100px;
+            border: 4px dotted lightseagreen;
+        }
+
+        .forCls img {
+            height: 100px;
+        }
+    </style>
+    <!-- JS코드구역 -->
+    <script>
+        //////////**********__________로드구역__________**********//////////
+        window.addEventListener("DOMContentLoaded",function(){
+            // 로딩확인
+            console.log("로딩완료");
+            // 1. 대상 선정
+            // 이벤트 대상 : button
+            var btns = document.querySelectorAll("button");
+            
+            // 번경대상 : .forCls
+            // var tg = document.querySelectorAll(".forCls");
+            // ->출력대상인 .forCls는 버튼으로부터 찾는다!
+            // ->미리 수집하지 않는다!
+
+            console.log(btns);
+
+            // 2. 이벤트 설정 및 기능구현
+            for (var i = 0; i < btns.length; i++) {
+                console.log("나야나!",i);
+                // 1. 이벤트 설정하기
+                btns[i].onclick=function(){
+
+                    // 1. 버튼요소 텍스트 읽기
+                    var btxt = this.innerText;
+                    console.log(btxt);
+
+                    // 2. 버튼별 for문 옵션 적용하기
+                    var tg = this.parentElement
+                    .querySelector(".forCls");
+                    console.log("출력할요소:",tg);
+                    console.log("순번");
+                    tg.innerHTML="";
+
+                    // for문으로 이미지 넣기
+                    for(var j=1; j<=10; j++){
+                        if(btxt==="for문옵션1"&&(j===4 || j===7)) continue;
+                        if(btxt==="for문옵션2"&&j===6) break;
+                        if(btxt==="for문옵션연습"&&(j>=2&&j<=4) ||j===9) continue;
+                        tg.innerHTML +=`<img src="./images/num/num_0${j}.png" alt="숫자이미지">`
+                    }////____for문____///
+                };////click 이벤트 함수////
+            }////____for문____////
+        });//////////**********__________로드구역__________**********//////////
+        
+    </script>
+</head>
+
+<body>
+    <h1>for문 옵션</h1>
+    <hr>
+
+    <div>
+        <h2>기본for문</h2>
+        <button>기본호출</button>
+        <br><br>
+        <div class="forCls"></div>
+    </div>
+    <hr>
+
+    <div>
+        <h2>4번과 7번빼고 돌리기</h2>
+        <button>for문옵션1</button>
+        <br><br>
+        <div class="forCls"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>5번까지만 돌리기</h2>
+        <button>for문옵션2</button>
+        <br><br>
+        <div class="forCls"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>2~4, 9번빼고 돌리기</h2>
+        <button>for문옵션연습</button>
+        <br><br>
+        <div class="forCls"></div>
+    </div>
+
+    <hr>
+
+</body>
+
+</html>
