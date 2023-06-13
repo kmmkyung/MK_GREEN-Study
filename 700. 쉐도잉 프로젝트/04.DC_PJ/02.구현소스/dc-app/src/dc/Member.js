@@ -95,7 +95,7 @@ function Member() {
     // 4. 사용자 이름 유효성 검사
     const changeUserName = e => {
         // 1. 빈값 체크
-        if(userName !== "") setUserNameError(false);
+        if(e.target.value !== "") setUserNameError(false);
         else setUserNameError(true);
 
         // 2. 입력값 반영하기
