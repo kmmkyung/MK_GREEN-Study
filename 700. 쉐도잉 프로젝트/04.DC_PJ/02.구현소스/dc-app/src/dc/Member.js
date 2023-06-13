@@ -1,6 +1,6 @@
 // 어떤 모듈 - Member.js
-import React,{useState} from 'react';
-import $ from 'jquery'
+import React, { useState } from "react";
+import $ from "jquery";
 import "./css/member.css";
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -28,107 +28,174 @@ import "./css/member.css";
 */
 
 // 제이쿼리 로드구역 함수
-function jqFn(){
-    $(()=>{
-       
-    }); ///// JQB /////
+function jqFn() {
+  $(() => {}); ///// JQB /////
 } ////////// jqFn //////////
 
-function Member(){
-    // 요구사항 : 각 입력항목에 맞는 요효성 검사를 입력하는 순간
-                // 실시간으로 체크하여 결과를 화면에 리턴한다!
+function Member() {
+  // 요구사항 : 각 입력항목에 맞는 요효성 검사를 입력하는 순간
+  // 실시간으로 체크하여 결과를 화면에 리턴한다!
 
-    // [ 후크 useState 메서드 셋팅하기 ]
-    // [ 1. 입력요소 후크변수 ]
-    // 1. 아이디 변수 / 2. 비밀번호/ 3. 비밀번호 확인 /  4. 사용자 이름/  5. 이메일
-    const [userId,setUserId] = useState("");
-    const [pwd,setPwd] = useState("");
-    const [chkPwd,setChkPwd] = useState("");
-    const [userName,setUserName] = useState("");
-    const [email,setEmail] = useState("");
+  // [ 후크 useState 메서드 셋팅하기 ]
+  // [ 1. 입력요소 후크변수 ]
+  // 1. 아이디 변수 / 2. 비밀번호/ 3. 비밀번호 확인 /  4. 사용자 이름/  5. 이메일
+  const [userId, setUserId] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [chkPwd, setChkPwd] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
 
-    // [ 2. 에러상태값 후크변수 ]-> 에러상태값 변수 : 초기값은 에러 아님상태(false)
-    const [userIdError,setUserIdError] = useState(false);
-    const [pwdError,setPwdError] = useState(false);
-    const [chkPwdError,setChkPwdError] = useState(false);
-    const [userNameError,setUserNameError] = useState(false);
-    const [emailError,setEmailError] = useState(false);
+  // [ 2. 에러상태값 후크변수 ]-> 에러상태값 변수 : 초기값은 에러 아님상태(false)
+  const [userIdError, setUserIdError] = useState(false);
+  const [pwdError, setPwdError] = useState(false);
+  const [chkPwdError, setChkPwdError] = useState(false);
+  const [userNameError, setUserNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
-    // [ 3. 유효성 검사 메서드 ]
-    // 1. 아이디 유효성 검사 _______________________________________
-    const changeUserId = e => { // e - 이벤트전달변수
-        const valid = /^[A-Za-z0-9+]{5,}$/; // 아이디 유효성 검사식(따옴표로 싸지 말것!->문자형이되니까)
+  // [ 3. 유효성 검사 메서드 ]
+  // 1. 아이디 유효성 검사 _______________________________________
+  const changeUserId = (e) => {
+    // e - 이벤트전달변수
+    const valid = /^[A-Za-z0-9+]{5,}$/; // 아이디 유효성 검사식(따옴표로 싸지 말것!->문자형이되니까)
 
-        // 입력값 확인 : e.target -> 이벤트가 발생한 요소
-        console.log(e.target.value);
+    // 입력값 확인 : e.target -> 이벤트가 발생한 요소
+    console.log(e.target.value);
 
-        // 3. 에러아님 상태 if문
-        // 조건: 유효성 검사결과가 true->에러상태! false(에러아님)
-        // 정규식.test() -> 정규식 검사결과 리턴 메서드
-        // 결과: true이면 에러상태값 false / false이면 에러상태값 ture
-        if(valid.test(e.target.value))
-            setUserIdError(false) // 에러아님상태
-        else
-            setUserIdError(true) // 에러상태
+    // 3. 에러아님 상태 if문
+    // 조건: 유효성 검사결과가 true->에러상태! false(에러아님)
+    // 정규식.test() -> 정규식 검사결과 리턴 메서드
+    // 결과: true이면 에러상태값 false / false이면 에러상태값 ture
+    if (valid.test(e.target.value)) setUserIdError(false); // 에러아님상태
+    else setUserIdError(true); // 에러상태
 
-        // 4. 실제 userId Hook변수값이 업데이트 되어야 화면에 출력됨!
-        setUserId(e.target.value);
-    }; /// changeUserId ///
+    // 4. 실제 userId Hook변수값이 업데이트 되어야 화면에 출력됨!
+    setUserId(e.target.value);
+  }; /// changeUserId ///
 
-    // 2. 비밀번호 유효성 검사 _______________________________________
-    const changePwd = e => { const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-        console.log(e.target.value)
-        
-        if(valid.test(e.target.value))setPwdError(false) // 에러아님상태
-        else setPwdError(true) // 에러상태
-        setPwd(e.target.value);
-    }
+  // 2. 비밀번호 유효성 검사 _______________________________________
+    const changePwd = (e) => {
+    const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    console.log(e.target.value);
 
-    return(
-        <>
-            {/* 모듈코드 */}
-            <section className='membx'>
-            <h2>member</h2>
-            <form>
-            {/* 1. 아이디 */}
-            <label>아이디 : </label>
-            <input type="text" maxLength="20" placeholder="아이디를 입력하세요" value={userId} onChange={changeUserId} />
-            { 
-                // 에러일 경우 메시지 보여주기
-                // 조건문 && 요소 -> 조건이 true이면 요소 출력
-                userIdError &&
-                <div className='msg'>
-                    <small style={{color:"red",fontSize:"10px"}}>
-                        사용자 아이디는 5글자 이상 문자 또는 숫자를 포함해야 합니다.
-                    </small>
-                </div>
-                // value={userId} 값은 setUserId를 통해서만 업데이트 되어 실제화면에 반영된다!
+    if (valid.test(e.target.value)) setPwdError(false); // 에러아님상태
+    else setPwdError(true); // 에러상태
+    setPwd(e.target.value);
+    };
 
-                // onChange={changeUserId}
-                // -> change이벤트 발생시 changeUserId 함수호출!
-            }
-            
-            {/* 2. 비밀번호 */}
-            <label>비밀번호 : </label>
-            <input type="password" maxLength="20" placeholder="비밀번호를 입력하세요" value={pwd} onChange={changePwd} />
-            {
-            pwdError &&
-                <div className='msg'>
-                    <small style={{color:"red",fontSize:"10px"}}>
-                    비밀번호는 8자 이상이어야 하며 문자와 숫자를 각각 하나 이상 포함해야 합니다.
-                    </small>
-                </div>
-            }
-            
-            {/* 3. 이름 */}
-            {/* 4. 이메일 */}
-            {/* 5. 전송버튼 */}
-            {/* 6. 로그인 페이지 링크 */}
-            </form>
-            </section>
-            {jqFn()}
-        </>
-    )
+    // 3. 비밀번호 확인 유효성 검사
+    const changeChkPwd = e => {
+        // 1. 위에 입력한 비밀번호와 일치여부
+        if(pwd === e.target.value) setChkPwdError(false);
+        else setChkPwdError(true); // 에러상태
+
+        // 2. 입력값 반영하기
+        setChkPwd(e.target.value);
+    }; /// changeChkPwd ///
+
+    // 4. 사용자 이름 유효성 검사
+    const changeUserName = e => {
+        // 1. 빈값 체크
+        if(userName !== "") setUserNameError(false);
+        else setUserNameError(true);
+
+        // 2. 입력값 반영하기
+        setUserName(e.target.value);
+    }; /// setUserName ///
+    return (
+    <>
+      {/* 모듈코드 */}
+        <section className="membx">
+        <h2>member</h2>
+        <form>
+            <ul>
+                <li>
+                {/* 1. 아이디 */}
+                    <label>ID : </label>
+                    <input
+                    type="text"
+                    maxLength="20"
+                    placeholder="Please enter your ID"
+                    value={userId}
+                    onChange={changeUserId}
+                    />
+                    {
+                    // 에러일 경우 메시지 보여주기
+                    // 조건문 && 요소 -> 조건이 true이면 요소 출력
+                    userIdError && (
+                        <div className="msg">
+                        <small style={{ color: "red", fontSize: "10px" }}>
+                        The user ID must contain at least 5 characters or numbers.
+                        </small>
+                        </div>
+                    )
+                    // value={userId} 값은 setUserId를 통해서만 업데이트 되어 실제화면에 반영된다!
+
+                    // onChange={changeUserId}
+                    // -> change이벤트 발생시 changeUserId 함수호출!
+                    }
+                </li>
+                <li>
+                {/* 2. 비밀번호 */}
+                    <label>password : </label>
+                    <input
+                    type="password"
+                    maxLength="20"
+                    placeholder="Please enter your password number."
+                    value={pwd}
+                    onChange={changePwd}
+                    />
+                    {pwdError && (
+                    <div className="msg">
+                        <small style={{ color: "red", fontSize: "10px" }}>
+                        Password must be at least 8 characters long and must contain at least one letter and one number each.
+                        </small>
+                    </div>
+                    )}
+                </li>
+                <li>
+                {/* 3. Confirm password*/}
+                    <label>Confirm password : </label>
+                        <input
+                        type="password"
+                        maxLength="20"
+                        placeholder="Please enter your password number."
+                        value={chkPwd}
+                        onChange={changeChkPwd}
+                        />
+                        {chkPwdError && (
+                        <div className="msg">
+                            <small style={{ color: "red", fontSize: "10px" }}>
+                            Password verification does not match.
+                            </small>
+                        </div>
+                        )}
+                    </li>
+                <li>{/* 4. 이름 */}
+                <label>User Name : </label>
+                        <input
+                        type="text"
+                        maxLength="20"
+                        placeholder="Please enter your name."
+                        value={userName}
+                        onChange={changeUserName}
+                        />
+                        {userNameError && (
+                        <div className="msg">
+                            <small style={{ color: "red", fontSize: "10px" }}>
+                            This is a Required input.
+                            </small>
+                        </div>
+                        )}
+                </li>
+                <li>{/* 5. 이메일 */}</li>
+                <li>{/* 6. 전송버튼 */}</li>
+                <li>{/* 7. 로그인 페이지 링크 */}</li>
+            </ul>
+        </form>
+        </section>
+        {jqFn()}
+    </>
+    );
 }
 
 export default Member;

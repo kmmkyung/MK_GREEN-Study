@@ -1,4 +1,10 @@
 @charset "utf-8";
+main.cont{
+    /* 최소높이 상단,하단 제외 채우기 */
+    /* 하단역역에 흰여백나는 일이 없어짐 */
+    min-height: calc(100vh - 58px - 210px);
+}
+
 .top{
     position: fixed;
     top: 0;
@@ -89,6 +95,7 @@ h1{
 
 
 /* 메인영역 */
+
 
 /* 하단영역 */
 .info{
