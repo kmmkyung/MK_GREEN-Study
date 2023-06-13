@@ -42,14 +42,15 @@ import ScrollTop from "./dc/commen/ScrollTop";
 // 출력해야하기 때문에 스스로 내보내기를 셋팅하는것임!
 export default function App(){
     return(
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+         {/* <BrowserRouter> */}
             {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동함! */}
             <ScrollTop/>
             <Routes>
                {/* 중요!!!:레이아웃 컴포넌트를 루트로 잡아준다!!! */} 
                <Route path="/" element={<Layout />}>
                     {/* 하위라우트 셋팅 */}
-                    translateY      {/* path대신 index만 쓰면 첫페이지임!
+                    {/* path대신 index만 쓰면 첫페이지임!
                     -> Layout의 Link to="/"에 해당하는 셋팅임! 필수! */}
                     <Route index element={<Main />} />
                     <Route path="ct" element={<Characters />} />
