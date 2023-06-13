@@ -43,7 +43,7 @@ import ScrollTop from "./dc/commen/ScrollTop";
 export default function App(){
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
-         {/* <BrowserRouter> */}
+        {/* <BrowserRouter>  */}
             {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동함! */}
             <ScrollTop/>
             <Routes>
@@ -53,6 +53,7 @@ export default function App(){
                     {/* path대신 index만 쓰면 첫페이지임!
                     -> Layout의 Link to="/"에 해당하는 셋팅임! 필수! */}
                     <Route index element={<Main />} />
+                    <Route path="main" element={<Main />} />
                     <Route path="ct" element={<Characters />} />
                     <Route path="co1" element={<Comics sub="0" />} />
                     <Route path="co2" element={<Comics sub="1" />} />

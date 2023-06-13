@@ -28,20 +28,22 @@ import $ from "jquery"
 
 // 로드구역 함수화하여 소스 하단에서 호출!
 function jqFn(){
-
+    
     $(()=>{ ////// JQB //////
-
         // 광클 금지 변수
         let prot = 0;
-
+        
         // 1. 버튼 클릭시 이동기능 구현
         $(".abtn").click(function(){
-
             // 광클 금지
             if(prot) return;
             prot=1;
+            console.log("p",prot)
             // 0.4초 있다가 다시 prot 0으로!
-            setTimeout(()=>prot=0,400);
+            setTimeout(()=>{
+                prot=0
+                console.log("후",prot)
+            },400);
 
             // 1. 버튼 구분하기
             let isB = $(this).is(".rb")
@@ -80,7 +82,7 @@ function jqFn(){
         }); ///// --- click --- /////
     }); ////// JQB //////
 } ///////////////// jqFn 함수 //////////////////////
-
+jqFn();
 // 반복리스트 코드 생성용 컴포넌트 //////
 function MakeList(props){ // rec - 개별레코드값(객체형식)
     return(
@@ -129,7 +131,7 @@ function Ban(props){ // props.cat은 배너 데이터 구분 속성명
                 )
             }
             {/* JS/JQuery 로드구역 호출! */}
-            {jqFn()}
+            {/* {jqFn()} */}
         </div>
     );
 } ////////// Ban 컴포넌트 ///////////
