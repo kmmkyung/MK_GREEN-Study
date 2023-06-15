@@ -19,6 +19,15 @@ const ban_data = {
             "btn":"A World at Stake",
         },
     ],
+    "main3":[
+        {
+            "src":"./images/dcmb3.jpg",
+            "tit1":"FLASH FACTS",
+            "tit2":"THINGS YOU MAY NOT KNOW ABOUT THE FLASH",
+            "cont":`We've raced through over sixty years of comics to find a collection of trivia that may surprise even his biggest fans.`,
+            "btn":"When is Barry Allen's Birthday?",
+        },
+    ],
     "CHARACTERS":[
         {
             "src":"./images/dcm23.jpg",
@@ -60,7 +69,7 @@ const ban_data = {
     ],
     "MOVIES":[
         {
-            "src":"./images/dcm38.jpg",
+            "src":"./images/dcm34.jpg",
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
@@ -69,7 +78,7 @@ const ban_data = {
     ],
     "GAMES":[
         {
-            "src":"./images/dcm22.jpg",
+            "src":"./images/dcm37.jpg",
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
@@ -78,7 +87,7 @@ const ban_data = {
     ],
     "NEWS":[
         {
-            "src":"./images/dcm35.jpg",
+            "src":"./images/dcm33.jpg",
             "tit1":"GOTHAM GAZETTE",
             "tit2":"WORLDS TRAVELER",
             "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
