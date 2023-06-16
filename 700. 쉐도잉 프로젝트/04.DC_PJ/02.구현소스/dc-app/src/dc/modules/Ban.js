@@ -83,6 +83,8 @@ function jqFn(){
     }); ////// JQB //////
 } ///////////////// jqFn 함수 //////////////////////
 jqFn();
+
+
 // 반복리스트 코드 생성용 컴포넌트 //////
 function MakeList(props){ // rec - 개별레코드값(객체형식)
     return(
