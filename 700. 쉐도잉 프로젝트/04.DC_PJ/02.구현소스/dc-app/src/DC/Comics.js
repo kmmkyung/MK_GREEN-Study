@@ -8,7 +8,7 @@ const Comics = (props) => {
 
     // 타이틀 데이터 선택하기
     const tit_data = [
-        " LATEST COMICS & GRAPHIC NOVELS  ",
+        "LATEST COMICS & GRAPHIC NOVELS",
         "DC UNIVERSE INFINITE",
         "ALL COMICS SERIES",
     ];

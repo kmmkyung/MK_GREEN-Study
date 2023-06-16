@@ -10,5 +10,4 @@ const Characters = () => {
   );
 }; /////////////// Main //////////////
 
-
 export default Characters;
