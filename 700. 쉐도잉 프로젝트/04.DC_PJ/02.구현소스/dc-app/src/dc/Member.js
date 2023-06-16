@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import $ from "jquery";
 import "./css/member.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { clearData, initData } from "./fns/fnMem"; 
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -36,6 +37,16 @@ function jqFn() {
 function Member() {
     // 요구사항 : 각 입력항목에 맞는 유효성검사를 입력하는 순간!
     //            실시간으로 체크하여 결과를 화면에 리턴한다!
+
+    // [ 리액트 라우터 이동시 이동메서드 사용하기 : useNavigate ]
+    // 1. Link를 사용한 셋팅으로 라우터를 이동하였다!
+    // -> 코드적으로 이동할때는? 바로 useNavigate
+    // 2. import 하기 : import {Navigate} from "react-router-dom"
+    // 3. 사용법: 변수 = useNavigate()
+    // -> 변수(라우터경로)
+
+    // 라우터 이동 네비게이트 생성하기
+    const goRoute = useNavigate();
 
     // [ 후크 useState 메서드 셋팅하기 ]
     // [ 1. 입력요소 후크변수 ]
@@ -72,11 +83,11 @@ function Member() {
     // 후크변수 메시지
     const [idMsg, setIdMsg] = useState(msgId[0]);
 
-    // [ 로컬쓰 클리어 ] /////////
-    const clearData = () => {
-        localStorage.clear();
-        console.log("로컬쓰 클리어!");
-    }; /////////// clearData //////////////
+    // // [ 로컬쓰 클리어 ] ///////// -> fns/fnMem.js로 보냄
+    // const clearData = () => {
+    //     localStorage.clear();
+    //     console.log("로컬쓰 클리어!");
+    // }; /////////// clearData //////////////
 
     // [ 로컬쓰 초기체크셋팅! ] ////////////
     const initData = () => {
@@ -290,6 +301,11 @@ function Member() {
 
             // 로그인 페이지로 이동(라우터 이동하기!)
             //useNavigate 이용
+            $(".sbtn").text("회원가입을 축하드립니다");
+            setTimeout(()=>{
+                goRoute('/login');
+            },1500);
+
         } /// if ////
         // 불통과시 ////////////////
         else {
