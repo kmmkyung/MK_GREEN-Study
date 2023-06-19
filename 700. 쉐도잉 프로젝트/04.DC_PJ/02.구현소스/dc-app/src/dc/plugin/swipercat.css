@@ -70,6 +70,11 @@
     margin-top: 15px;
   }
   
+  a{ 
+    /* Link로 싸서 a요소가 작용함! 밑줄, 글자색 변경 */
+    color: #000;
+    text-decoration: none;
+  }
   
   /* 기존 스와이퍼 디자인 변경 */
 
@@ -102,6 +107,7 @@
   .cattit h3{
     font-size: 20px;
     margin-top: 10px;
+
   }
   }
   
