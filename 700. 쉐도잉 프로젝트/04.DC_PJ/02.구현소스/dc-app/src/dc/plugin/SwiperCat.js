@@ -30,13 +30,13 @@ export default function SwiperCat(props) {
                 // 스와이퍼 사이즈별 슬라이드수 변경!
                 breakpoints={{
                     200: {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                     },
                     700: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                     },
                     1000: {
-                        slidesPerView: 6,
+                        slidesPerView: 5,
                     },
                     1200: {
                         slidesPerView: 7,

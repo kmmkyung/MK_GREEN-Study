@@ -206,3 +206,5 @@ const cat_data = [
         type:"Individuals"
     },
 ];
+
+export default cat_data;
