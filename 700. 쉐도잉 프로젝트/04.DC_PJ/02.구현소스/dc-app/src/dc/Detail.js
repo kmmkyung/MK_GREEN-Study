@@ -11,7 +11,7 @@ function Detail(props){
   // 1. 캐릭터 이름 / 2. 캐릭터 설명-^문자로 잘라 배열로 변경 / 3. 캐릭터 명세
   const cname = loc.state.cname;
   
-  let cdesc = loc.state.cdese;
+  let cdesc = loc.state.cdesc;
   cdesc = cdesc.split('^');
 
   const facts = loc.state.facts;
