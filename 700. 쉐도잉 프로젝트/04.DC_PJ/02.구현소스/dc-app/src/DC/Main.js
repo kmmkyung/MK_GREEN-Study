@@ -4,6 +4,7 @@ import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
 import SwiperVid from "./plugin/SwiperVid";
 import VidSwiper from "./modules/VidSwiper"
+import CatSwipe from "./modules/CatSwipe";
 
 const Main = () => {
     return (
@@ -20,6 +21,7 @@ const Main = () => {
             tit="LATEST TRAILERS, CLIPS & MORE"
             />
             {/* 5. 메뉴 스와이퍼 모듈 */}
+            <CatSwipe />
             {/* 6. 배너모듈(캐릭터) */}
             <Ban cat="CHARACTERS" />
             {/* 7. 메뉴 스와이퍼 모듈 */}
