@@ -17,7 +17,8 @@ function Detail(props) {
   let cdesc = loc.state.cdesc;
   cdesc = cdesc.split("^");
   // 3. 캐릭터명세
-  const facts = loc.state.facts;
+  let facts = loc.state.facts;
+  facts = facts.split("^");
 
   return (
     <>
@@ -36,7 +37,14 @@ function Detail(props) {
         <div className="facts">
           <div>
             <h3>CHARACTER FACTS</h3>
-            {facts}
+            {
+              facts.map((v)=> (
+                <tr>
+                  <td>{v.split(':')[0]}:</td>
+                  <td>{v.split(':')[1]}</td>
+                </tr>
+              ))
+              }
           </div>
         </div>
       </div>
