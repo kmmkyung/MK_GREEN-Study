@@ -54,7 +54,7 @@ export default function SwiperCat(props) {
                             {
                             cname:v.cname,
                             cdesc:v.cdesc,
-                            fachs:v.facts}
+                            facts:v.facts}
                             }>
 
                         <section className="swinbx">

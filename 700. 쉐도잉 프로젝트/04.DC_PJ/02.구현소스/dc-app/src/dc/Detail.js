@@ -19,6 +19,7 @@ function Detail(props) {
   // 3. 캐릭터명세
   let facts = loc.state.facts;
   facts = facts.split("^");
+  console.log(facts)
 
   return (
     <>
@@ -29,22 +30,26 @@ function Detail(props) {
         <div className="descbx">
           <h2>{cname}</h2>
           <div className="cdesc">
-            {cdesc.map((v) => (
-              <p>{v}</p>
-            ))}
+            {cdesc.map((v,i) => 
+              <p key={i}>{v}</p>
+            )}
           </div>
         </div>
         <div className="facts">
           <div>
             <h3>CHARACTER FACTS</h3>
+            <table>
+              <tbody>
             {
-              facts.map((v)=> (
-                <tr>
+              facts.map((v,i)=> 
+              <tr key={i}>
                   <td>{v.split(':')[0]}:</td>
                   <td>{v.split(':')[1]}</td>
                 </tr>
-              ))
-              }
+              )
+            }
+            </tbody>
+            </table>
           </div>
         </div>
       </div>
