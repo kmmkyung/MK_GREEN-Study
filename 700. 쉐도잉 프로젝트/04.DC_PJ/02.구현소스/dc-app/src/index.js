@@ -14,6 +14,7 @@ import Video from "./dc/Video";
 import Mamber from "./dc/Member";
 import LogIn from "./dc/Login";
 import Detail from "./dc/Detail";
+import Search from "./dc/modules/Search";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -64,6 +65,7 @@ export default function App(){
                     <Route path="mem" element={<Mamber />} />
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
+                    <Route path="sch" element={<Search />} />
                </Route>
 
             </Routes>
