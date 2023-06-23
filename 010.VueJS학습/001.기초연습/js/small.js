@@ -153,8 +153,8 @@ new Vue({
         function setVal(){
             // nowNum값에 의한 대상선정!
             const tg = $(`.grid>div[data-num=${nowNum}]`);
-            // console.log(tg.find("h2").text());
-            // console.log(tg.find("h3").text());
+            console.log(tg.find("h2").text());
+            console.log(tg.find("h3").text());
     
             // 1. [가격 계산을 위한 원가격셋팅]
             orgprice = tg.find("h3>span:first").attr("data-price");
