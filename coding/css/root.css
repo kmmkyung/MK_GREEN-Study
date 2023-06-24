@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* ZORA PJ root CSS - root.css */
+
+@font-face{
+  font-family:'Cako Regular';
+  src:url('../font/Cako-Regular.woff2');
+}
+
+@font-face{
+  font-family:'Atami Regular';
+  src:url('../font/Atami-Regular.woff');
+}
+
+*{
+    outline: 1px dotted turquoise;
+    /* outline: 1px dotted tomato; */
+}
+
+body{
+  /* cursor: none; */
+}
+
+:root{
+  /* COLOR */
+  --black:#000000;
+  --white:#ffffff;
+  --main:#f2eee9;
+  --main2:#f51c3c;
+  --org:#ffe1cc;
+  --blue:#ccf4f9;
+  --red:#fdd2d8;
+  --yell:#fff6d3;
+  --pink:#fcddf1;
+  
+  
+  /* FONTSIZE */
+  --font-size-S: 1.4rem;
+  --font-size-M: 2rem;
+  --font-size-L:  min(8vw,6rem);
+  --font-size-menu: 1.4rem;
+  --font-size-tit: min(12vw,10rem);
+
+  /* FONT-FAMILY */
+  --Coko: Cako Regular, -apple-system, BlinkMacSystemFont, Times, serif;
+  --Atami: Atami Regular, -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif;
+}
+/*----------*/
+/*-- CSS CLASS --*/
+
+.-hidden{
+    display: none;
+}
+
+.-show{
+    display: block;
+}
+
+.-center{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* .-JSmove{
+  opacity: 0;
+  transform: translateY(30%);
+  transition: all .5s;
+} */
+
+/*----- CSS -----*/
+/* h2 */
+h2{
+  -webkit-font-smoothing: antialiased;
+  transform: translateY(3px);
+}
+
+/* button */
+button{
+  font-family: var(--Coko);
+}
+
+.btn-W::after, .btn-B::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    transition: all .4s;
+  }  
+
+  .btn-W:hover{
+    color: rgba(255, 255, 255, 0.5)
+  }
+  
+  .btn-B:hover{
+    color: rgba(0, 0, 0, 0.5)
+  }
+  
+  .btn-W:hover::after, .btn-B:hover::after{
+    width: 0%;
+    height: 1px;  
+  }
+

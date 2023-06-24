@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="./js/jquery-3.6.3.min.js"></script>
+  <script src="./js/jquery-ui.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sub</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/root.css">
+  <link rel="stylesheet" href="./css/sub.css">
+  <link rel="stylesheet" href="./css/page1.css">
+  <link rel="stylesheet" href="./css/core.css">
+  <script>
+    $(function(){
+        console.log('Subitem로딩')
+    // 인풋
+    const sumInput = $(".number-btn__input");
+    console.log('suminput',sumInput);
+    
+    
+    // 인풋 버튼
+    $(".number-btn__span").click(function(){
+      // 1. 클릭된 버튼 구분하기
+      let addBtn = $(this).attr('alt');
+      console.log('구분버튼',addBtn); // ok
+      
+      // 2. 현재값 읽어오기 문자->숫자
+      let isV = Number(sumInput.val())
+      console.log('현재값',isV);
+      
+      
+      
+    })
+    
+
+  }); //--- JQB ---//
+  </script>
+</head>
+<body>
+  <section id="subface">
+    <div class="subface-wrap">
+      <div class="subface-bgwrap">
+        <div class="subface-bg">
+          <img src="./images/oneschool.png" alt="one school day">
+        </div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <section>
+      <div class="subface-con">
+        <h1>Dark</h1>
+        <p>Rich, herbaceous aromas with hints of honey, raisins and sweet caramel notes, for a long finish, reminiscent of warm fudge baked brownies.</p>
+        <div class="number-btn">
+          <div class="number-btn__1">
+            <span class="number-btn__span">-</span>
+            <input type="number" placeholder="0" class="number-btn__input">
+            <span class="number-btn__span">+</span>
+          </div>
+          <button class="number-btn__2">BUY NOW - 11.86$</button>
+      </div>
+    </div>
+    </section>
+    <section class="item">
+      <div class="item-wrap">
+        <div class="item-L">
+          <img src="./images/Sub_Dark_choc.jpg" alt="item img">
+        </div>
+        <div class="item-R">
+          <div class="about about-1">
+            <h3>Chocolate we can all feel good about</h3>
+          </div>
+          <div class="about about-2">
+            <p>Every bar you buy helps to support our Women’s Economic Empowerment Program and fund one day of schooling for a girl in rural Ghana.</p>
+          </div>
+          <div class="about about-3">
+            <h4>Ingredients</h4>
+            <p>Organic Cocoa, Cane Sugar, Cocoa Butter.
+            </p>
+          </div>
+          <div class="about about-4">
+            <h4>Nutrition Facts</h4>
+            <p>1 oz, Servings: 2, Calories: 170<br>
+              Total Fat: 11g (14% DV), Saturated Fat: 7g (35%), Total Carb: 13g (5%), Dietary Fiber: 3g (11% DV), Total Sugars: 9g, Inc. Added Sugars:, 8g (16%DV), Protein: 3g, Calcium: 20mg (2% DV), Iron: 1.3mg (8% DV),<br>
+              % Daily Value (DV) based on a 2,000 calorie diet.
+            </p>
+          </div>
+          <div class="about about-5">
+            <h4>Packaging</h4>
+            <p>Made from FSC certified materials & 100% recyclable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <article class="tasting">
+      <div class="tasting-wrap">
+        <h2>Tasting notes</h2>
+        <div class="tasting-con">
+          <div class="tasting-1">
+            <img src="./images/Sub_sesame.jpg" alt="tasting img">
+            <h4>Terroir</h4>
+            <h5>Suhum, Ghana</h5>
+          </div>
+          <div class="tasting-2">
+            <img src="./images/Sub_sesame.jpg" alt="tasting img">
+            <h4>Terroir</h4>
+            <h5>Suhum, Ghana</h5>
+          </div>
+          <div class="tasting-3">
+            <img src="./images/Sub_sesame.jpg" alt="tasting img">
+            <h4>Terroir</h4>
+            <h5>Suhum, Ghana</h5>
+          </div>
+          <div class="tasting-4">
+            <img src="./images/Sub_sesame.jpg" alt="tasting img">
+            <h4>Terroir</h4>
+            <h5>Suhum, Ghana</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <section id="subnext">
+    <h2 class="subnext-tit">You may also enjoy</h2>
+    <div class="subnext-wrap">
+      <div class="subnext-con">
+        
+        <div class="subnext-L">
+          <div class="subnext-L-wrap">
+            <div class="subnext-L-con">
+              <div class="subnext-img">
+                <img class="chocolatepack" src="./images/Pecan_cherry_1.png" alt="">
+                <img class="chocolatebreak" src="./images/Pecan_cherry_2.png" alt="">
+              </div>
+              <h3>Recan+ Cherry</h3>
+              <button class="btn-B">Buy now</button>
+            </div>
+            <div class="subnext-bg"></div>
+          </div>
+        </div>
+
+        <div class="subnext-R">
+          <div class="subnext-R-wrap">
+            <div class="subnext-R-con">
+              <div class="subnext-img">
+                <img class="chocolatepack" src="./images/Fleur_de_Sel_1.png" alt="">
+                <img class="chocolatebreak" src="./images/Fleur_de_Sel_2.png" alt="">
+              </div>
+              <h3>Fleur de Sel</h3>
+              <button class="btn-B">Buy now</button>
+            </div>
+            <div class="subnext-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- footer
+    <footer id="footer">
+      <div class="nav-logo-footer"></div>
+      <div class="footer-wrap">
+        <div class="footer-nav">
+          <ul class="footer-nav__1">
+            <li><a href="#">SHOP</a></li>
+            <li><a href="#">OUR STORY</a></li>
+            <li><a href="#">OUR IMPACT</a></li>
+            <li><a href="#">CONTACT</a></li>
+          </ul>
+          <ul class="footer-nav__2">
+            <li><a href="#">TERMS & CONDITIONS</a></li>
+            <li><a href="#">PRIVACY POLICY</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+          <ul class="footer-nav__3">
+            <li><a href="#">INSTAGRAM</a></li>
+            <li><a href="#">SPOTIFY</a></li>
+          </ul>
+        </div>
+        <p>© 2023 ZORA™</p>
+      </div>
+    </footer> -->
+</body>
+</html>
