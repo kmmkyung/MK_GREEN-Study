@@ -23,15 +23,42 @@
     // 인풋 버튼
     $(".number-btn__span").click(function(){
       // 1. 클릭된 버튼 구분하기
-      let addBtn = $(this).attr('alt');
-      console.log('구분버튼',addBtn); // ok
+      let altbtn = $(this).attr('alt');
+      console.log('구분버튼',altbtn); // ok
       
       // 2. 현재값 읽어오기 문자->숫자
       let isV = Number(sumInput.val())
       console.log('현재값',isV);
       
-      
-      
+      // 3. 버튼 분기하기
+      if(altbtn === "add"){
+        sumInput.val(++isV)
+      }
+      else{
+        isV = --isV;
+        if(isV===0) isV=1;
+        sumInput.val(isV)
+      }
+    })
+
+    // 직접입력
+    sumInput.keyup(function(){
+      let txt = sumInput.val();
+      if(txt === "") return;
+
+      // 숫자가 아니거나, 1미만이거나, 빈값이거나, 소수점 아닌 -1일 경우
+      if(isNaN(txt) ||
+      txt <1 ||
+      txt === "" ||
+      txt.indexOf(".")!==-1
+      ){
+        sumInput.val(1);
+      }
+      else{
+        if(txt>=100){
+          alert("연락바람")
+        }
+      }
     })
     
 
@@ -55,9 +82,9 @@
         <p>Rich, herbaceous aromas with hints of honey, raisins and sweet caramel notes, for a long finish, reminiscent of warm fudge baked brownies.</p>
         <div class="number-btn">
           <div class="number-btn__1">
-            <span class="number-btn__span">-</span>
+            <span class="number-btn__span" alt="no">-</span>
             <input type="number" placeholder="0" class="number-btn__input">
-            <span class="number-btn__span">+</span>
+            <span class="number-btn__span" alt="add">+</span>
           </div>
           <button class="number-btn__2">BUY NOW - 11.86$</button>
       </div>
