@@ -102,7 +102,7 @@ function loadFn() {
     // 2. 슬라이드 변경함수 만들기
     // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
     goSlide = (seq) => {
-        //  console.log("슬고우!", seq);
+         console.log("슬고우!", seq);
 
         //  console.log("못들어갔어!!!!");
 
@@ -332,7 +332,7 @@ let rx = 0; // 최초 버튼 클릭시를 위해 초기값 0셋팅 필수!
 
 function goDrag(obj) {
     // obj - 드래그 대상(슬라이드 요소)
-    console.log('obj',obj);
+    console.log('obj');
     
     // 변수만들기 /////////////
     // (1) 드래그 상태변수 : true-드래그중, false-드래그아님
