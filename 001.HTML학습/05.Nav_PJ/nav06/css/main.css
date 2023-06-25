@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 /* 네비게이션 유형6 : 메인CSS - main.css */
-/* 배너 css */
 
 /* 외부CSS 합치기 */
 @import url(./reset.css);
@@ -13,10 +12,10 @@
     position: relative;
     /* 부모자격 */
     /* height: 100vh; */
-    /* aspect-ratio:  1 / 0.4; */
+    /* aspect-ratio: 1 / 0.4; */
+    /* background: red; */
     padding: 80px 0;
 }
-
 /* 가상요소로 배경색 넣기 */
 .banbx.ban1::before{
     content: '';
@@ -31,7 +30,7 @@
 .bancont {
     /*슬라이드부모*/
     position: relative;
-    /* 자리를 차지함 */
+    /* 자리를 차지함! */
     /* top: 10%; */
     /* transform: translateY(-50%); */
     /* 세로중앙! 안씀 */
@@ -41,16 +40,14 @@
     /* border: 2px solid red; */
     box-sizing: border-box;
     
-    
     /* outline: 5px dotted blue; */
 }
-
 
 .slide {
     display: flex;
     /* 플렉스박스!!! */
     gap: 0 10vw;
-    /* 양쪽간격 10vw = 10%씩 */
+    /* 양쪽간격 10vw */
 
     /*사진을 싸고 있는 슬라이드*/
     position: absolute;
@@ -75,14 +72,14 @@
 
     /* 필터로 밝기조절(어둡게) */
     /* filter: brightness(70%); */
-    
-    /* 박스그림자 */
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2); 
 
+    /* 박스 그림자 */
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+    
     /* 트랜지션 */
     transition: .4s;
 }
-/* 3번째가 주인공이므로 원래밝기로 조금 크게변경! */
+/* 1번배너만 3번째가 주인공이므로 원래밝기로 조금 크게변경! */
 .ban1 .slide li:nth-child(3){
     filter: brightness(100%);
     transform: scale(1.2);
@@ -98,22 +95,18 @@
 /*이동버튼*/
 .abtn {
     position: absolute;
+    width: 24px;
+    height: 51px;
     top: 50%;
     transform: translateY(-50%);
-    /*Y축 중앙이동*/
+    /* Y축 중앙이동 */
 
-    /* background-color: black; */
+    /* background-color: #000; */
     background-image: url(../img_nav06/main.png);
     background-size: 190px 175px;
     background-repeat: no-repeat;
-
-    /* 버튼 크기 */
-    width: 24px;
-    height: 51px;
-
     /* outline: 1px solid red; */
 }
-
 
 /*왼쪽버튼*/
 .ab1 {
@@ -135,7 +128,6 @@
     overflow: hidden;
 }
 
-/* 2번 배너 셋팅----------------------------------------- */
 
 /* 2번배너 셋팅 */
 .ban2{

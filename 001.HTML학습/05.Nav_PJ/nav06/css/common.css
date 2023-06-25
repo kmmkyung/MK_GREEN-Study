@@ -23,12 +23,12 @@
     /* 부모자격 - .smenu */
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #222;
-    z-index: 1;
-    /* 배너보다 위에 올라가게 */
+    z-index: 999;
 }
 /* .top{
     min-height: 350px;
 } */
+
 /* 1-1.탑메뉴영역 */
 .tmenu{
     height: 80px;

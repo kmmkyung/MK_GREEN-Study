@@ -87,7 +87,7 @@ function loadFn() {
         // 현재 슬라이드 li 새로읽기(2번반복시 li의 순서가 달라지기때문)
         slist = document.querySelectorAll("#slide>li");
         // 맨뒤 맨앞이동하기 -> 변경대상: #slide -> slide변수
-        slide.insertBefore(slist[slist.length - 1], slist[0]);
+        slide.insertBefore(slist[slist.length-1], slist[0]);
         // slide.insertBefore(넣을놈,넣을놈전놈)
         // slide.insertBefore(마지막요소,첫요소)
         // slide.insertBefore(slist[개수-1],slist[0]);
@@ -332,7 +332,8 @@ let rx = 0; // 최초 버튼 클릭시를 위해 초기값 0셋팅 필수!
 
 function goDrag(obj) {
     // obj - 드래그 대상(슬라이드 요소)
-
+    console.log('obj',obj);
+    
     // 변수만들기 /////////////
     // (1) 드래그 상태변수 : true-드래그중, false-드래그아님
     let drag = false;
