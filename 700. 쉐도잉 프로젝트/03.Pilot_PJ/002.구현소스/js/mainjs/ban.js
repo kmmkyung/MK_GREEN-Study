@@ -199,7 +199,7 @@ function banFn() {
 
         // 1.해당슬라이드 data-seq읽어오기
         let dseq = slide.find("li").eq(seq).attr("data-seq");
-        // // console.log(dseq);
+        console.log('dseq',dseq);
 
         // 2. 해당슬라이드와 동일한 순번블릿에 on넣기
         bindic.eq(dseq).addClass("on").siblings().removeClass("on");
