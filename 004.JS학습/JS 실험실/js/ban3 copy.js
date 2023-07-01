@@ -372,8 +372,7 @@ function goDrag(obj) {
         // lx = -obj.parentElement.clientWidth * 2.2;
         // 마지막 위치값이 슬라이드 부모박스이 -220%
         // 이므로 이것을 업데이트 해준다!
-        // 이때 앞에 마이너스(-)중요!!!
-        console.log("업데이트lx:", lx);
+x        console.log("업데이트lx:", lx);
     }); /////////// resize /////////////////
 } //////////// goDrag함수 ///////////////////////
 
