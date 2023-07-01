@@ -1,5 +1,6 @@
 // JS실험실: 03.배너스타일 JS -  ban.js
-// 부드러운 드래그위해 [변경1][변경2][변경3][변경4][변경5] -> [업데이트 2023.03.31]
+// 부드러운 드래그위해 [변경1][변경2][변경3][변경4][변경5] 
+//-> [업데이트 2023.03.31]
 // 변경사항은 "[변경" 으로 검색이동할것!
 
 // HTML태그 로딩후 loadFn함수 호출! ///
@@ -87,7 +88,7 @@ function loadFn() {
         // 현재 슬라이드 li 새로읽기(2번반복시 li의 순서가 달라지기때문)
         slist = document.querySelectorAll("#slide>li");
         // 맨뒤 맨앞이동하기 -> 변경대상: #slide -> slide변수
-        slide.insertBefore(slist[slist.length-1], slist[0]);
+        slide.insertBefore(slist[slist.length - 1], slist[0]);
         // slide.insertBefore(넣을놈,넣을놈전놈)
         // slide.insertBefore(마지막요소,첫요소)
         // slide.insertBefore(slist[개수-1],slist[0]);
@@ -102,7 +103,7 @@ function loadFn() {
     // 2. 슬라이드 변경함수 만들기
     // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
     goSlide = (seq) => {
-         console.log("슬고우!", seq);
+        //  console.log("슬고우!", seq);
 
         //  console.log("못들어갔어!!!!");
 
@@ -152,7 +153,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 10); //// 타임아웃 [변경5]-> 시간을 10줌!(모바일시보정) //////
+            }, 10); //// 타임아웃 [변경4]-> 시간을 10줌!(모바일시보정) //////
             // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
             // 1만써도 괜찮음~
 
@@ -189,7 +190,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 10); ////// 타임아웃  [변경5]-> 시간을 10줌!(모바일시보정) /////////
+            }, 10); ////// 타임아웃  [변경4]-> 시간을 10줌!(모바일시보정) /////////
         } //////////// else : 왼쪽클릭시 //////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
@@ -332,8 +333,7 @@ let rx = 0; // 최초 버튼 클릭시를 위해 초기값 0셋팅 필수!
 
 function goDrag(obj) {
     // obj - 드래그 대상(슬라이드 요소)
-    console.log('obj');
-    
+
     // 변수만들기 /////////////
     // (1) 드래그 상태변수 : true-드래그중, false-드래그아님
     let drag = false;
