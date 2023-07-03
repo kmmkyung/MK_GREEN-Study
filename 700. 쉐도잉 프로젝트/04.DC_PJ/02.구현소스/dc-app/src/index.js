@@ -1,7 +1,7 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다!
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Characters from "./dc/Characters";
 import Main from "./dc/Main";
 import Layout from "./dc/Layout";
@@ -11,10 +11,11 @@ import Movies from "./dc/Movies";
 import Games from "./dc/Games";
 import News from "./dc/News";
 import Video from "./dc/Video";
-import Mamber from "./dc/Member";
-import LogIn from "./dc/Login";
+import Member from "./dc/Member";
+import LogIn from "./dc/LogIn";
 import Detail from "./dc/Detail";
-import Search from "./dc/modules/Search";
+import Result from "./dc/Result";
+import Board from "./dc/Board";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -45,7 +46,7 @@ import Search from "./dc/modules/Search";
 export default function App(){
     return(
         // <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                {/* 중요!!!:레이아웃 컴포넌트를 루트로 잡아준다!!! */} 
                <Route path="/" element={<Layout />}>
@@ -62,14 +63,15 @@ export default function App(){
                     <Route path="gm" element={<Games />} />
                     <Route path="nw" element={<News />} />
                     <Route path="vd" element={<Video />} />
-                    <Route path="mem" element={<Mamber />} />
+                    <Route path="mem" element={<Member />} />
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
-                    <Route path="sch" element={<Search />} />
+                    <Route path="res" element={<Result />} />
+                    <Route path="board" element={<Board />} />
                </Route>
 
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 } //////////////// App 컴포넌트 //////////////////
 
