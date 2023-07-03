@@ -56,6 +56,7 @@ function Board() {
         for (let i = (pgnum - 1) * pgblock; i < pgnum * pgblock; i++) {
             // 마지막 번호한계값 조건으로 마지막페이지 데이터
             // 존재하는 데이터까지만 바인딩하기
+            // 순번은 리스트상 순서 번호를 넣는다 (idx아님!)
             if (i < totnum) {
                 blist += `
                 <tr>
@@ -211,38 +212,6 @@ function Board() {
                 <table class="dtblview">
             <caption>OPINION</caption>
             <tbody>
-            <tr>
-                <td width="100">
-                    Name
-                </td>
-                <td width="650">
-                    <input type="text" name="name" size="20">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Emial
-                </td>
-                <td>
-                    <input type="text" name="email" size="40">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Title
-                </td>
-                <td>
-                    <input type="text" name="subject" size="60">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Content
-                </td>
-                <td>
-                    <textarea name="content" cols="60" rows="10"></textarea>
-                </td>
-            </tr>
             </tbody>
         </table>
             }
