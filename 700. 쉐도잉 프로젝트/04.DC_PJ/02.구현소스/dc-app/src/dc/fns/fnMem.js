@@ -1,9 +1,9 @@
-// 회원가입 기능 함수
+// 회원관련 기능 함수 - fnMem.js
 
 // [ 로컬쓰 클리어 ] /////////
 const clearData = () => {
-  localStorage.clear();
-  console.log("로컬쓰 클리어!");
+    localStorage.clear();
+    console.log("로컬쓰 클리어!");
 }; /////////// clearData //////////////
 
 // [ 로컬쓰 초기체크셋팅! ] ////////////
@@ -13,18 +13,18 @@ const initData = () => {
         localStorage.setItem(
             "mem-data",
             `
-                [
-                    {
-                        "idx": "1",
-                        "uid":"tomtom",
-                        "pwd":"1111",
-                        "unm":"Tom",
-                        "eml":"tom@gmail.com"
-                    }
-                ]
-            `
+                    [
+                        {
+                            "idx": "1",
+                            "uid":"tomtom",
+                            "pwd":"1111",
+                            "unm":"Tom",
+                            "eml":"tom@gmail.com"
+                        }
+                    ]
+                `
         );
     }
 }; ///////////// initData /////////////////
 
-export { clearData, initData }
+export { clearData, initData };
