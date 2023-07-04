@@ -7,7 +7,18 @@ import orgdata from "./data/data.json";
 
 // 컴포넌트에서 제이슨 데이터를 담지말고
 // 반드시 바깥에서 담을것!
-let jsn = orgdata;
+// 초기데이터 처리는 로컬스 'bdata'가 있으면 로컬스를 가져오고
+// 없으면 제이슨 데이터를 사용하여 초기화한다!
+let org;
+if(localStorage.getItem('bdata')) 
+    org = JSON.parse(localStorage.getItem('bdata'));
+else 
+    org = orgdata;
+
+// 제이슨 데이터 배열정렬하기(내림차순:최신등록순번이 1번)
+org.sort((x,y)=>{
+    return Number(x.idx) == Number(y.idx) ? 0 : Number(x.idx) > Number(y.idx) ? -1 : 1;
+})
 
 // 제이쿼리 로드구역 함수 /////////
 function jqFn() {
@@ -18,6 +29,8 @@ function Board() {
     // [ 제이슨 파일 데이터 로컬스토리지에 넣기 ]
     // 1. 변수에 제이슨 파일 문자화 하여 불러오기
     // 상단에서 불러옴!
+    // 실시간 데이터 변경 관리를 Hook변수화 하여 처리함!
+    const [jsn,setJsn] = useState(org); // 초기데이터 셋팅
 
     // 2. 로컬스토리지 변수를 설정하여 할당하기
     localStorage.setItem("bdata", JSON.stringify(jsn));
@@ -25,9 +38,12 @@ function Board() {
 
     // 3. 로컬스토리지 데이터를 파싱하여 게시판 리스트에 넣기
     // 3-1. 로컬 스토리지 데이터 파싱하기
-    let bdata = JSON.parse(localStorage.getItem("bdata"));
+    // let bdata = JSON.parse(localStorage.getItem("bdata"));
+    // jsn변수에 Hook 상태처리했으므로 중간 파싱에 불필요함!
+
     // console.log("로컬스파싱:",bdata,
     // "/개수:",bdata.length);
+
 
     // 페이지번호 : 페이지단위별 순서번호
     // let pgnum = 1; -> 함수내 전달변수로 처리!
@@ -49,32 +65,37 @@ function Board() {
         // 0. 게시판 리스트 생성하기
         let blist = "";
         // 전체 레코드 개수
-        let totnum = bdata.length;
+        let totnum = jsn.length;
+
+        // 내림차순 정렬
+        jsn.sort((x,y)=>{
+            return Number(x.idx) == Number(y.idx) ? 0 : Number(x.idx) > Number(y.idx) ? -1 : 1;
+        })
 
         // 1.일반형 for문으로 특정대상 배열 데이터 가져오기
         // 데이터 순서: 번호,글제목,글쓴이,등록일자,조회수
         for (let i = (pgnum - 1) * pgblock; i < pgnum * pgblock; i++) {
             // 마지막 번호한계값 조건으로 마지막페이지 데이터
             // 존재하는 데이터까지만 바인딩하기
-            // 순번은 리스트상 순서 번호를 넣는다 (idx아님!)
+            // 순번은 리스트상 순서번호를 넣는다(idx아님!)
             if (i < totnum) {
                 blist += `
                 <tr>
-                    <td>${bdata[i]["idx"]}</td>
+                    <td>${i+1}</td>
                     <td>
-                        <a href="view.html?idx=${bdata[i]["idx"]}">
-                            ${bdata[i]["tit"]}
+                        <a href="view.html?idx=${jsn[i]["idx"]}">
+                            ${jsn[i]["tit"]}
                         </a>
                     </td>
-                    <td>${bdata[i]["writer"]}</td>
-                    <td>${bdata[i]["date"]}</td>
-                    <td>${bdata[i]["cnt"]}</td>
+                    <td>${jsn[i]["writer"]}</td>
+                    <td>${jsn[i]["date"]}</td>
+                    <td>${jsn[i]["cnt"]}</td>
                 </tr>
             `;
             } //////////// if ////////////
         } /////////// for 문 ///////////////
 
-        console.log("코드:", blist);
+        // console.log("코드:", blist);
 
         // 2. 리스트 코드 테이블에 넣기
         $("#board tbody").html(blist);
@@ -85,8 +106,8 @@ function Board() {
         // 전체 레코드 수 : totnum 변수에 이미 할당
         let pgtotal = Math.floor(totnum / pgblock);
         let pgadd = totnum % pgblock;
-        console.log("페이징 전체수:", pgtotal);
-        console.log("페이징 나머지:", pgadd);
+        // console.log("페이징 전체수:", pgtotal);
+        // console.log("페이징 나머지:", pgadd);
 
         // 페이징코드변수
         let pgcode = "";
@@ -105,6 +126,8 @@ function Board() {
             if (i != pgtotal) pgcode += " | ";
         } /////////// for문 ///////////////
 
+        // console.log(pgcode);
+
         // 3-3. 페이징코드 넣기
         $(".paging").html(pgcode);
 
@@ -117,15 +140,23 @@ function Board() {
         }); /////////// click /////////////
     } /////////////// bindList함수 ///////////////
 
+    // 현재로그인 사용자 정보
+    let [nowmem,setNowmem] = useState('');
 
     /// 로그인 상태 체크 함수 //////////
     const chkLogin = () => {
         // 로컬스에 'minfo'가 있는지 체크
         let chk = localStorage.getItem('minfo');
-        console.log("요기:",chk);
+        // console.log("요기:",chk);
         // 로컬스에 셋팅했을 경우 상태Hook에 treu값 업데이트!
         if(chk) setLog(true);
         else setLog(false);
+
+        // 현재로그인한 맴버정보
+        if(chk){
+            setNowmem(JSON.parse(chk));
+            console.log("현재너:",nowmem);
+        }
 
     }; ////////// chkLogin /////////////
 
@@ -147,10 +178,89 @@ function Board() {
 
         // 하위 글자읽기
         let txt = $(e.target).text();
-        console.log("버튼:",txt);
+        // console.log("버튼:",txt);
 
-        if(txt=="Write") setBdmode('C');
-        else if(txt=="List") {setBdmode('L');}
+        // (1)글쓰기 버튼 클릭
+        if(txt=="Write"){
+            // 모드 상태값 업데이트
+            setBdmode('C');
+
+            // console.log(nowmem.unm);
+
+            // 읽기전용 입력창에 기본정보 셋팅
+            $(()=>{
+                $(".dtblview .name").val(nowmem.unm);
+                $(".dtblview .email").val(nowmem.eml);
+            });
+
+        } 
+        // (2)리스트 버튼 클릭
+        else if(txt=="List")setBdmode('L');
+        // (3)글쓰기 모드(C)일때 실행(Submit)버튼클릭
+        else if(txt=="Submit" && bdmode=="C"){
+
+            // 타이틀
+            let tit = $(".dtblview .subject").val();
+            // 내용
+            let cont = $(".dtblview .content").val();
+
+
+            // 제목/내용 빈값 체크
+            if(tit.trim()==''||cont.trim()==''){
+                alert("Title and content are required");
+            }
+            // 통과시 실제 데이터 입력하기
+            else{
+                // 날짜데이터처리
+                let today = new Date();
+                let yy = today.getFullYear();
+                let mm = today.getMonth();
+                mm = mm<10?"0"+mm:mm
+                let dd = today.getDate();
+                dd = dd<10?"0"+dd:dd
+
+                // 1. 원본데이터 변수할당
+                let orgtemp = jsn;
+
+                // 2. 임시변수에 입력할 객체 데이터 생성하기
+                let temp = {
+                    "idx" : jsn.length+1, // 현재개수+1
+                    "tit" : tit,
+                    "cont" : cont,
+                    "att" : "",
+                    "date" : `${yy}-${mm}-${dd}`,
+                    "writer" : nowmem.uid,
+                    "pwd" : nowmem.pwd,
+                    "cnt" : "1"
+                };
+                // 3. 원본임시변수에 데이터 push하기
+                orgtemp.push(temp);
+
+                // 4. Hook 관리변수에 최종 업데이트
+                setJsn(orgtemp);
+
+                // 5. 로컬스 변수에 반영하기
+                localStorage.setItem('bdata',JSON.stringify(jsn));
+
+                console.log(localStorage.getItem('bdata'));
+
+                // 6. 게시판 모드 업데이트('L')
+                setBdmode('L');
+
+                // 7. 리스트 바인딩호출
+                bindList(1);
+
+            }
+
+        } ////////////// 새로입력 ///////////
+
+
+        // 리스트 태그로딩구역에서 일괄호출!
+        // 리스트 태그가 출력되었을때 적용됨!
+        $(()=>bindList(1))
+
+
+
 
     }; ////////////// chgMode함수 ///////////////
 
@@ -162,7 +272,7 @@ function Board() {
         // 로그인상태 체크함수 호출!
         chkLogin();
         
-        console.log("로그인:",log,"/모드:",bdmode);
+        // console.log("로그인:",log,"/모드:",bdmode);
     }; ////////// callFn ///////////
 
     // 로딩체크함수 호출!
@@ -209,11 +319,43 @@ function Board() {
             {/* 2. 글쓰기 테이블 : 게시판 모드 'C'일때만 출력 */}
             {
                 bdmode == 'C' &&
-                <table class="dtblview">
-            <caption>OPINION</caption>
-            <tbody>
-            </tbody>
-        </table>
+                <table className="dtblview">
+                    <caption>OPINION</caption>
+                    <tbody>
+                        <tr>
+                            <td width="100">
+                                Name
+                            </td>
+                            <td width="650">
+                                <input type="text" className="name" size="20" readOnly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Email
+                            </td>
+                            <td>
+                                <input type="text" className="email" size="40" readOnly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Title
+                            </td>
+                            <td>
+                                <input type="text" className="subject" size="60" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Content
+                            </td>
+                            <td>
+                                <textarea className="content" cols="60" rows="10"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             }
 
             <br />

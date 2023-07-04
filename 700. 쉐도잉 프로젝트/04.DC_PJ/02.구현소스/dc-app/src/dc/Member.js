@@ -5,6 +5,7 @@ import "./css/member.css";
 import { Link, useNavigate } from "react-router-dom";
 import { clearData, initData } from "./fns/fnMem"; 
 
+
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
     1. 목적 - 어떤 특정 데이터가 변경될때
@@ -39,10 +40,11 @@ function Member() {
     //            실시간으로 체크하여 결과를 화면에 리턴한다!
 
     // [ 리액트 라우터 이동시 이동메서드 사용하기 : useNavigate ]
-    // 1. Link를 사용한 셋팅으로 라우터를 이동하였다!
+    // 1. Link 를 사용한 셋팅으로 라우터를 이동하였다!
     // -> 코드적으로 이동할때는? 바로 useNavigate
-    // 2. import 하기 : import {Navigate} from "react-router-dom"
-    // 3. 사용법: 변수 = useNavigate()
+    // 2. import 하기 : import {useNavigate} from "react-router-dom";
+    // 3. 사용법 : 
+    // 변수 = useNavigate()
     // -> 변수(라우터경로)
 
     // 라우터 이동 네비게이트 생성하기
@@ -83,33 +85,33 @@ function Member() {
     // 후크변수 메시지
     const [idMsg, setIdMsg] = useState(msgId[0]);
 
-    // // [ 로컬쓰 클리어 ] ///////// -> fns/fnMem.js로 보냄
+    // [ 로컬쓰 클리어 ] // -> fns/fnMem.js로 보냄
     // const clearData = () => {
     //     localStorage.clear();
     //     console.log("로컬쓰 클리어!");
     // }; /////////// clearData //////////////
 
-    // [ 로컬쓰 초기체크셋팅! ] ////////////
-    const initData = () => {
+    // [ 로컬쓰 초기체크셋팅! ] /// -> fns/fnMem.js로 보냄
+    // const initData = () => {
 
-        // 만약 로컬스 "mem-data"가 null이면 만들어준다!
-        if (localStorage.getItem("mem-data") === null) {
-            localStorage.setItem(
-                "mem-data",
-                `
-                    [
-                        {
-                            "idx": "1",
-                            "uid":"tomtom",
-                            "pwd":"1111",
-                            "unm":"Tom",
-                            "eml":"tom@gmail.com"
-                        }
-                    ]
-                `
-            );
-        }
-    }; ///////////// initData /////////////////
+    //     // 만약 로컬스 "mem-data"가 null이면 만들어준다!
+    //     if (localStorage.getItem("mem-data") === null) {
+    //         localStorage.setItem(
+    //             "mem-data",
+    //             `
+    //                 [
+    //                     {
+    //                         "idx": "1",
+    //                         "uid":"tomtom",
+    //                         "pwd":"1111",
+    //                         "unm":"Tom",
+    //                         "eml":"tom@gmail.com"
+    //                     }
+    //                 ]
+    //             `
+    //         );
+    //     }
+    // }; ///////////// initData /////////////////
 
     // [ 3. 유효성 검사 메서드 ]
     // 1. 아이디 유효성 검사
@@ -181,7 +183,7 @@ function Member() {
     const changePwd = (e) => {
         // e - 이벤트전달변수
         // 1. 유효성 검사식(따옴표싸지 말것!)
-        const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const valid = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
         // 2. 입력값 확인 : e.target -> 이벤트가 발생한 요소
         console.log(e.target.value);
@@ -299,12 +301,12 @@ function Member() {
             // 로컬쓰에 반영하기
             localStorage.setItem("mem-data", JSON.stringify(memData));
 
-            // 로그인 페이지로 이동(라우터 이동하기!)
-            //useNavigate 이용
-            $(".sbtn").text("회원가입을 축하드립니다");
-            setTimeout(()=>{
-                goRoute('/login');
-            },1500);
+            // 로그인 페이지로 이동(라우터이동하기!)
+            // useNavigate 사용!
+            $(".sbtn").text("넌 이제 회원인거야~!!");
+            setTimeout(() => {
+                goRoute('/login');                
+            }, 1500);
 
         } /// if ////
         // 불통과시 ////////////////
@@ -380,8 +382,7 @@ function Member() {
                                 pwdError && (
                                     <div className="msg">
                                         <small style={{ color: "red", fontSize: "10px" }}>
-                                            Password must be at least 8 characters long and must
-                                            contain at least one letter and one number each.
+                                        5 to 15 digits in the form of special characters, characters, and numbers
                                         </small>
                                     </div>
                                 )
