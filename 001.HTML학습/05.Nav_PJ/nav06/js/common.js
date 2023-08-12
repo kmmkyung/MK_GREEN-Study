@@ -112,8 +112,6 @@ function loadFn() {
         x.onmouseenter = () => {
             // (1) 하위메뉴 박스 .smenu 선택하기
             let tg = x.querySelector(".smenu");
-            console.log(tg);
-            
 
             // (2) 하위메뉴 박스 내부박스 높이값 구하기
             let hv = tg.querySelector(".smbx").clientHeight;
