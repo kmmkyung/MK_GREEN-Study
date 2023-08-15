@@ -173,6 +173,8 @@ function loadFn() {
     함수명: chgSlide
   ***********************************/
  function chgSlide(obj){ // obj - 변경대상 노드리스트
+    console.log('노드리스트',obj);
+    
     console.log("공통함수!");
     // 전체리스트 초기화
     obj.forEach((ele) => ele.classList.remove("on"));
