@@ -138,8 +138,8 @@ function loadFn(){
 
         // 2-2. 방향별 읽어올 슬라이드 순번으로 "data-seq"값 읽어오기
         let cseq = clist[1].getAttribute("data-seq")
-        ////console.log("현재순번",cseq)
-        // //console.log("현재순번",clist[0].getAttribute("data-seq"))
+        console.log("현재순번",cseq)
+        // console.log("현재순번",clist[0].getAttribute("data-seq"))
         // indic[순번].classList.add("on")
 
         // 2-3. 블릿 초기화
